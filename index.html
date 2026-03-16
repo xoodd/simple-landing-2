@@ -3,642 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이칸저칸 | 지하철 커뮤니티</title>
+    <title>이칸저칸 | Subway Life Curating Platform</title>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
         :root {
-            --primary: #2563EB;
-            --primary-light: #3B82F6;
-            --primary-dark: #1D4ED8;
-            --secondary: #0EA5E9;
-            --accent: #06B6D4;
-            --bg-white: #FFFFFF;
-            --bg-light: #F8FAFC;
-            --bg-subtle: #F1F5F9;
-            --text-main: #1E293B;
-            --text-sub: #64748B;
-            --text-light: #94A3B8;
-            --gradient-hero: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
-            --gradient-card: linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 100%);
-            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08);
-            --shadow-lg: 0 25px 50px -12px rgba(37, 99, 235, 0.15);
+            --primary: #FF6B00;
+            --black: #111111;
+            --gray-100: #F5F5F7;
+            --gray-200: #EBEBEB;
+            --text-sub: #6E6E73;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
-        body { background-color: var(--bg-white); color: var(--text-main); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-        .bg-pattern {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(37, 99, 235, 0.03) 0%, transparent 30%);
-        }
-
-        nav { 
-            padding: 20px 8%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: fixed; 
-            width: 100%; 
-            z-index: 100; 
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(37, 99, 235, 0.08);
-        }
-        .logo { 
-            font-size: 1.7rem; 
-            font-weight: 800; 
-            color: var(--primary); 
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--gradient-hero);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-        .nav-links { display: flex; align-items: center; gap: 35px; }
-        .nav-links a { 
-            text-decoration: none; 
-            color: var(--text-sub); 
-            font-weight: 600; 
-            font-size: 0.95rem; 
-            transition: color 0.3s; 
-        }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-cta {
-            background: var(--primary);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .nav-cta:hover { background: var(--primary-dark); transform: translateY(-2px); }
-
-        .hero { 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            padding: 140px 5% 100px; 
-            position: relative;
-        }
+        body { background-color: #fff; color: var(--black); line-height: 1.6; overflow-x: hidden; word-break: keep-all; }
         
-        .hero-badge { 
-            background: var(--gradient-card); 
-            border: 1px solid rgba(37, 99, 235, 0.15); 
-            padding: 12px 28px; 
-            border-radius: 50px; 
-            font-size: 0.9rem; 
-            color: var(--primary);
-            margin-bottom: 35px;
-            font-weight: 600;
-            animation: fadeInUp 0.8s ease-out;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .hero h1 { 
-            font-size: 4.8rem; 
-            font-weight: 800; 
-            line-height: 1.1; 
-            letter-spacing: -3px; 
-            margin-bottom: 28px; 
-            animation: fadeInUp 0.8s ease-out 0.1s both;
-            max-width: 900px;
-        }
-        .hero h1 .highlight { 
-            background: var(--gradient-hero); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            position: relative;
-        }
-        .hero p { 
-            font-size: 1.3rem; 
-            color: var(--text-sub); 
-            margin-bottom: 45px; 
-            font-weight: 450; 
-            max-width: 600px;
-            line-height: 1.8;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-        
-        .hero-buttons { display: flex; gap: 16px; animation: fadeInUp 0.8s ease-out 0.3s both; }
-        .btn-main { 
-            background: var(--gradient-hero); 
-            color: white; 
-            padding: 18px 42px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 1.05rem; 
-            transition: all 0.3s; 
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3); 
-        }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4); }
-        .btn-secondary { 
-            background: white; 
-            border: 2px solid #E2E8F0; 
-            color: var(--text-main); 
-            padding: 16px 35px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 1.05rem; 
-            transition: all 0.3s; 
-        }
-        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+        /* Layout Helpers */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 160px 0; }
+        .flex { display: flex; align-items: center; gap: 80px; }
+        .reverse { flex-direction: row-reverse; }
 
-        .hero-visual {
-            margin-top: 60px;
-            display: flex;
-            gap: 20px;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-        .floating-card {
-            background: white;
-            padding: 20px 28px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            animation: float 6s ease-in-out infinite;
-        }
-        .floating-card:nth-child(2) { animation-delay: -2s; }
-        .floating-card:nth-child(3) { animation-delay: -4s; }
-        .floating-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient-card);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-        }
-        .floating-text strong { display: block; font-size: 1rem; margin-bottom: 3px; }
-        .floating-text span { font-size: 0.85rem; color: var(--text-sub); }
+        /* Navigation */
+        nav { padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); letter-spacing: -1px; }
+        .nav-btn { background: var(--black); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+        /* Hero */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at 80% 20%, #FFF5EE 0%, #FFFFFF 50%); }
+        .hero .tag { font-size: 1.1rem; color: var(--primary); font-weight: 700; margin-bottom: 20px; letter-spacing: 2px; }
+        .hero h1 { font-size: 5rem; font-weight: 900; line-height: 1.1; margin-bottom: 30px; letter-spacing: -4px; }
+        .hero p { font-size: 1.5rem; color: var(--text-sub); max-width: 700px; margin-bottom: 50px; }
+
+        /* Problem Section (Numbers) */
+        .number-tag { font-size: 6rem; font-weight: 900; color: var(--gray-100); line-height: 1; margin-bottom: -20px; position: relative; z-index: -1; }
+        .section-title { font-size: 3rem; font-weight: 800; margin-bottom: 40px; letter-spacing: -2px; }
+
+        /* Cards Style */
+        .feature-card { flex: 1; background: var(--gray-100); padding: 60px; border-radius: 40px; transition: 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); background: #fff; box-shadow: 0 40px 80px rgba(0,0,0,0.06); }
+        .feature-card h3 { font-size: 2rem; margin-bottom: 20px; }
+        .feature-card p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 30px; }
+        
+        .image-placeholder { flex: 1; background: #eee; height: 500px; border-radius: 40px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #ccc; }
 
         /* Stats */
-        .stats { 
-            display: flex; 
-            justify-content: center;
-            gap: 100px; 
-            margin-top: 70px; 
-            padding: 40px 60px; 
-            background: white; 
-            border-radius: 24px; 
-            box-shadow: var(--shadow-md);
-            animation: fadeInUp 0.8s ease-out 0.5s both;
-        }
-        .stat-item { text-align: center; }
-        .stat-number { 
-            font-size: 2.4rem; 
-            font-weight: 800; 
-            background: var(--gradient-hero); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-        .stat-label { font-size: 0.95rem; color: var(--text-sub); margin-top: 5px; }
-
-        /* Feature Section */
-        .section { padding: 140px 10%; }
-        .section-header { text-align: center; margin-bottom: 80px; }
-        .section-header h2 { 
-            font-size: 3rem; 
-            font-weight: 800; 
-            letter-spacing: -2px; 
-            margin-bottom: 20px;
-            color: var(--text-main);
-        }
-        .section-header p { color: var(--text-sub); font-size: 1.15rem; max-width: 550px; margin: 0 auto; }
-
-        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
-        .feature-card { 
-            background: var(--gradient-card); 
-            padding: 45px 38px; 
-            border-radius: 28px; 
-            transition: all 0.4s; 
-            border: 1px solid rgba(37, 99, 235, 0.08);
-            position: relative;
-        }
-        .feature-card:hover { 
-            background: white; 
-            border-color: rgba(37, 99, 235, 0.2); 
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-8px);
-        }
-        
-        .feature-card .number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: rgba(37, 99, 235, 0.08);
-            position: absolute;
-            top: 15px;
-            right: 20px;
-        }
-        .feature-card h3 { font-size: 1.45rem; margin-bottom: 16px; font-weight: 700; color: var(--text-main); }
-        .feature-card p { color: var(--text-sub); font-size: 1rem; line-height: 1.75; }
-        
-        .icon-circle { 
-            width: 60px; 
-            height: 60px; 
-            background: var(--gradient-hero); 
-            border-radius: 18px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            margin-bottom: 24px; 
-            font-size: 1.5rem; 
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25); 
-        }
-
-        /* Community Section */
-        .community { 
-            padding: 140px 10%; 
-            background: var(--bg-light);
-            position: relative;
-            overflow: hidden;
-        }
-        .community::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: linear-gradient(180deg, white 0%, var(--bg-light) 100%);
-        }
-        .community-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .community h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-            letter-spacing: -1px;
-        }
-        
-        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .testimonial-card {
-            background: white;
-            padding: 35px;
-            border-radius: 24px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s;
-        }
-        .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-        
-        .testimonial-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-        .testimonial-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient-hero);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        .testimonial-info strong { display: block; font-size: 1rem; }
-        .testimonial-info span { font-size: 0.85rem; color: var(--text-light); }
-        .testimonial-text { 
-            color: var(--text-sub); 
-            font-size: 0.95rem; 
-            line-height: 1.7; 
-        }
-
-        /* How It Works */
-        .how-it-works { padding: 140px 10%; background: white; }
-        .steps-container { display: flex; justify-content: center; gap: 40px; max-width: 1100px; margin: 0 auto; }
-        .step-item { text-align: center; flex: 1; position: relative; }
-        .step-item::after {
-            content: '→';
-            position: absolute;
-            right: -30px;
-            top: 50px;
-            font-size: 2rem;
-            color: var(--primary);
-            opacity: 0.3;
-        }
-        .step-item:last-child::after { display: none; }
-        
-        .step-icon {
-            width: 100px;
-            height: 100px;
-            background: var(--gradient-card);
-            border-radius: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2.5rem;
-            border: 2px solid rgba(37, 99, 235, 0.1);
-        }
-        .step-item h3 { font-size: 1.3rem; margin-bottom: 12px; font-weight: 700; }
-        .step-item p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
-
-        /* Bottom CTA */
-        .cta-footer { 
-            background: var(--gradient-hero); 
-            color: white; 
-            padding: 120px 10%; 
-            text-align: center; 
-            border-radius: 60px 60px 0 0; 
-        }
-        .cta-footer h2 { 
-            font-size: 3.5rem; 
-            margin-bottom: 20px; 
-            font-weight: 800; 
-            letter-spacing: -2px; 
-        }
-        .cta-footer p { 
-            color: rgba(255,255,255,0.85); 
-            margin-bottom: 45px; 
-            font-size: 1.25rem; 
-        }
-        .cta-footer .btn-main {
-            background: white;
-            color: var(--primary);
-            padding: 22px 55px;
-            font-size: 1.15rem;
-        }
-        .cta-footer .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .store-buttons { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
-        .store-btn {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 14px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .store-btn:hover { background: rgba(255,255,255,0.25); }
+        .stats-banner { background: var(--black); color: white; padding: 100px 0; text-align: center; }
+        .stats-flex { display: flex; justify-content: space-around; margin-top: 50px; }
+        .stat-box h4 { font-size: 4rem; color: var(--primary); margin-bottom: 10px; }
+        .stat-box p { color: #888; }
 
         /* Footer */
-        footer { background: var(--bg-light); color: var(--text-sub); padding: 50px 10% 60px; text-align: center; border-top: 1px solid #E2E8F0; }
-        .footer-content { max-width: 600px; margin: 0 auto; }
-        .team-tag { 
-            display: inline-block; 
-            padding: 8px 22px; 
-            border: 1px solid rgba(37, 99, 235, 0.2); 
-            border-radius: 25px; 
-            color: var(--primary); 
-            font-size: 0.9rem; 
-            margin-bottom: 20px;
-            background: white;
-            font-weight: 600;
-        }
+        footer { padding: 100px 0 60px; text-align: center; background: #fff; }
+        .footer-logo { font-size: 2rem; font-weight: 900; color: #ddd; margin-bottom: 30px; }
+        .team-info { font-weight: 600; color: var(--black); margin-bottom: 10px; }
+        .copyright { color: #aaa; font-size: 0.9rem; }
 
-        @media (max-width: 900px) {
+        /* Responsive */
+        @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .testimonial-grid { grid-template-columns: 1fr; }
-            .steps-container { flex-direction: column; }
-            .step-item::after { display: none; }
-            .stats { flex-direction: column; gap: 30px; }
-            .section-header h2 { font-size: 2.2rem; }
-            .cta-footer h2 { font-size: 2.5rem; }
-            .nav-links { display: none; }
+            .flex { flex-direction: column; gap: 40px; }
+            .section { padding: 80px 0; }
+            .section-title { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-pattern"></div>
-
     <nav>
-        <div class="logo">
-            <div class="logo-icon">🚇</div>
-            이칸저칸
-        </div>
-        <div class="nav-links">
-            <a href="#features">서비스 소개</a>
-            <a href="#community">커뮤니티</a>
-            <a href="#how-it-works">이용 방법</a>
-            <a href="#download" class="nav-cta">앱 다운로드</a>
-        </div>
+        <div class="logo">이칸저칸</div>
+        <a href="#" class="nav-btn">App Store</a>
     </nav>
 
     <section class="hero">
-        <div class="hero-badge">🎉 <span>디지털 하나론 9기 프로젝트</span></div>
-        <h1>지하철에서 만나는<br><span class="highlight">새로운 이동의 경험</span></h1>
-        <p>혼잡한 지하철, 이제 그만.<br>이칸저칸과 함께 만들어가는 따뜻한 지하철 커뮤니티,<br>당신의 출퇴근길을 더 즐겁게 만들어보세요.</p>
-        <div class="hero-buttons">
-            <a href="#" class="btn-main">지금 시작하기</a>
-            <a href="#features" class="btn-secondary">더 알아보기</a>
-        </div>
-        
-        <div class="hero-visual">
-            <div class="floating-card">
-                <div class="floating-icon">⚡</div>
-                <div class="floating-text">
-                    <strong>실시간 알림</strong>
-                    <span>연착 정보 즉시 확인</span>
-                </div>
-            </div>
-            <div class="floating-card">
-                <div class="floating-icon">💺</div>
-                <div class="floating-text">
-                    <strong>스마트 좌석</strong>
-                    <span>착석 확률 안내</span>
-                </div>
-            </div>
-            <div class="floating-card">
-                <div class="floating-icon">🎖️</div>
-                <div class="floating-text">
-                    <strong>배지 수집</strong>
-                    <span>이동 기록 저장</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number">100K+</div>
-                <div class="stat-label">누적 사용자</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">4.9</div>
-                <div class="stat-label">앱 스토어 평점</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">5M+</div>
-                <div class="stat-label">월간 이용 횟수</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">지하철 노선 지원</div>
-            </div>
+        <div class="tag">SUBWAY CURATING PLATFORM</div>
+        <h1>불편한 이동을<br>즐거운 경험으로.</h1>
+        <p>사업 계획서 기반, 데이터와 커뮤니티가 만나<br>지하철 라이프스타일의 새로운 기준을 제시합니다.</p>
+        <div class="image-placeholder" style="max-width: 800px; height: 300px; background: linear-gradient(135deg, #FF8A00 0%, #FF6B00 100%); color: white;">
+            Main Interface Preview
         </div>
     </section>
 
-    <section class="section" id="features">
-        <div class="section-header">
-            <h2>이칸저칸만의 특별한 기능</h2>
-            <p>데이터 기반으로 더욱 똑똑해진 지하철 이용 경험,<br>당신의 이동 시간을 가치 있는 순간으로 만들어드립니다.</p>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="number">01</span>
-                <div class="icon-circle">📢</div>
-                <h3>실시간 상황 공유</h3>
-                <p>연착 발생, 문고장 사고, 돌발 상황 등 다양한 정보를 같은 노선을 이용하는 사용자들과 실시간으로 공유합니다. 민원은 이제 그만, 서로를 위한 정보 교환으로 더욱 편리한 지하철 이용이 가능합니다.</p>
+    <div class="container">
+        <section class="section">
+            <div class="flex">
+                <div style="flex: 1;">
+                    <div class="number-tag">01</div>
+                    <h2 class="section-title">왜 우리는 아직도<br>답답한 지하철을 탈까요?</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-sub);">연간 이용객은 늘어가는데, 지연 소식은 늘 늦고 자리는 운에 맡겨야 합니다. '이칸저칸'은 이 질문에서 시작되었습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>실시간 상황 중계</h3>
+                    <p>공식 안내보다 빠른 유저 제보 시스템. 지금 내 칸의 온도, 소음, 지연 상황을 즉시 확인하고 공유하세요.</p>
+                    <div style="background: white; height: 100px; border-radius: 20px;"></div>
+                </div>
             </div>
-            <div class="feature-card">
-                <span class="number">02</span>
-                <div class="icon-circle">💺</div>
-                <h3>스마트 착석 가이드</h3>
-                <p>단순한 혼잡도 표시를 넘어, 과거 데이터 분석을 통해 각 칸별 착석 확률을 예측해드립니다. 출퇴근길 언제 어디서나 앉아갈 확률이 가장 높은 위치를 추천해드립니다.</p>
-            </div>
-            <div class="feature-card">
-                <span class="number">03</span>
-                <div class="icon-circle">📊</div>
-                <h3>나의 이동 리포트</h3>
-                <p>매일 이용하는 경로를 데이터로 기록하고, 월간 이동 리포트를 제공합니다. 얼마나 자주 지하철을 이용하는지, 어떤 노선을 가장 많이 이용하는지 한눈에 확인하세요.</p>
-            </div>
-            <div class="feature-card">
-                <span class="number">04</span>
-                <div class="icon-circle">🏆</div>
-                <h3>업적 & 배지 시스템</h3>
-                <p>지하철 이용 활동에 따라 다양한 업적을 달성하고 배지를 수집하세요. "출퇴근 마스터", "전 노선 기여자" 등 재미있는 목표를 설정하고 성취감을 경험해보세요.</p>
-            </div>
-            <div class="feature-card">
-                <span class="number">05</span>
-                <div class="icon-circle">💬</div>
-                <h3>노선별 커뮤니티</h3>
-                <p>자주 이용하는 노선의 커뮤니티에 참여하세요. 같은 노선을 이용하는 사람들과 정보를 공유하고, 지하철 관련的话题에 함께 논의할 수 있습니다.</p>
-            </div>
-            <div class="feature-card">
-                <span class="number">06</span>
-                <div class="icon-circle">🔔</div>
-                <h3>맞춤 알림 설정</h3>
-                <p>자주 이용하는 구간에 대한 도착 알림, 연착 발생 시 자동 알림 등 나에게 필요한 정보만 선택해서 받아보세요. 알림 피로도 없이 필요한 정보만 얻습니다.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="community" id="community">
-        <div class="community-inner">
-            <h2>이칸저칸 커뮤니티의 이야기</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">김</div>
-                        <div class="testimonial-info">
-                            <strong>김지수님</strong>
-                            <span>2호선 매일 이용</span>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">출퇴근할 때마다 이칸저칸으로 연착 정보를 확인해요. 덕분에 지연될 때도从容하게 대응할 수 있고, 다른 사람들과 정보 공유하는 것도 재미있네요.</p>
+        <section class="section">
+            <div class="flex reverse">
+                <div style="flex: 1;">
+                    <div class="number-tag">02</div>
+                    <h2 class="section-title">앉아갈 확률을<br>데이터로 계산합니다.</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-sub);">축적된 유저 루틴 데이터와 하차 정보를 매칭하여, 어느 칸에 타야 가장 높은 확률로 앉아갈 수 있을지 가이드를 제공합니다.</p>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">이</div>
-                        <div class="testimonial-info">
-                            <strong>이민호님</strong>
-                            <span>4호선 매일 이용</span>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">스마트 착석 가이드功能 완전的神! 어느 칸에 앉아야 할지迷茫할 때마다 확인하니까 훨씬舒适하게 출퇴근해요. 배지 수집도 빠져들게 해요.</p>
+                <div class="image-placeholder">
+                    [Seat Probability Logic Visualization]
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">박</div>
-                        <div class="testimonial-info">
-                            <strong>박서연님</strong>
-                            <span>9호선 매일 이용</span>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">지하철이 지연될 때 민원 넣으려면 너무麻烦했는데, 이칸저칸에서 간단히 상황 공유하고别人도 도와줄 수 있어서 좋아요. 커뮤니티 느낌이good해요.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="flex">
+                <div style="flex: 1;">
+                    <div class="number-tag">03</div>
+                    <h2 class="section-title">지루한 출퇴근길을<br>성취의 기록으로.</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-sub);">단순한 이동을 넘어, 나의 지하철 이용 패턴을 리포트로 제공합니다. '2호선 마스터' 배지와 함께 이동의 즐거움을 되찾으세요.</p>
+                </div>
+                <div class="feature-card" style="background: var(--black); color: white;">
+                    <h3 style="color: var(--primary);">지하철 리포트</h3>
+                    <p style="color: #888;">지나온 역의 개수, 절약한 시간, 커뮤니티 기여도를 시각화하여 매일 아침 전송해 드립니다.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="stats-banner">
+        <div class="container">
+            <h2>지하철 승객 10명 중 8명이 선택한 가치</h2>
+            <div class="stats-flex">
+                <div class="stat-box">
+                    <h4>82%</h4>
+                    <p>실시간 정보 공유 의사</p>
+                </div>
+                <div class="stat-box">
+                    <h4>No.1</h4>
+                    <p>지하철 특화 커뮤니티</p>
+                </div>
+                <div class="stat-box">
+                    <h4>24/7</h4>
+                    <p>실시간 라이브 피드</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="how-it-works" id="how-it-works">
-        <div class="section-header">
-            <h2>이칸저칸 시작하기</h2>
-            <p>간단한 3단계만 따라하면 바로 이용 가능하세요</p>
-        </div>
-        <div class="steps-container">
-            <div class="step-item">
-                <div class="step-icon">📱</div>
-                <h3>앱 다운로드</h3>
-                <p>App Store 또는 Google Play에서 '이칸저칸'을 검색하고 무료로 다운로드하세요.</p>
-            </div>
-            <div class="step-item">
-                <div class="step-icon">👤</div>
-                <h3>회원가입</h3>
-                <p>간편하게 SNS로 가입하거나 이메일을 통해 가입하세요. profiling 없이 바로 시작됩니다.</p>
-            </div>
-            <div class="step-item">
-                <div class="step-icon">🚇</div>
-                <h3>노선 선택</h3>
-                <p>자주 이용하는 지하철 노선을 선택하고 맞춤 정보를 받아보세요. 이제 출퇴근이 즐거워집니다.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-footer" id="download">
-        <h2>지하철 이용의 새로운 기준,<br>이칸저칸과 함께</h2>
-        <p>100,000명 이상의 이용자가 선택한 지하철 커뮤니티,<br>당신의 출퇴근길을 더 가치 있게 만들어보세요.</p>
-        <a href="#" class="btn-main">App Store에서 다운로드</a>
-        <div class="store-buttons">
-            <button class="store-btn">📱 iOS</button>
-            <button class="store-btn">🤖 Android</button>
-        </div>
-        <div class="team-tag" style="margin-top: 50px; background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: white;">Project by Team 썹타는중</div>
+    <section class="section" style="text-align: center; background: var(--gray-100);">
+        <h2 style="font-size: 3.5rem; margin-bottom: 30px;">당신의 지하철 칸은<br>오늘도 안녕한가요?</h2>
+        <a href="#" class="btn-main" style="background: var(--primary); color: white; padding: 20px 60px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-block;">이칸저칸 무료로 시작하기</a>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <p>© 2026 Team Sub-Ride. Created by Data Analysts & Service Planners.</p>
-            <p style="margin-top: 8px; font-size: 0.85rem;">디지털 하나론 9기 데이터분석 및 서비스기획 프로젝트</p>
-            <p style="margin-top: 15px; font-size: 0.8rem; color: var(--text-light);">
-                이칸저칸은 지하철 이용자들의 편리한 이동 경험을 위한 서비스입니다.<br>
-                모든 데이터는匿名处理되어 개인 정보 보호를 최우선으로 합니다.
-            </p>
+        <div class="footer-logo">이칸저칸</div>
+        <div class="team-info">Team 썹타는중</div>
+        <div class="copyright">
+            © 2026 Subway Life Project. All Rights Reserved.<br>
+            디지털 하나로 9기 데이터분석 및 서비스기획
         </div>
     </footer>
 
