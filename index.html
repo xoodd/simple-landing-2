@@ -4,132 +4,245 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>이칸저칸 | Subway Community Platform</title>
+<title>이칸저칸 | Subway Intelligence Platform</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
 
 <style>
-
-:root{
---primary:#FF5C00;
---black:#111;
---gray:#F6F6F7;
---text:#1D1D1F;
---sub:#6E6E73;
-}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:"Pretendard";
-letter-spacing:-0.02em;
+font-family:Pretendard;
+letter-spacing:-0.03em;
 }
 
 body{
-color:var(--text);
 background:white;
-line-height:1.6;
+color:#111;
 overflow-x:hidden;
 }
 
-/* layout */
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:0 24px;
+section{
+padding:140px 10%;
 }
 
-.section{
-padding:140px 0;
+h1{
+font-size:clamp(60px,9vw,140px);
+line-height:.9;
+font-weight:900;
 }
 
-/* nav */
-
-nav{
-position:fixed;
-top:0;
-width:100%;
-padding:20px 6%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(255,255,255,0.85);
-backdrop-filter:blur(10px);
-border-bottom:1px solid #eee;
-z-index:1000;
+h2{
+font-size:48px;
+margin-bottom:20px;
 }
 
-.logo{
-font-weight:800;
-font-size:1.3rem;
-color:var(--primary);
+p{
+color:#666;
+line-height:1.7;
 }
-
-.nav-links{
-display:flex;
-gap:28px;
-font-size:0.9rem;
-font-weight:600;
-color:#555;
-}
-
-/* hero */
 
 .hero{
-height:90vh;
+height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:radial-gradient(circle,#fff,#f6f6f6);
-}
-
-.tag{
-border:1px solid var(--primary);
-color:var(--primary);
-padding:6px 16px;
-border-radius:30px;
-font-weight:700;
-margin-bottom:25px;
-font-size:0.85rem;
-}
-
-.hero h1 span{
-display:block;
-font-size:4.2rem;
-font-weight:900;
-opacity:0;
-transform:translateY(40px);
-animation:heroText 1s forwards;
-}
-
-.hero h1 span:nth-child(2){
-animation-delay:0.2s;
 }
 
 .hero p{
+margin-top:30px;
+font-size:20px;
+}
+
+.marquee{
+white-space:nowrap;
+overflow:hidden;
+font-size:120px;
+font-weight:900;
+opacity:.05;
+position:absolute;
+width:200%;
+animation:scroll 18s linear infinite;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
+}
+
+.meaning{
+background:#111;
+color:white;
+position:relative;
+overflow:hidden;
+}
+
+.meaning p{
+color:#bbb;
+}
+
+.grid3{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-top:60px;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
+
+.dark .card{
+background:#1d1d1d;
+color:white;
+}
+
+.phone{
+width:300px;
+height:580px;
+background:#111;
+border-radius:40px;
+padding:20px;
+color:white;
+box-shadow:0 30px 60px rgba(0,0,0,.3);
+}
+
+.train{
+display:flex;
+gap:6px;
+margin:20px 0;
+}
+
+.car{
+flex:1;
+height:45px;
+border-radius:6px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:700;
+}
+
+.red{background:#ff4d4d;}
+.orange{background:#ffaa00;}
+.green{background:#00c853;}
+
+.feed{
+background:#222;
+padding:10px;
+border-radius:8px;
+margin-bottom:6px;
+font-size:13px;
+}
+
+.feature{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:100px;
+align-items:center;
+margin-top:80px;
+}
+
+.line{
+display:flex;
+gap:10px;
+margin-top:30px;
+}
+
+.station{
+padding:12px 20px;
+border-radius:20px;
+background:#eee;
+cursor:pointer;
+transition:.2s;
+}
+
+.station:hover{
+background:#ff5c00;
+color:white;
+}
+
+.prob{
+background:#111;
+color:white;
+border-radius:20px;
+padding:40px;
+}
+
+.cars{
+display:flex;
+gap:8px;
 margin-top:20px;
-font-size:1.3rem;
-color:var(--sub);
-max-width:640px;
 }
 
-@keyframes heroText{
-to{
-opacity:1;
-transform:translateY(0);
-}
+.pcar{
+flex:1;
+height:70px;
+background:#333;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+position:relative;
 }
 
-/* reveal animation */
+.best{
+background:#ff5c00;
+}
+
+.pcar span{
+position:absolute;
+bottom:-20px;
+font-size:12px;
+opacity:.6;
+}
+
+.chart{
+height:220px;
+background:linear-gradient(to top,#ff5c00,transparent);
+border-radius:10px;
+margin-top:30px;
+}
+
+.community-post{
+padding:20px;
+border-bottom:1px solid #eee;
+}
+
+.cta{
+background:#ff5c00;
+color:white;
+text-align:center;
+padding:200px 10%;
+}
+
+.cta h2{
+font-size:64px;
+}
+
+.btn{
+margin-top:30px;
+padding:18px 40px;
+background:white;
+color:#ff5c00;
+border-radius:100px;
+font-weight:700;
+display:inline-block;
+}
 
 .reveal{
 opacity:0;
-transform:translateY(60px);
-transition:all 0.9s cubic-bezier(.16,1,.3,1);
+transform:translateY(40px);
+transition:1s;
 }
 
 .reveal.active{
@@ -137,257 +250,13 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* meaning */
-
-.meaning{
-background:#111;
-color:white;
-text-align:center;
-padding:120px 0;
-}
-
-.meaning h2{
-font-size:2.6rem;
-font-weight:800;
-margin-bottom:30px;
-}
-
-.meaning span{
-color:var(--primary);
-}
-
-.meaning p{
-color:#999;
-max-width:700px;
-margin:auto;
-font-size:1.15rem;
-}
-
-/* problem */
-
-.problem{
-background:var(--gray);
-}
-
-.problem-grid{
-margin-top:60px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-}
-
-.problem-card{
-background:white;
-padding:40px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
-}
-
-.problem-card h3{
-margin-bottom:10px;
-font-size:1.1rem;
-}
-
-.problem-card p{
-color:var(--sub);
-font-size:0.95rem;
-}
-
-/* feature */
-
-.feature{
-display:flex;
-align-items:center;
-gap:70px;
-margin-bottom:160px;
-}
-
-.feature.reverse{
-flex-direction:row-reverse;
-}
-
-.feature-text{
-flex:1;
-}
-
-.feature-text h3{
-font-size:2.5rem;
-font-weight:800;
-margin-bottom:20px;
-}
-
-.feature-text p{
-color:var(--sub);
-font-size:1.1rem;
-}
-
-.feature-num{
-color:var(--primary);
-font-weight:800;
-margin-bottom:12px;
-display:block;
-}
-
-/* feature image */
-
-.feature-img{
-flex:1.2;
-height:420px;
-border-radius:28px;
-background:#eee;
-display:flex;
-justify-content:center;
-align-items:center;
-transition:.5s;
-}
-
-.feature:hover .feature-img{
-transform:translateY(-8px) scale(1.03);
-box-shadow:0 30px 60px rgba(0,0,0,0.15);
-}
-
-/* mock app */
-
-.mock-app{
-background:white;
-width:85%;
-height:85%;
-border-radius:18px;
-box-shadow:0 20px 40px rgba(0,0,0,0.1);
-padding:18px;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.mock-header{
-font-size:13px;
-font-weight:700;
-border-bottom:1px solid #eee;
-padding-bottom:8px;
-}
-
-.feed-item{
-background:#f5f5f7;
-padding:8px;
-border-radius:8px;
-display:flex;
-justify-content:space-between;
-font-size:12px;
-}
-
-.feed-tag{
-color:var(--primary);
-font-weight:700;
-}
-
-.seat-box{
-background:#f5f5f7;
-padding:10px;
-border-radius:10px;
-font-size:12px;
-}
-
-.seat-bar{
-height:6px;
-background:#ddd;
-border-radius:10px;
-margin-top:6px;
-overflow:hidden;
-}
-
-.seat-fill{
-height:100%;
-background:var(--primary);
-}
-
-.community-post{
-background:#f5f5f7;
-padding:8px;
-border-radius:8px;
-font-size:12px;
-}
-
-/* strategy */
-
-.strategy{
-background:#111;
-color:white;
-border-radius:50px;
-padding:100px 8%;
-margin:0 20px;
-}
-
-.strategy-grid{
-margin-top:50px;
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:50px;
-}
-
-.strategy-item h4{
-color:var(--primary);
-margin-bottom:10px;
-}
-
-.strategy-item p{
-color:#aaa;
-}
-
-/* CTA */
-
-.cta{
-text-align:center;
-padding:160px 0;
-}
-
-.cta h2{
-font-size:3rem;
-font-weight:900;
-margin-bottom:40px;
-}
-
-.btn{
-background:var(--primary);
-color:white;
-padding:20px 60px;
-border-radius:50px;
-text-decoration:none;
-font-weight:700;
-transition:.3s;
-}
-
-.btn:hover{
-transform:translateY(-4px);
-box-shadow:0 15px 30px rgba(255,92,0,0.35);
-}
-
-/* footer */
-
-footer{
-padding:80px 6%;
-display:flex;
-justify-content:space-between;
-border-top:1px solid #eee;
-color:#999;
-font-size:0.9rem;
-}
-
 @media(max-width:900px){
 
-.hero h1 span{
-font-size:2.6rem;
-}
-
-.problem-grid{
+.feature{
 grid-template-columns:1fr;
 }
 
-.feature{
-flex-direction:column;
-}
-
-.strategy-grid{
+.grid3{
 grid-template-columns:1fr;
 }
 
@@ -398,250 +267,196 @@ grid-template-columns:1fr;
 
 <body>
 
-<nav>
-<div class="logo">이칸저칸</div>
-<div class="nav-links">
-<span>Problem</span>
-<span>Solution</span>
-<span>Strategy</span>
-</div>
-</nav>
-
 <section class="hero">
 
-<div class="tag">Subway Community Platform</div>
+<h1>이칸저칸</h1>
 
-<h1>
-<span>지하철의 모든 칸을</span>
-<span>하나의 정보로 연결하다</span>
-</h1>
-
-<p>
-지하철 이용자가 직접 공유하는 실시간 정보로  
-더 편안한 이동 경험을 만드는 커뮤니티 플랫폼
-</p>
+<p>지하철 이동을 데이터로 최적화하다</p>
 
 </section>
 
+<section class="meaning dark">
 
-<section class="meaning">
+<div class="marquee">이칸저칸 이칸저칸 이칸저칸 이칸저칸</div>
 
-<div class="container reveal">
-
-<h2>
-<span>'이'</span>칸 소식과  
-<span>'저'</span>칸 소식을 모두 알 수 있는
-</h2>
+<h2>왜 이칸저칸인가</h2>
 
 <p>
-이칸저칸은 내가 있는 칸의 상황뿐 아니라  
-다른 칸의 정보까지 함께 공유하는 지하철 커뮤니티입니다.
+
+'이' 칸의 소식과  
+'저' 칸의 소식을 모두 알 수 있는 플랫폼
+
 </p>
 
-</div>
+<div class="grid3">
 
-</section>
-
-
-<section class="section problem">
-
-<div class="container">
-
-<h2 class="reveal" style="font-size:2.3rem;font-weight:800">지하철 이용자의 문제</h2>
-
-<div class="problem-grid">
-
-<div class="problem-card reveal">
+<div class="card reveal">
 <h3>정보 단절</h3>
-<p>칸마다 상황이 다르지만 이용자는 알 수 없습니다.</p>
+<p>지하철 이용자는 옆 칸의 상황을 알 수 없습니다.</p>
 </div>
 
-<div class="problem-card reveal">
-<h3>실시간 정보 부족</h3>
-<p>혼잡도, 좌석, 온도 등의 정보가 제공되지 않습니다.</p>
+<div class="card reveal">
+<h3>실시간 니즈</h3>
+<p>혼잡도, 좌석, 특이상황 등 실시간 정보 필요</p>
 </div>
 
-<div class="problem-card reveal">
-<h3>흩어진 커뮤니티</h3>
-<p>정보가 여러 플랫폼에 분산되어 있습니다.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section container">
-
-<div class="feature reveal">
-
-<div class="feature-text">
-<span class="feature-num">01</span>
-<h3>실시간 제보 피드</h3>
-<p>지하철 이용자가 직접 남기는 실시간 정보</p>
-</div>
-
-<div class="feature-img">
-
-<div class="mock-app">
-
-<div class="mock-header">실시간 제보</div>
-
-<div class="feed-item">
-<span>3칸 에어컨 약함</span>
-<span class="feed-tag">LIVE</span>
-</div>
-
-<div class="feed-item">
-<span>2칸 자리 있음</span>
-<span class="feed-tag">NEW</span>
-</div>
-
-<div class="feed-item">
-<span>4칸 소음</span>
-<span class="feed-tag">HOT</span>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="feature reverse reveal">
-
-<div class="feature-text">
-<span class="feature-num">02</span>
-<h3>스마트 칸 추천</h3>
-<p>혼잡도 데이터를 기반으로 가장 여유로운 칸 추천</p>
-</div>
-
-<div class="feature-img">
-
-<div class="mock-app">
-
-<div class="mock-header">칸 혼잡도</div>
-
-<div class="seat-box">
-3번칸
-<div class="seat-bar"><div class="seat-fill" style="width:70%"></div></div>
-</div>
-
-<div class="seat-box">
-4번칸
-<div class="seat-bar"><div class="seat-fill" style="width:40%"></div></div>
-</div>
-
-<div class="seat-box">
-추천칸 👉 4번칸
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="feature reveal">
-
-<div class="feature-text">
-<span class="feature-num">03</span>
-<h3>지하철 커뮤니티</h3>
-<p>같은 노선 이용자끼리 정보를 공유</p>
-</div>
-
-<div class="feature-img">
-
-<div class="mock-app">
-
-<div class="mock-header">커뮤니티</div>
-
-<div class="community-post">오늘 9호선 지옥</div>
-<div class="community-post">강남역 환승 꿀팁</div>
-<div class="community-post">2칸이 제일 널널함</div>
-
-</div>
-
+<div class="card reveal">
+<h3>데이터 기반</h3>
+<p>제보 + 이동데이터로 최적 이동 경험 제공</p>
 </div>
 
 </div>
 
 </section>
 
+<section>
 
-<section class="section">
+<h2>지하철 노선 인터랙션</h2>
 
-<div class="strategy reveal">
+<p>역을 선택하면 해당 구간의 혼잡 정보 확인</p>
 
-<h2 style="font-size:2.4rem;font-weight:800">Service Strategy</h2>
+<div class="line">
 
-<div class="strategy-grid">
-
-<div class="strategy-item">
-<h4>대학생 중심 확산</h4>
-<p>대학가 노선을 중심으로 초기 커뮤니티 확보</p>
-</div>
-
-<div class="strategy-item">
-<h4>데이터 기반 추천</h4>
-<p>사용자 데이터를 분석한 혼잡도 예측</p>
-</div>
-
-<div class="strategy-item">
-<h4>이동 경험 개선</h4>
-<p>단순 이동이 아닌 정보 기반 이동</p>
-</div>
-
-<div class="strategy-item">
-<h4>데이터 비즈니스</h4>
-<p>혼잡도 데이터를 기반으로 B2B 확장</p>
-</div>
-
-</div>
+<div class="station">강남</div>
+<div class="station">역삼</div>
+<div class="station">선릉</div>
+<div class="station">삼성</div>
+<div class="station">잠실</div>
 
 </div>
 
 </section>
 
+<section>
 
-<section class="cta reveal">
-
-<h2>지하철을 더 스마트하게</h2>
-
-<a class="btn">서비스 시작하기</a>
-
-</section>
-
-
-<footer>
-
-<div>이칸저칸</div>
+<div class="feature">
 
 <div>
-Digital Hanaro 9th Project<br>
-Team 썹타는중
+
+<h2>앉을 확률 추천</h2>
+
+<p>
+
+하차 데이터 + 이용 패턴 분석으로  
+앉을 확률이 높은 칸을 추천합니다.
+
+</p>
+
+<div class="prob">
+
+강남 → 잠실
+
+<div class="cars">
+
+<div class="pcar">1<span>12%</span></div>
+<div class="pcar">2<span>24%</span></div>
+<div class="pcar">3<span>38%</span></div>
+<div class="pcar best">4<span>72%</span></div>
+<div class="pcar">5<span>40%</span></div>
+
 </div>
 
-</footer>
+</div>
 
+</div>
+
+<div class="phone">
+
+<div>2호선</div>
+
+<div class="train">
+
+<div class="car red">1</div>
+<div class="car red">2</div>
+<div class="car orange">3</div>
+<div class="car green">4</div>
+<div class="car green">5</div>
+
+</div>
+
+<div class="feed">💺 5번 칸 자리 있음</div>
+<div class="feed">🚨 3번 칸 취객</div>
+<div class="feed">❄️ 4번 칸 에어컨 시원</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>민원 및 신고 시스템</h2>
+
+<p>불편 상황을 바로 공유하고 신고할 수 있습니다.</p>
+
+<div class="grid3">
+
+<div class="card">
+🚨 취객 신고
+</div>
+
+<div class="card">
+🧼 위생 문제
+</div>
+
+<div class="card">
+🚧 시설 민원
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>데이터 시각화 리포트</h2>
+
+<p>시간대별 혼잡도와 이용 패턴 분석</p>
+
+<div class="chart"></div>
+
+</section>
+
+<section>
+
+<h2>지하철 커뮤니티</h2>
+
+<div class="card">
+
+<div class="community-post">
+출근시간 2호선 진짜 미쳤다..
+</div>
+
+<div class="community-post">
+오늘 4번칸 자리 많음
+</div>
+
+<div class="community-post">
+강남역 에어컨 약함
+</div>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<h2>Smart Subway Life</h2>
+
+<div class="btn">앱 다운로드</div>
+
+</section>
 
 <script>
 
-const observer = new IntersectionObserver((entries)=>{
-
+const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
-
 if(entry.isIntersecting){
 entry.target.classList.add("active")
 }
-
 })
-
-},{threshold:0.15})
+})
 
 document.querySelectorAll(".reveal").forEach(el=>{
 observer.observe(el)
