@@ -3,73 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이칸저칸 | Subway Curating Platform</title>
+    <title>이칸저칸 | Subway Life Re-designed</title>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
         :root {
             --primary: #FF5C00;
-            --accent: #FF8A00;
-            --black: #050505;
-            --bg-gray: #F5F5F7;
-            --white: #ffffff;
+            --black: #111111;
+            --gray-bg: #F8F8FA;
+            --text-main: #1D1D1F;
+            --text-sub: #6E6E73;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; letter-spacing: -0.05em; }
-        body { background: var(--white); color: var(--black); line-height: 1.2; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; letter-spacing: -0.03em; }
+        body { background: white; color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-        /* Animation & Interaction */
+        /* Animation */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* Common Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 140px 0; }
+        .flex-between { display: flex; justify-content: space-between; align-items: flex-start; gap: 60px; }
+
         /* Navigation */
-        nav { padding: 40px 6%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; mix-blend-mode: difference; color: white; }
-        .logo { font-size: 1.8rem; font-weight: 900; }
+        nav { padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid #f0f0f0; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+        .nav-links { display: flex; gap: 30px; font-weight: 600; font-size: 0.95rem; }
 
-        /* Hero Section */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: var(--white); }
-        .hero-title { font-size: clamp(4rem, 15vw, 12rem); font-weight: 900; line-height: 0.85; margin-bottom: 20px; }
-        .hero-sub { font-size: 1.8rem; font-weight: 500; color: #888; margin-top: 40px; }
+        /* Hero */
+        .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at 50% 50%, #fff 0%, #f9f9f9 100%); }
+        .hero .tag { font-size: 1rem; color: var(--primary); font-weight: 700; margin-bottom: 20px; border: 1px solid var(--primary); padding: 5px 15px; border-radius: 20px; }
+        .hero h1 { font-size: 4.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 25px; }
+        .hero p { font-size: 1.4rem; color: var(--text-sub); max-width: 650px; }
 
-        /* Meaning Section: 이칸저칸 */
-        .meaning-sec { padding: 200px 0; background: var(--black); color: var(--white); overflow: hidden; }
-        .marquee { display: flex; font-size: 8vw; font-weight: 900; white-space: nowrap; animation: scroll 20s linear infinite; opacity: 0.3; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .meaning-text { padding: 100px 10%; text-align: center; position: relative; z-index: 2; }
-        .meaning-text h2 { font-size: 4rem; margin-bottom: 30px; line-height: 1.1; }
-        .meaning-text span { color: var(--primary); }
+        /* Meaning Section: '이'칸 '저'칸 */
+        .meaning-sec { background: var(--black); color: white; padding: 120px 0; text-align: center; }
+        .meaning-sec h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 30px; }
+        .meaning-sec span { color: var(--primary); }
+        .meaning-sec p { font-size: 1.2rem; color: #888; max-width: 700px; margin: 0 auto; line-height: 1.8; }
 
-        /* User Research Section (PPT 데이터 반영) */
-        .research-sec { padding: 200px 10%; background: var(--bg-gray); border-radius: 80px; margin: 20px; }
-        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 80px; }
-        .stat-card { background: var(--white); padding: 60px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
-        .stat-num { font-size: 5rem; font-weight: 900; color: var(--primary); margin-bottom: 10px; }
-        .stat-label { font-size: 1.5rem; font-weight: 700; color: var(--black); }
+        /* User Research Data (PPT 기반) */
+        .research-sec { background: var(--gray-bg); }
+        .research-title { text-align: center; margin-bottom: 80px; }
+        .research-title h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+        
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .data-card { background: white; padding: 50px 40px; border-radius: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .data-card .value { font-size: 3.5rem; font-weight: 900; color: var(--primary); margin-bottom: 15px; display: block; }
+        .data-card .label { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
 
-        /* Features - 시각적으로 더 길고 풍부하게 */
-        .feature-wrap { padding: 200px 10%; }
-        .feature-item { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; margin-bottom: 300px; align-items: center; }
-        .feature-item.reverse { direction: rtl; }
-        .feature-item.reverse .feature-info { direction: ltr; }
-        .feature-info h3 { font-size: 4.5rem; font-weight: 900; margin-bottom: 40px; line-height: 1; }
-        .feature-info p { font-size: 1.4rem; color: #666; line-height: 1.6; }
-        .feature-visual { height: 600px; background: #eee; border-radius: 60px; overflow: hidden; position: relative; }
-        .visual-label { position: absolute; bottom: 40px; left: 40px; color: white; font-weight: 800; font-size: 1.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        /* Features (Long list) */
+        .feature-row { display: flex; align-items: center; gap: 80px; margin-bottom: 180px; }
+        .feature-row.reverse { flex-direction: row-reverse; }
+        .feature-text { flex: 1; }
+        .feature-text .num { font-size: 1rem; color: var(--primary); font-weight: 800; margin-bottom: 15px; display: block; }
+        .feature-text h3 { font-size: 2.8rem; font-weight: 800; margin-bottom: 25px; line-height: 1.3; }
+        .feature-text p { font-size: 1.15rem; color: var(--text-sub); line-height: 1.7; }
+        .feature-img { flex: 1.2; height: 500px; background: #eee; border-radius: 40px; position: relative; overflow: hidden; }
 
-        /* Final CTA */
-        .cta { padding: 250px 0; text-align: center; background: var(--primary); color: white; }
-        .cta h2 { font-size: 6vw; font-weight: 900; line-height: 0.9; margin-bottom: 60px; }
-        .cta-btn { padding: 30px 80px; border-radius: 100px; background: white; color: var(--primary); font-size: 1.5rem; font-weight: 800; text-decoration: none; transition: 0.3s; }
-        .cta-btn:hover { transform: scale(1.1); }
+        /* Business Section */
+        .biz-sec { background: var(--black); color: white; border-radius: 60px; margin: 0 20px; padding: 100px 8%; }
+        .biz-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; margin-top: 60px; }
+        .biz-item h4 { font-size: 1.5rem; margin-bottom: 20px; color: var(--primary); }
+        .biz-item p { color: #999; font-size: 1.1rem; }
+
+        /* CTA */
+        .cta { text-align: center; padding: 180px 0; }
+        .cta h2 { font-size: 3.5rem; font-weight: 900; margin-bottom: 40px; }
+        .cta-btn { background: var(--primary); color: white; padding: 22px 60px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-block; transition: 0.3s; }
+        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(255,92,0,0.3); }
 
         /* Footer */
-        footer { padding: 80px 10%; background: var(--black); color: #444; display: flex; justify-content: space-between; align-items: flex-end; }
-        .footer-logo { font-size: 4rem; font-weight: 900; color: #222; }
+        footer { padding: 80px 5% 50px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: flex-end; }
+        .f-logo { font-size: 1.5rem; font-weight: 900; color: #ddd; }
+        .f-info { text-align: right; color: #aaa; font-size: 0.9rem; }
 
-        @media (max-width: 1024px) {
-            .feature-item { grid-template-columns: 1fr; gap: 50px; }
-            .hero-title { font-size: 5rem; }
-            .stat-grid { grid-template-columns: 1fr; }
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.8rem; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .feature-row, .feature-row.reverse { flex-direction: column; gap: 40px; }
+            .feature-text h3 { font-size: 2rem; }
+            .biz-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -77,110 +93,125 @@
 
     <nav>
         <div class="logo">이칸저칸</div>
-        <div style="font-weight: 700; letter-spacing: 0;">PROJECT BY SUB-RIDE</div>
+        <div class="nav-links">
+            <span>Problem</span>
+            <span>Solution</span>
+            <span>Strategy</span>
+        </div>
     </nav>
 
     <section class="hero">
-        <h1 class="hero-title">BEYOND<br>THE SUBWAY.</h1>
-        <p class="hero-sub">가장 가까운 곳에서 시작되는 지하철 큐레이션</p>
+        <span class="tag">Digital Hanaro 9th Project</span>
+        <h1>지하철의 모든 칸을<br>데이터로 연결합니다.</h1>
+        <p>현장의 생생한 소통과 정교한 데이터 분석이 만나<br>당신의 출퇴근길을 쾌적하게 큐레이션합니다.</p>
     </section>
 
     <section class="meaning-sec">
-        <div class="marquee">
-            이칸저칸 이칸저칸 이칸저칸 이칸저칸 이칸저칸 이칸저칸 이칸저칸 이칸저칸 이칸저칸 이칸저칸
-        </div>
-        <div class="meaning-text">
-            <h2><span>'이'</span>칸 소식과 <span>'저'</span>칸 소식을<br>모두 알 수 있다는 의미, 이칸저칸</h2>
-            <p style="font-size: 1.4rem; color: #888; max-width: 700px; margin: 0 auto;">우리는 칸과 칸 사이를 연결합니다. 당신이 타지 않은 저 칸의 여유로운 빈자리 정보까지, 이칸저칸이 실시간으로 전달합니다.</p>
+        <div class="container reveal">
+            <h2><span>'이'</span>칸 소식과 <span>'저'</span>칸 소식을 모두 알 수 있으니까</h2>
+            <p>우리는 내가 타지 않은 저 칸의 상황까지 미리 알고 대처할 수 있는 세상을 꿈꿉니다.<br>
+            칸과 칸 사이의 벽을 허무는 실시간 공유 플랫폼, 이칸저칸입니다.</p>
         </div>
     </section>
 
-    <section class="research-sec container">
-        <h2 style="font-size: 3.5rem; font-weight: 900; text-align: center; margin-bottom: 20px;">왜 '이칸저칸'인가요?</h2>
-        <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 80px;">자체 유저 리서치 및 데이터 분석 결과</p>
-        
-        <div class="stat-grid">
-            <div class="stat-card">
-                <div class="stat-num">82.4%</div>
-                <div class="stat-label">"실시간 정보 공유가 필요하다"</div>
-                <p style="margin-top: 20px; color: #999;">공식 앱의 느린 공지보다 현장 승객의 생생한 소식을 더 신뢰합니다.</p>
+    <section class="section research-sec">
+        <div class="container">
+            <div class="research-title reveal">
+                <h2>670만 이용객의 목소리</h2>
+                <p>자체 설문조사 및 유저 리서치 결과</p>
             </div>
-            <div class="stat-card">
-                <div class="stat-num">1.3%↑</div>
-                <div class="stat-label">지하철 민원 증가율</div>
-                <p style="margin-top: 20px; color: #999;">해결되지 않는 불편함, 이제 승객이 직접 소통하며 해결책을 찾습니다.</p>
-            </div>
-            <div class="stat-card" style="grid-column: span 2;">
-                <div class="stat-num">No.1</div>
-                <div class="stat-label">수도권 대학생/직장인 선호도</div>
-                <p style="margin-top: 20px; color: #999;">에브리타임 비정형 데이터 분석을 통해 확인된 강력한 커뮤니티 니즈.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="feature-wrap">
-        <div class="feature-item">
-            <div class="feature-info">
-                <span style="color: var(--primary); font-weight: 900; font-size: 1.2rem;">01 / LIVE CONNECT</span>
-                <h3>지금 내 옆 칸의<br>상황이 궁금할 때</h3>
-                <p>단순한 연착 공지가 아닙니다. "지금 3번 칸에 취객이 있어요", "7번 칸은 에어컨이 아주 시원해요"와 같은 '이 칸'과 '저 칸'의 진짜 소식을 실시간 피드로 확인하세요.</p>
-            </div>
-            <div class="feature-visual" style="background: linear-gradient(45deg, #111, #333);">
-                <span class="visual-label">Real-time Feed UI</span>
-            </div>
-        </div>
-
-        <div class="feature-item reverse">
-            <div class="feature-info">
-                <span style="color: var(--primary); font-weight: 900; font-size: 1.2rem;">02 / DATA LOGIC</span>
-                <h3>운에 맡기던 착석,<<br>확률로 바꾸다</h3>
-                <p>유저들의 이동 패턴 데이터와 실시간 하차 정보를 매칭합니다. 어느 역에서 사람이 가장 많이 내리는지, 어느 칸에 서 있어야 앉아갈 확률이 높은지 데이터로 안내합니다.</p>
-            </div>
-            <div class="feature-visual" style="background: linear-gradient(135deg, #FF5C00, #FF8A00);">
-                <span class="visual-label">Seat Probability Analysis</span>
-            </div>
-        </div>
-
-        <div class="feature-item">
-            <div class="feature-info">
-                <span style="color: var(--primary); font-weight: 900; font-size: 1.2rem;">03 / EXPERIENCE</span>
-                <h3>지루한 이동 시간을<br>성취로 채우는 리포트</h3>
-                <p>내가 이용한 노선의 기록, 지연을 피해 절약한 시간, 커뮤니티 기여도를 배지로 보상받으세요. 단순한 이동이 당신의 일상 속 커리어가 됩니다.</p>
-            </div>
-            <div class="feature-visual" style="background: #f0f0f0;">
-                <span class="visual-label">Weekly Subway Report</span>
+            <div class="grid-3">
+                <div class="data-card reveal">
+                    <span class="value">82.4%</span>
+                    <span class="label">"실시간 정보 공유가 필요해요"</span>
+                </div>
+                <div class="data-card reveal">
+                    <span class="value">1.3%↑</span>
+                    <span class="label">지속되는 지하철 민원 증가율</span>
+                </div>
+                <div class="data-card reveal">
+                    <span class="value">No.1</span>
+                    <span class="label">수도권 대학생 커뮤니티 니즈</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="cta">
-        <h2>MOVE SMART,<br>SHARE VALUE.</h2>
-        <a href="#" class="cta-btn">지금 무료로 시작하기</a>
+    <section class="section container">
+        <div class="feature-row reveal">
+            <div class="feature-text">
+                <span class="num">01 / LIVE FEED</span>
+                <h3>공식 안내보다 빠른<br>실시간 유저 제보</h3>
+                <p>에브리타임 등 외부 커뮤니티의 흩어진 정보를 통합합니다. 연착 정보는 물론 '지금 이 칸'의 온도, 소음, 돌발 상황을 실시간 피드로 확인하세요.</p>
+            </div>
+            <div class="feature-img" style="background: linear-gradient(135deg, #FF5C00, #FF8A00);"></div>
+        </div>
+
+        <div class="feature-row reverse reveal">
+            <div class="feature-text">
+                <span class="num">02 / SMART SEAT</span>
+                <h3>운에 맡기던 착석,<br>데이터로 계산하다</h3>
+                <p>유저들의 루틴 데이터와 실시간 하차 정보를 매칭합니다. 어느 칸에서 사람이 가장 많이 내릴지, 어느 칸이 가장 여유로운지 과학적으로 안내합니다.</p>
+            </div>
+            <div class="feature-img"></div>
+        </div>
+
+        <div class="feature-row reveal">
+            <div class="feature-text">
+                <span class="num">03 / REWARD</span>
+                <h3>지루한 이동 시간을<br>성취의 기록으로</h3>
+                <p>주간 지하철 이용 리포트와 노선별 마스터 배지 시스템을 통해 지루한 출퇴근 시간을 가치 있는 데이터 성취의 시간으로 바꿔드립니다.</p>
+            </div>
+            <div class="feature-img" style="background: var(--black);"></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="biz-sec reveal">
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">Service Strategy</h2>
+            <p style="color: #666;">썹타는중 팀의 지속 가능한 성장 전략</p>
+            <div class="biz-grid">
+                <div class="biz-item">
+                    <h4>대학가 핵심 노선 집중</h4>
+                    <p>에브리타임의 비정형 데이터를 수집하여 대학생 유저를 초기 핵심 타겟으로 확보하고 커뮤니티를 활성화합니다.</p>
+                </div>
+                <div class="biz-item">
+                    <h4>심리적 안정 서비스</h4>
+                    <p>유저 제보 기반의 빠른 지연 알림과 공식 지연 증명서 연동으로 연착 시 유저의 불안을 해소합니다.</p>
+                </div>
+                <div class="biz-item">
+                    <h4>동적 환승 최적화</h4>
+                    <p>목적지 출구와 가장 가까운 최적 하차 칸 정보를 실시간으로 제공하여 이동의 효율을 극대화합니다.</p>
+                </div>
+                <div class="biz-item">
+                    <h4>데이터 B2B 확장</h4>
+                    <p>축적된 혼잡도 데이터를 기반으로 향후 상권 분석 및 지하철 광고 타겟팅 솔루션으로 확장합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta reveal">
+        <h2>이젠 스마트하게 타세요.</h2>
+        <a href="#" class="cta-btn">지금 시작하기</a>
     </section>
 
     <footer>
-        <div class="footer-left">
-            <div class="footer-logo">이칸저칸</div>
-            <p>© 2026 Team Sub-Ride Project. All Rights Reserved.</p>
-        </div>
-        <div class="footer-right">
-            <p>디지털 하나로 9기 데이터분석 & 서비스 기획</p>
-            <p>김다연 김태연 유금석 이미연 (명단 제외 희망 시 삭제 가능)</p>
+        <div class="f-logo">이칸저칸</div>
+        <div class="f-info">
+            <p>디지털 하나로 9기 Team 썹타는중 Project</p>
+            <p>© 2026 Sub-Ride All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        // 스크롤 애니메이션
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.stat-card, .feature-item').forEach(el => {
-            el.classList.add('reveal');
-            observer.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
