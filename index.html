@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이칸저칸 | Subway Life Upgrade</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        :root {
+            --primary: #FF6B00;
+            --secondary: #333;
+            --bg-light: #FBFBFD;
+            --text-main: #1D1D1F;
+            --text-sub: #86868B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+        body { background-color: white; color: var(--text-main); -webkit-font-smoothing: antialiased; }
+
+        /* Navigation */
+        nav { padding: 30px 8%; display: flex; justify-content: space-between; align-items: center; position: absolute; width: 100%; z-index: 100; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; margin-left: 30px; font-size: 0.95rem; }
+
+        /* Hero Section */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: var(--bg-light); padding: 0 5%; }
+        .hero span { color: var(--primary); font-weight: 700; font-size: 1.1rem; margin-bottom: 20px; display: block; }
+        .hero h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; letter-spacing: -3px; margin-bottom: 30px; }
+        .hero p { font-size: 1.4rem; color: var(--text-sub); margin-bottom: 40px; font-weight: 400; }
+        
+        .btn-main { background: var(--primary); color: white; padding: 18px 45px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 10px 20px rgba(255,107,0,0.2); }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,107,0,0.3); }
+
+        /* Feature Section */
+        .section { padding: 150px 10%; }
+        .section-header { text-align: center; margin-bottom: 100px; }
+        .section-header h2 { font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .feature-card { background: var(--bg-light); padding: 50px 40px; border-radius: 32px; transition: 0.4s; border: 1px solid transparent; }
+        .feature-card:hover { background: white; border-color: #eee; box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+        .feature-card h3 { font-size: 1.6rem; margin-bottom: 20px; word-break: keep-all; }
+        .feature-card p { color: var(--text-sub); font-size: 1.05rem; line-height: 1.7; }
+        .icon-circle { width: 60px; height: 60px; background: white; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; font-size: 1.5rem; box-shadow: 0 10px 15px rgba(0,0,0,0.03); }
+
+        /* Bottom CTA */
+        .cta-footer { background: var(--text-main); color: white; padding: 120px 10%; text-align: center; border-radius: 60px 60px 0 0; }
+        .cta-footer h2 { font-size: 3.5rem; margin-bottom: 30px; font-weight: 800; letter-spacing: -2px; }
+        .cta-footer p { color: #888; margin-bottom: 50px; font-size: 1.2rem; }
+
+        /* Footer - 실명 제거 버전 */
+        footer { background: var(--text-main); color: #555; padding: 0 10% 60px; text-align: center; border-top: 1px solid #333; }
+        .footer-content { padding-top: 40px; }
+        .team-tag { display: inline-block; padding: 6px 18px; border: 1px solid #444; border-radius: 20px; color: #999; font-size: 0.85rem; margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">이칸저칸</div>
+        <div class="nav-links">
+            <a href="#features">서비스 소개</a>
+            <a href="#team">팀 비전</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <span>Digital Hanaro 9th Project</span>
+        <h1>지하철에서의 시간이<br>데이터가 되는 순간</h1>
+        <p>불편한 민원 대신 즐거운 공유를,<br>이칸저칸이 만드는 새로운 이동 문화</p>
+        <a href="#" class="btn-main">지금 다운로드하기</a>
+    </section>
+
+    <section class="section" id="features">
+        <div class="section-header">
+            <h2>지하철 생활의<br>기준을 바꿉니다</h2>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon-circle">📢</div>
+                <h3>실시간 상황 공유</h3>
+                <p>연착 소식부터 돌발 상황까지, 같은 노선 사용자들의 생생한 현장 리포트를 확인하세요.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-circle">💺</div>
+                <h3>스마트 착석 가이드</h3>
+                <p>단순한 혼잡도를 넘어, 데이터 분석을 통해 가장 앉아갈 확률이 높은 칸을 안내합니다.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-circle">📊</div>
+                <h3>이동 리포트 & 배지</h3>
+                <p>내가 지나온 경로를 데이터로 기록하고, 이동의 성취감을 배지로 보상받으세요.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-footer">
+        <h2>이동, 그 이상의 가치</h2>
+        <p>이칸저칸과 함께라면 당신의 출퇴근길이 특별해집니다.</p>
+        <div class="team-tag">Project by Team 썹타는중</div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Team Sub-Ride. Created by Data Analysts & Service Planners.</p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">디지털 하나로 9기 데이터분석 및 서비스기획 프로젝트</p>
+        </div>
+    </footer>
+
+</body>
+</html>
