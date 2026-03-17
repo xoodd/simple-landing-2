@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>이칸저칸 — 더 나은 지하철 이용을 위한</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Black+Han+Sans&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -18,9 +18,16 @@
     --bg: #F9F8F6;
     --white: #FFFFFF;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg); color: var(--dark); overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
 
   /* ─── NAV ─── */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 52px; display: flex; align-items: center; justify-content: space-between; background: rgba(15,12,8,0.72); backdrop-filter: blur(24px) saturate(1.4); border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -98,7 +105,7 @@
   @keyframes titleReveal { from { opacity:0; transform:translate(-50%,-68%) scale(0.97); filter:blur(10px); } to { opacity:1; transform:translate(-50%,-64%) scale(1); filter:blur(0); } }
   .service-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 5px; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; display: block; opacity: 0; animation: fadeUp 0.6s ease 3.05s forwards; }
   .service-name {
-    font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+    font-family: 'Black Han Sans', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
     font-size: clamp(56px,9.5vw,110px);
     color: #F2EDE8;
     line-height: 1; letter-spacing: -3px;
@@ -204,7 +211,7 @@
   .ui-header-text { font-size: 13px; font-weight: 700; color: var(--dark); }
   .ui-body { padding: 12px 14px; }
   .ui-greeting { background: linear-gradient(135deg,#FF4D0D 0%,#FF7A40 100%); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; color: white; position: relative; overflow: hidden; }
-  .ui-greeting::after { content: '🚇'; position: absolute; right: 14px; bottom: -4px; font-size: 36px; opacity: 0.22; }
+  .ui-greeting::after { display: none; }
   .ui-greeting .g-small { font-size: 10px; opacity: 0.75; margin-bottom: 3px; }
   .ui-greeting .g-big { font-size: 14px; font-weight: 800; line-height: 1.35; }
   .ui-seat-card { background: white; border-radius: 14px; padding: 13px 14px; margin-bottom: 9px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
@@ -379,9 +386,10 @@
     color: var(--orange); text-transform: uppercase; margin-bottom: 20px;
   }
   .stat-big {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
     font-size: 80px; line-height: 0.9; letter-spacing: -1px;
     color: var(--dark); margin-bottom: 16px;
+    -webkit-font-smoothing: antialiased;
   }
   .stat-big .su { font-size: 46px; color: var(--orange); }
   .stat-divline { width: 28px; height: 2px; background: rgba(0,0,0,0.08); margin-bottom: 14px; }
@@ -445,7 +453,7 @@
     padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.08);
   }
   .cta-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
     font-size: 34px; color: var(--dark); line-height: 1;
   }
   .cta-stat-label { font-size: 11px; color: var(--light-text); margin-top: 3px; font-weight: 400; }
@@ -1021,8 +1029,8 @@
         <div class="cm-title">오늘 우리 칸의 컨디션은?</div>
         <div class="cm-sub">노선과 칸을 선택해 투표하세요</div>
         <div class="cm-selector">
-          <div class="cm-sel active" id="sel-line">2호선</div>
-          <div class="cm-sel" id="sel-car" onclick="toggleCar()">3-2칸</div>
+          <div class="cm-sel active" id="sel-line" onclick="selectCar('line')">2호선</div>
+          <div class="cm-sel" id="sel-car" onclick="selectCar('car32')">3-2칸</div>
         </div>
         <div class="cm-type-label">민원 유형</div>
         <div class="cm-types">
@@ -1055,7 +1063,7 @@
       <div class="rep-header"><div class="rep-title">🗓️ 3월 지하철 이용 리포트</div><div class="rep-period">2025.03.01 — 03.31</div></div>
       <div style="margin-bottom:10px;">
         <div style="background:linear-gradient(135deg,#FF4D0D,#FF7A40);border-radius:12px;padding:14px 16px 12px;position:relative;overflow:hidden;">
-          <div style="position:absolute;right:12px;bottom:-6px;font-size:40px;opacity:0.18;">🚇</div>
+
           <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.65);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">이번달 지하철에서 보낸 시간</div>
           <div style="font-size:30px;font-weight:900;color:white;line-height:1;margin-bottom:4px;">40<span style="font-size:14px;font-weight:500;margin-left:3px;">시간</span></div>
           <div style="font-size:9px;color:rgba(255,255,255,0.6);">= 영화 20편 🎬 = 책 4권 📚</div>
@@ -1280,18 +1288,10 @@
     document.getElementById('status-text').textContent = '철도공사에 실시간 전달 중 · ' + d.status;
   }
 
-  function toggleCar() {
-    const selCar  = document.getElementById('sel-car');
-    const selLine = document.getElementById('sel-line');
-    if (currentCar === 'line') {
-      currentCar = 'car32';
-      selCar.classList.add('active');
-      selLine.classList.remove('active');
-    } else {
-      currentCar = 'line';
-      selLine.classList.add('active');
-      selCar.classList.remove('active');
-    }
+  function selectCar(car) {
+    currentCar = car;
+    document.getElementById('sel-line').classList.toggle('active', car === 'line');
+    document.getElementById('sel-car').classList.toggle('active', car === 'car32');
     renderVotes(currentType);
   }
 
