@@ -7,785 +7,561 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Black+Han+Sans&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --orange: #FF5C1A;
-    --orange-light: #FF7B42;
-    --orange-pale: #FFF0EA;
-    --dark: #1A1208;
-    --mid: #4A3728;
-    --light-text: #8C7B70;
-    --bg: #FAFAF8;
+    --orange: #FF4D0D;
+    --orange-mid: #FF6B35;
+    --orange-light: #FF8A5C;
+    --orange-pale: #FFF1EC;
+    --dark: #0F0C08;
+    --dark-2: #1A1510;
+    --mid: #3A2D22;
+    --light-text: #8A7A6E;
+    --bg: #F9F8F6;
     --white: #FFFFFF;
-    --card-bg: #FFFFFF;
-    --border: rgba(255,92,26,0.12);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg);
-    color: var(--dark);
-    overflow-x: hidden;
-  }
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; }
 
   /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 18px 48px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(250,250,248,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-size: 20px; font-weight: 900; color: var(--orange);
-    letter-spacing: -0.5px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .nav-logo span { font-size: 22px; }
-  .nav-cta {
-    background: var(--orange); color: white;
-    padding: 10px 24px; border-radius: 100px; font-size: 13px; font-weight: 700;
-    text-decoration: none; letter-spacing: -0.2px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(255,92,26,0.35);
-  }
-  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,92,26,0.45); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 52px; display: flex; align-items: center; justify-content: space-between; background: rgba(15,12,8,0.72); backdrop-filter: blur(24px) saturate(1.4); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .nav-logo { font-size: 18px; font-weight: 900; color: white; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
+  .nav-logo-icon { width: 32px; height: 32px; border-radius: 9px; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 15px; box-shadow: 0 0 18px rgba(255,77,13,0.4); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: rgba(255,255,255,0.9); }
+  .nav-cta { background: var(--orange); color: white; padding: 10px 22px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; letter-spacing: -0.3px; transition: all 0.2s; box-shadow: 0 0 22px rgba(255,77,13,0.28); }
+  .nav-cta:hover { background: var(--orange-mid); transform: translateY(-1px); }
 
-  /* ─── HERO ─── */
+  /* ─── HERO — DAWN INDIGO (새벽 하늘) ─── */
   #hero {
-    min-height: 100vh;
-    background: var(--dark);
-    position: relative;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
+    height: 100vh;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%,   #1E2A4A 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 20% 100%,  #1A1208 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 100%,  #201410 0%, transparent 60%),
+      linear-gradient(170deg, #151C2E 0%, #120E0A 55%, #1A1208 100%);
+    position: relative; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    overflow: hidden;
   }
-
-  /* rail background lines */
-  .rail-bg {
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 59px,
-      rgba(255,255,255,0.03) 60px
-    );
+  #hero::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background-image: radial-gradient(rgba(255,230,200,0.04) 1px, transparent 1px);
+    background-size: 28px 28px; pointer-events: none;
   }
-
-  /* big gradient circle */
+  #hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255,160,60,0.04) 0px, transparent 120px),
+      linear-gradient(0deg,   rgba(255,120,30,0.03) 0px, transparent 160px);
+  }
   .hero-glow {
-    position: absolute;
-    width: 800px; height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,92,26,0.18) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
+    position: absolute; width: 900px; height: 700px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(255,100,30,0.11) 0%, rgba(255,60,10,0.04) 40%, transparent 70%);
+    top: 45%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none; z-index: 2;
+  }
+  .hero-glow-2 {
+    position: absolute; width: 600px; height: 300px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(80,120,200,0.08) 0%, transparent 70%);
+    top: 0%; left: 50%; transform: translateX(-50%);
+    pointer-events: none; z-index: 2;
+  }
+  .hero-floor {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 200px; z-index: 2;
+    background: linear-gradient(180deg, transparent, rgba(255,90,20,0.04) 60%, rgba(255,90,20,0.07));
     pointer-events: none;
   }
 
-  /* ─── TRAIN ANIMATION ─── */
-  .train-scene {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 4;
+  /* ─── TRAIN SCENE ─── */
+  .train-scene { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+  .track-assembly { position: absolute; left: 0; right: 0; top: calc(50% + 52px); }
+  .track-ballast { position: absolute; left: 0; right: 0; top: 6px; height: 20px; background: linear-gradient(180deg, rgba(90,75,55,0.14) 0%, rgba(60,48,36,0.04) 100%); }
+  .track-sleepers { position: absolute; left: 0; right: 0; top: 3px; height: 16px; background: repeating-linear-gradient(90deg, rgba(140,115,88,0.13) 0px, rgba(140,115,88,0.13) 24px, transparent 24px, transparent 44px); animation: sleeperMove 0.5s linear infinite; }
+  @keyframes sleeperMove { from { background-position-x: 0; } to { background-position-x: -44px; } }
+  .track-sleepers.paused { animation-play-state: paused; }
+  .track-rail-top { position: absolute; left: 0; right: 0; top: 0; height: 3.5px; background: linear-gradient(90deg, transparent 0%, rgba(195,175,145,0.62) 4%, rgba(215,200,170,0.78) 50%, rgba(195,175,145,0.62) 96%, transparent 100%); border-radius: 2px; }
+  .track-rail-bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 3.5px; background: linear-gradient(90deg, transparent 0%, rgba(195,175,145,0.62) 4%, rgba(215,200,170,0.78) 50%, rgba(195,175,145,0.62) 96%, transparent 100%); border-radius: 2px; }
+  .track-rail-top::after, .track-rail-bottom::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(255,235,180,0.3) 30%, rgba(255,235,180,0.1) 70%, transparent 100%); border-radius: 2px; }
+
+  /* ── TRAIN ── */
+  .train-svg { position: absolute; top: calc(50% - 100px); left: -720px; animation: trainRide 3.4s cubic-bezier(0.22, 0.8, 0.3, 1) forwards; filter: drop-shadow(0 14px 44px rgba(0,0,0,0.55)) drop-shadow(0 3px 10px rgba(0,0,0,0.35)) drop-shadow(0 0 80px rgba(255,77,13,0.1)); }
+  @keyframes trainRide {
+    0%   { left: -720px; }
+    40%  { left: calc(50% - 360px); animation-timing-function: cubic-bezier(0.45,0,0.55,1); }
+    54%  { left: calc(50% - 360px); animation-timing-function: cubic-bezier(0.4,0,0.2,1); }
+    100% { left: 114vw; }
   }
 
-  /* Rail lines across full width */
-  .rail-line {
-    position: absolute;
-    left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(255,92,26,0.35) 10%, rgba(255,92,26,0.35) 90%, transparent);
-  }
-  .rail-line.top    { top: calc(50% + 14px); }
-  .rail-line.bottom { top: calc(50% + 24px); }
-
-  /* Sleepers (침목) */
-  .sleepers {
-    position: absolute;
-    left: 0; right: 0;
-    top: calc(50% + 10px);
-    height: 22px;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 30px,
-      rgba(255,255,255,0.03) 30px,
-      rgba(255,255,255,0.03) 40px
-    );
-  }
-
-  .train-svg {
-    position: absolute;
-    top: calc(50% - 60px);
-    left: -500px;
-    animation: trainSlide 3.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-  }
-
-  @keyframes trainSlide {
-    0%    { left: -500px; }
-    /* arrive, slow down */
-    45%   { left: calc(50% - 220px); animation-timing-function: ease-out; }
-    55%   { left: calc(50% - 220px); }
-    /* depart smoothly */
-    100%  { left: 110vw; }
-  }
-
-  /* ─── SERVICE NAME — appears AFTER train exits ─── */
-  .hero-title-wrap {
-    position: absolute;
-    z-index: 6;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -58%);
-    pointer-events: none;
-    /* hidden until train clears */
-    opacity: 0;
-    animation: titleReveal 1.0s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
-  }
-
-  @keyframes titleReveal {
-    0%   { opacity: 0; transform: translate(-50%, -58%) scale(0.96); filter: blur(6px); }
-    100% { opacity: 1; transform: translate(-50%, -60%) scale(1);    filter: blur(0px); }
-  }
-
-  .service-eyebrow {
-    font-size: 10px; font-weight: 700; letter-spacing: 5px;
-    color: rgba(255,92,26,0.9); text-transform: uppercase;
-    margin-bottom: 14px;
-    display: block;
-    opacity: 0;
-    animation: textReveal 0.6s ease 3.0s forwards;
-  }
-
+  /* ── TITLE ── */
+  .hero-title-wrap { position: absolute; z-index: 6; text-align: center; top: 50%; left: 50%; transform: translate(-50%,-64%); opacity: 0; pointer-events: none; animation: titleReveal 1.0s cubic-bezier(0.16,1,0.3,1) 2.7s forwards; }
+  @keyframes titleReveal { from { opacity:0; transform:translate(-50%,-68%) scale(0.97); filter:blur(10px); } to { opacity:1; transform:translate(-50%,-64%) scale(1); filter:blur(0); } }
+  .service-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 5px; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; display: block; opacity: 0; animation: fadeUp 0.6s ease 3.05s forwards; }
   .service-name {
     font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
-    font-size: clamp(52px, 9vw, 100px);
-    color: white;
-    line-height: 1;
-    letter-spacing: -2px;
-    white-space: nowrap;
-    display: block;
-    /* subtle text shadow for depth */
-    text-shadow: 0 2px 40px rgba(0,0,0,0.4);
+    font-size: clamp(56px,9.5vw,110px);
+    color: #F2EDE8;
+    line-height: 1; letter-spacing: -3px;
+    white-space: nowrap; display: block;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.4), 0 0 120px rgba(255,100,30,0.08);
   }
-  .service-name .accent {
-    color: var(--orange);
-  }
+  .service-name .accent { color: var(--orange); }
+  .hero-text { position: absolute; bottom: 108px; left: 0; right: 0; text-align: center; z-index: 6; }
+  .hero-sub { font-size: 15px; font-weight: 300; color: rgba(220,210,200,0.48); line-height: 1.9; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.7s ease 3.3s forwards; }
+  .hero-btns { display: flex; gap: 10px; justify-content: center; opacity: 0; animation: fadeUp 0.7s ease 3.55s forwards; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+  .btn-primary { background: var(--orange); color: white; padding: 14px 32px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.25s; box-shadow: 0 0 28px rgba(255,77,13,0.32); }
+  .btn-primary:hover { background: var(--orange-mid); transform: translateY(-2px); box-shadow: 0 8px 40px rgba(255,77,13,0.48); }
+  .btn-ghost { background: rgba(255,255,255,0.06); color: rgba(220,210,200,0.55); padding: 14px 32px; border-radius: 8px; font-size: 13px; font-weight: 500; text-decoration: none; border: 1px solid rgba(255,255,255,0.11); transition: all 0.25s; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.1); color: white; }
+  .scroll-hint { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); opacity: 0; animation: fadeUp 0.6s ease 4.0s forwards; display: flex; flex-direction: column; align-items: center; gap: 9px; z-index: 7; }
+  .scroll-hint span { font-size: 9px; letter-spacing: 3px; color: rgba(200,185,170,0.22); text-transform: uppercase; }
+  .scroll-arrow { width: 18px; height: 18px; border-right: 1.5px solid rgba(255,77,13,0.45); border-bottom: 1.5px solid rgba(255,77,13,0.45); transform: rotate(45deg); animation: arrowBounce 1.9s ease-in-out infinite 4s; }
+  @keyframes arrowBounce { 0%,100% { transform:rotate(45deg) translateY(0); opacity:0.35; } 50% { transform:rotate(45deg) translateY(5px); opacity:1; } }
 
-  /* Sub text fades in after train departs */
-  .hero-sub-wrap {
-    position: absolute;
-    z-index: 6;
-    text-align: center;
-    top: calc(50% + 110px);
-    left: 0; right: 0;
-    opacity: 0;
-    transform: translateY(16px);
-    animation: fadeUp 0.8s ease 2.6s forwards;
-  }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ─── HERO TEXT ─── */
-  .hero-text {
-    position: absolute;
-    bottom: 100px;
-    left: 0; right: 0;
-    text-align: center;
-    z-index: 6;
-  }
-  @keyframes textReveal {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* hero-eyebrow: no longer used in hero, kept for other sections */
-  .hero-eyebrow {
-    font-size: 11px; font-weight: 700; letter-spacing: 3.5px;
-    color: var(--orange); text-transform: uppercase;
-    margin-bottom: 0;
-  }
-
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 12vw, 140px);
-    color: white; line-height: 0.9;
-    letter-spacing: 2px;
-  }
-  .hero-title .accent { color: var(--orange); }
-
-  .hero-sub {
-    font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.45);
-    letter-spacing: 0.3px; line-height: 1.8;
-    opacity: 0;
-    animation: textReveal 0.7s ease 3.2s forwards;
-    margin-bottom: 28px;
-  }
-
-  .hero-btns {
-    display: flex; gap: 12px; justify-content: center;
-    opacity: 0;
-    animation: textReveal 0.7s ease 3.5s forwards;
-  }
-  .btn-primary {
-    background: var(--orange); color: white;
-    padding: 15px 36px; border-radius: 100px;
-    font-size: 14px; font-weight: 700; text-decoration: none;
-    letter-spacing: -0.3px;
-    transition: all 0.25s;
-    box-shadow: 0 8px 32px rgba(255,92,26,0.4);
-  }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(255,92,26,0.5); }
-  .btn-ghost {
-    background: transparent; color: rgba(255,255,255,0.6);
-    padding: 15px 36px; border-radius: 100px;
-    font-size: 14px; font-weight: 500; text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.15);
-    transition: all 0.25s;
-  }
-  .btn-ghost:hover { background: rgba(255,255,255,0.07); color: white; }
-
-  /* scroll indicator */
-  .scroll-hint {
-    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-    opacity: 0; animation: textReveal 0.6s ease 3.8s forwards;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    z-index: 7;
-  }
-  .scroll-hint span { font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.25); text-transform: uppercase; }
-  .scroll-dot {
-    width: 5px; height: 5px; border-radius: 50%;
-    background: var(--orange);
-    animation: scrollBounce 1.5s ease-in-out infinite 3.8s;
-  }
-  @keyframes scrollBounce {
-    0%,100% { transform: translateY(0); opacity: 0.5; }
-    50% { transform: translateY(8px); opacity: 1; }
-  }
-
-  /* subtle dot-grid overlay on hero */
-  #hero::after {
-    content: '';
-    position: absolute; inset: 0; z-index: 1;
-    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
-    pointer-events: none;
-  }
-  @keyframes scrollBounce {
-    0%,100% { transform: translateY(0); opacity: 0.4; }
-    50% { transform: translateY(8px); opacity: 1; }
-  }
-
-  /* ─── PROBLEM STRIP ─── */
+  /* ════════════════════
+     MARQUEE — redesigned
+  ════════════════════ */
   .strip {
     background: var(--orange);
-    padding: 16px 0;
-    overflow: hidden;
-    white-space: nowrap;
+    overflow: hidden; position: relative;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
   }
-  .strip-inner {
-    display: inline-flex; gap: 64px;
-    animation: marquee 18s linear infinite;
+  .strip-track { display: flex; align-items: stretch; height: 58px; }
+  .strip-label {
+    flex-shrink: 0; background: rgba(0,0,0,0.18);
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 22px 0 26px;
+    font-size: 10px; font-weight: 800; color: white;
+    letter-spacing: 3px; text-transform: uppercase;
+    white-space: nowrap; position: relative; z-index: 2;
   }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  .strip-item {
-    font-size: 13px; font-weight: 700; color: white;
-    letter-spacing: 1px; text-transform: uppercase;
-    display: flex; align-items: center; gap: 12px;
+  .strip-label-dot { width: 6px; height: 6px; border-radius: 50%; background: white; animation: labelPulse 1.4s ease-in-out infinite; }
+  @keyframes labelPulse { 0%,100% { opacity:0.6; transform:scale(1); } 50% { opacity:1; transform:scale(1.25); } }
+  .strip-chevron {
+    width: 0; height: 0;
+    border-top: 29px solid transparent;
+    border-bottom: 29px solid transparent;
+    border-left: 20px solid rgba(0,0,0,0.18);
     flex-shrink: 0;
   }
-  .strip-item::before {
-    content: '●'; font-size: 8px; opacity: 0.6;
+  .strip-scroll-wrap {
+    overflow: hidden; flex: 1;
+    mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, black 3%, black 97%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, black 3%, black 97%, rgba(0,0,0,0) 100%);
   }
+  .strip-inner { display: inline-flex; align-items: center; height: 58px; animation: marquee 30s linear infinite; white-space: nowrap; }
+  @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  .strip-item {
+    display: inline-flex; align-items: center; gap: 16px;
+    padding: 0 36px; height: 100%;
+    border-right: 1px solid rgba(255,255,255,0.18);
+    flex-shrink: 0;
+  }
+  .strip-dot-sep { font-size: 7px; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .strip-ko { font-size: 14px; font-weight: 800; color: white; letter-spacing: -0.4px; }
+  .strip-en { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.65); letter-spacing: 1.8px; text-transform: uppercase; }
 
-  /* ─── SECTION BASE ─── */
-  section { padding: 120px 48px; max-width: 1280px; margin: 0 auto; }
-
-  .section-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 3px;
-    color: var(--orange); text-transform: uppercase; margin-bottom: 16px;
-  }
-  .section-title {
-    font-size: clamp(32px, 5vw, 56px); font-weight: 900;
-    line-height: 1.1; letter-spacing: -1.5px; color: var(--dark);
-  }
+  /* ─── SECTION ─── */
+  section { padding: 130px 52px; max-width: 1320px; margin: 0 auto; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--orange); text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .section-label::before { content: ''; display: block; width: 20px; height: 1.5px; background: var(--orange); }
+  .section-title { font-size: clamp(34px,5vw,58px); font-weight: 900; line-height: 1.08; letter-spacing: -2px; color: var(--dark); }
   .section-title em { font-style: normal; color: var(--orange); }
 
-  /* ─── FEATURE 1: SEATING GUIDE ─── */
-  #feature-seat {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
+  /* ─── FEATURE 1 ─── */
+  #feature-seat { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .feature-copy p { margin-top: 22px; font-size: 15.5px; line-height: 1.85; color: var(--light-text); font-weight: 300; }
+  .feature-tags { margin-top: 32px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; background: var(--orange-pale); color: var(--orange); border: 1px solid rgba(255,77,13,0.12); }
 
-  .feature-copy { max-width: 480px; }
-  .feature-copy p {
-    margin-top: 20px; font-size: 16px; line-height: 1.75;
-    color: var(--light-text); font-weight: 300;
-  }
-  .feature-tags {
-    margin-top: 28px; display: flex; gap: 8px; flex-wrap: wrap;
-  }
-  .tag {
-    padding: 8px 16px; border-radius: 100px;
-    font-size: 12px; font-weight: 600; letter-spacing: -0.2px;
-    background: var(--orange-pale); color: var(--orange);
-    border: 1px solid rgba(255,92,26,0.15);
-  }
-
-  /* ─── PHONE MOCKUP ─── */
-  .phone-wrap {
-    display: flex; justify-content: center; align-items: center;
-    position: relative;
-  }
-  .phone-wrap::before {
-    content: '';
-    position: absolute; inset: -40px;
-    background: radial-gradient(circle, rgba(255,92,26,0.08) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-
-  .phone {
-    width: 260px;
-    background: var(--dark);
-    border-radius: 36px;
-    padding: 12px;
-    box-shadow:
-      0 40px 100px rgba(0,0,0,0.25),
-      0 0 0 1px rgba(255,255,255,0.08);
-    position: relative; z-index: 1;
-  }
-  .phone-inner {
-    background: #F7F2ED;
-    border-radius: 26px;
-    overflow: hidden;
-    min-height: 480px;
-  }
+  /* PHONE */
+  .phone-wrap { display: flex; justify-content: center; align-items: center; position: relative; }
+  .phone-wrap::before { content: ''; position: absolute; inset: -60px; background: radial-gradient(circle, rgba(255,77,13,0.06) 0%, transparent 68%); border-radius: 50%; }
+  .phone { width: 265px; background: #111; border-radius: 44px; padding: 10px; box-shadow: 0 60px 120px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.07), inset 0 0 0 1px rgba(255,255,255,0.03); position: relative; z-index: 1; }
+  .phone-inner { background: #F5F0EB; border-radius: 36px; overflow: hidden; min-height: 490px; }
+  /* PHONE structure fix */
+  .phone { width: 265px; background: #111; border-radius: 44px; padding: 10px; box-shadow: 0 60px 120px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.07), inset 0 0 0 1px rgba(255,255,255,0.03); position: relative; z-index: 1; overflow: hidden; }
+  .phone-inner { background: #F5F0EB; border-radius: 28px; overflow: hidden; min-height: 490px; }
+  /* status bar: dark strip with centered pill cutout */
   .phone-status {
-    background: var(--dark); height: 36px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px;
+    background: #111; height: 44px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 18px 8px; position: relative;
   }
-  .phone-status span { color: white; font-size: 10px; font-weight: 600; }
-  .phone-notch {
-    width: 80px; height: 20px;
-    background: var(--dark); border-radius: 0 0 12px 12px;
-    margin: 0 auto;
+  /* Dynamic Island pill centered at top of status bar */
+  .phone-status::before {
+    content: '';
+    position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    width: 78px; height: 22px;
+    background: #111; border-radius: 12px;
+    z-index: 2;
   }
-
-  /* Seat UI mockup */
-  .ui-header {
-    background: white; padding: 14px 16px 10px;
-    display: flex; align-items: center; gap: 10px;
-    border-bottom: 1px solid #f0ece8;
-  }
-  .ui-logo-sm {
-    width: 28px; height: 28px; border-radius: 8px;
-    background: var(--orange);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; color: white; font-weight: 900;
-  }
+  .phone-status span { color: rgba(255,255,255,0.65); font-size: 9.5px; font-weight: 600; position: relative; z-index: 3; }
+  .ui-header { background: white; padding: 12px 16px 10px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #EEE9E3; }
+  .ui-logo-sm { width: 28px; height: 28px; border-radius: 8px; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; font-weight: 900; box-shadow: 0 4px 12px rgba(255,77,13,0.3); }
   .ui-header-text { font-size: 13px; font-weight: 700; color: var(--dark); }
-
-  .ui-body { padding: 14px; }
-
-  .ui-greeting {
-    background: linear-gradient(135deg, #FF5C1A, #FF8A50);
-    border-radius: 14px; padding: 14px 16px; margin-bottom: 12px;
-    color: white;
-  }
-  .ui-greeting .g-small { font-size: 10px; opacity: 0.8; margin-bottom: 2px; }
-  .ui-greeting .g-big { font-size: 14px; font-weight: 800; line-height: 1.3; }
-
-  .ui-seat-card {
-    background: white; border-radius: 14px; padding: 14px; margin-bottom: 10px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  }
-  .ui-seat-label {
-    font-size: 10px; font-weight: 600; color: var(--orange);
-    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
-  }
-  .ui-seat-main {
-    font-size: 13px; font-weight: 800; color: var(--dark); line-height: 1.4;
-    margin-bottom: 8px;
-  }
+  .ui-body { padding: 12px 14px; }
+  .ui-greeting { background: linear-gradient(135deg,#FF4D0D 0%,#FF7A40 100%); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; color: white; position: relative; overflow: hidden; }
+  .ui-greeting::after { content: '🚇'; position: absolute; right: 14px; bottom: -4px; font-size: 36px; opacity: 0.22; }
+  .ui-greeting .g-small { font-size: 10px; opacity: 0.75; margin-bottom: 3px; }
+  .ui-greeting .g-big { font-size: 14px; font-weight: 800; line-height: 1.35; }
+  .ui-seat-card { background: white; border-radius: 14px; padding: 13px 14px; margin-bottom: 9px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+  .ui-seat-label { font-size: 9.5px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 7px; }
+  .ui-seat-main { font-size: 12.5px; font-weight: 700; color: var(--dark); line-height: 1.45; margin-bottom: 9px; }
   .ui-seat-main span { color: var(--orange); }
-
-  /* train diagram */
-  .train-diagram {
-    display: flex; gap: 3px; margin-top: 10px;
-    align-items: center;
-  }
-  .t-car {
-    flex: 1; height: 28px; border-radius: 4px;
-    background: #F0EBE5;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 8px; font-weight: 700; color: #999;
-    position: relative;
-  }
+  .train-diagram { display: flex; gap: 2px; align-items: center; }
+  .t-car { flex: 1; height: 26px; border-radius: 3px; background: #EDE8E2; display: flex; align-items: center; justify-content: center; font-size: 7.5px; font-weight: 700; color: #AAA; }
+  /* HOT seat: pulsing orange glow */
   .t-car.hot {
     background: var(--orange); color: white;
-    box-shadow: 0 2px 8px rgba(255,92,26,0.4);
+    animation: seatPulse 1.8s ease-in-out infinite;
   }
+  @keyframes seatPulse {
+    0%,100% { box-shadow: 0 2px 8px rgba(255,77,13,0.35); }
+    50%      { box-shadow: 0 2px 18px rgba(255,77,13,0.7), 0 0 0 3px rgba(255,77,13,0.15); }
+  }
+  /* WARM seat: soft pulse */
   .t-car.warm {
     background: #FFD4BC; color: var(--orange);
+    animation: warmPulse 2.2s ease-in-out infinite 0.4s;
   }
-
-  .ui-route-card {
-    background: white; border-radius: 14px; padding: 14px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  @keyframes warmPulse {
+    0%,100% { box-shadow: none; }
+    50%      { box-shadow: 0 2px 10px rgba(255,77,13,0.22), 0 0 0 2px rgba(255,77,13,0.08); }
   }
-  .ui-route-label { font-size: 10px; font-weight: 600; color: #AAA; margin-bottom: 10px; }
-  .route-line {
-    display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+  .ui-route-card { background: white; border-radius: 14px; padding: 13px 14px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+  .ui-route-label { font-size: 9.5px; font-weight: 600; color: #BBB; margin-bottom: 9px; }
+  .route-line { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; }
+  .route-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; position: relative; }
+  /* Start dot: orange pulse ring */
+  .route-dot.start {
+    background: var(--orange);
+    animation: routePulse 1.6s ease-in-out infinite;
   }
-  .route-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    flex-shrink: 0;
+  @keyframes routePulse {
+    0%,100% { box-shadow: 0 0 0 2px rgba(255,77,13,0.2); }
+    50%      { box-shadow: 0 0 0 5px rgba(255,77,13,0.1); }
   }
-  .route-dot.start { background: var(--orange); }
-  .route-dot.end   { background: #333; }
-  .route-bar {
-    width: 1px; height: 16px; background: #DDD; margin-left: 3.5px; margin-bottom: 4px;
-  }
-  .route-text { font-size: 11px; font-weight: 600; color: var(--dark); }
-  .route-time { font-size: 10px; color: #AAA; margin-left: auto; }
-
-  /* badges */
-  .ui-badges {
-    display: flex; gap: 6px; margin-top: 10px;
-  }
-  .badge-item {
-    background: #FFF7F3; border: 1px solid #FFD9C8;
-    border-radius: 8px; padding: 6px 10px;
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
-  }
-  .badge-icon { font-size: 16px; }
-  .badge-name { font-size: 9px; font-weight: 700; color: var(--orange); }
-
-  /* ─── FEATURE 2: COMMUNITY ─── */
-  #feature-community {
+  /* End dot: subtle dark pulse */
+  .route-dot.end {
     background: var(--dark);
-    border-radius: 32px;
-    padding: 80px 64px;
-    max-width: 1280px;
-    margin: 0 auto 0;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    animation: routePulseEnd 2s ease-in-out infinite 0.5s;
   }
+  @keyframes routePulseEnd {
+    0%,100% { box-shadow: 0 0 0 2px rgba(15,12,8,0.1); }
+    50%      { box-shadow: 0 0 0 4px rgba(15,12,8,0.06); }
+  }
+  .route-bar { width: 1px; height: 14px; background: #E0DAD3; margin-left: 3.5px; margin-bottom: 4px; }
+  .route-text { font-size: 11px; font-weight: 600; color: var(--dark); }
+  .route-time { font-size: 10px; color: #BBB; margin-left: auto; }
+  .ui-badges { display: flex; gap: 6px; margin-top: 9px; }
+  .badge-item { background: #FFF5F0; border: 1px solid #FFD5C2; border-radius: 8px; padding: 6px 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .badge-icon { font-size: 15px; }
+  .badge-name { font-size: 8.5px; font-weight: 700; color: var(--orange); }
+
+  /* ─── FEATURE 2 ─── */
+  #feature-community { background: var(--dark-2); border-radius: 28px; padding: 80px 72px; max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; border: 1px solid rgba(255,255,255,0.05); }
   #feature-community .section-title { color: white; }
-  #feature-community .section-label { color: var(--orange-light); }
-  #feature-community p { color: rgba(255,255,255,0.5); font-size: 16px; line-height: 1.75; font-weight: 300; margin-top: 20px; }
-
-  /* community board mockup */
-  .board-mock {
-    background: #F7F2ED;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.4);
-  }
-  .board-top {
-    background: white; padding: 12px 16px;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid #F0ECE8;
-  }
-  .board-line-badge {
-    background: var(--orange); color: white;
-    font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 100px;
-  }
-  .board-tabs {
-    display: flex; gap: 0;
-    overflow-x: auto;
-    background: white;
-    padding: 0 16px;
-    border-bottom: 1px solid #F0ECE8;
-  }
-  .btab {
-    padding: 10px 14px; font-size: 11px; font-weight: 600;
-    color: #BBB; border-bottom: 2px solid transparent; white-space: nowrap;
-  }
+  #feature-community .section-label { color: rgba(255,107,53,0.9); }
+  #feature-community p { color: rgba(255,255,255,0.4); font-size: 15.5px; line-height: 1.85; font-weight: 300; margin-top: 22px; }
+  .board-mock { background: #F5F0EB; border-radius: 20px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04); }
+  .board-top { background: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #EDE8E2; }
+  .board-line-badge { background: var(--orange); color: white; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 5px; }
+  .board-tabs { display: flex; overflow-x: auto; background: white; padding: 0 16px; border-bottom: 1px solid #EDE8E2; scrollbar-width: none; }
+  .btab { padding: 10px 13px; font-size: 11px; font-weight: 600; color: #C0B8B0; border-bottom: 2px solid transparent; white-space: nowrap; cursor: pointer; transition: color 0.15s, border-color 0.15s; }
   .btab.active { color: var(--orange); border-bottom-color: var(--orange); }
-
-  .board-posts { padding: 10px; transition: opacity 0.25s ease, transform 0.25s ease; }
-  .btab { cursor: pointer; transition: color 0.15s, border-color 0.15s; }
-  .post-item {
-    background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
-  }
-  .post-meta {
-    display: flex; align-items: center; gap: 6px; margin-bottom: 6px;
-  }
-  .post-tag {
-    background: var(--orange-pale); color: var(--orange);
-    font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 100px;
-    text-transform: uppercase;
-  }
+  .board-posts { padding: 10px; }
+  .post-item { background: white; border-radius: 10px; padding: 12px 13px; margin-bottom: 7px; box-shadow: 0 1px 8px rgba(0,0,0,0.04); transition: transform 0.15s, box-shadow 0.15s; }
+  .post-item:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .post-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+  .post-tag { background: var(--orange-pale); color: var(--orange); font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
   .post-time { font-size: 9px; color: #CCC; margin-left: auto; }
-  .post-title { font-size: 12px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
-  .post-preview { font-size: 10px; color: #AAA; line-height: 1.5; }
-  .post-stats {
-    display: flex; gap: 10px; margin-top: 8px;
-  }
+  .post-title { font-size: 11.5px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .post-preview { font-size: 10px; color: #AAA; line-height: 1.55; }
+  .post-stats { display: flex; gap: 10px; margin-top: 7px; }
   .pstat { font-size: 10px; color: #CCC; display: flex; align-items: center; gap: 3px; }
-  .pstat span { font-size: 11px; }
 
-  /* ─── FEATURE 3: COMPLAINT ─── */
-  #feature-complaint {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  .board-live-badge {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 600; color: #22C55E;
   }
-
-  /* complaint mockup */
-  .complaint-mock {
-    background: white; border-radius: 24px; padding: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  .board-live-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #22C55E;
+    box-shadow: 0 0 0 2px rgba(34,197,94,0.2);
+    animation: liveBlink 1.4s ease-in-out infinite;
   }
-  .cm-title { font-size: 14px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
-  .cm-sub { font-size: 10px; color: #AAA; margin-bottom: 16px; }
-
-  .cm-selector {
-    display: flex; gap: 8px; margin-bottom: 16px;
+  @keyframes liveBlink {
+    0%,100% { opacity: 1; box-shadow: 0 0 0 2px rgba(34,197,94,0.2); }
+    50% { opacity: 0.4; box-shadow: 0 0 0 5px rgba(34,197,94,0.08); }
   }
-  .cm-sel {
-    flex: 1; padding: 10px; border-radius: 10px;
-    background: #F7F2ED; font-size: 11px; font-weight: 700; color: var(--dark);
-    text-align: center;
+  /* car context badge */
+  .cm-car-ctx {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,77,13,0.07); border: 1px solid rgba(255,77,13,0.15);
+    border-radius: 6px; padding: 6px 10px; margin-bottom: 12px;
+    font-size: 10px; font-weight: 700; color: var(--orange);
   }
-  .cm-sel.active {
-    background: var(--orange); color: white;
-    box-shadow: 0 4px 16px rgba(255,92,26,0.35);
-  }
-
+  .cm-car-ctx-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+  #feature-complaint { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .complaint-mock { background: white; border-radius: 20px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04); }
+  .cm-title { font-size: 14px; font-weight: 800; color: var(--dark); margin-bottom: 3px; }
+  .cm-sub { font-size: 10px; color: #AAA; margin-bottom: 18px; }
+  .cm-selector { display: flex; gap: 8px; margin-bottom: 16px; }
+  .cm-sel { flex: 1; padding: 10px; border-radius: 8px; background: #F5F0EB; font-size: 11px; font-weight: 700; color: var(--dark); text-align: center; }
+  .cm-sel.active { background: var(--orange); color: white; box-shadow: 0 4px 16px rgba(255,77,13,0.28); }
   .cm-type-label { font-size: 10px; font-weight: 700; color: #AAA; margin-bottom: 8px; }
   .cm-types { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-  .cm-type {
-    padding: 8px 14px; border-radius: 100px; font-size: 11px; font-weight: 600;
-    border: 1.5px solid #E8E2DC; color: #999; cursor: pointer;
-    transition: all 0.2s;
-  }
-  .cm-type.sel {
-    background: var(--orange); border-color: var(--orange); color: white;
-  }
-
-  .vote-bar-wrap { background: #F7F2ED; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
-  .vote-label {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 11px; font-weight: 700; color: var(--dark); margin-bottom: 8px;
-  }
-  .vote-label .pct { color: var(--orange); font-size: 14px; font-weight: 900; }
-  .vote-track { background: #E8E2DC; border-radius: 100px; height: 8px; overflow: hidden; }
-  .vote-fill {
-    height: 100%; border-radius: 100px;
-    background: linear-gradient(90deg, var(--orange), #FF8A50);
-    box-shadow: 0 2px 8px rgba(255,92,26,0.4);
-  }
+  .cm-type { padding: 7px 13px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1.5px solid #E5DDD5; color: #999; }
+  .cm-type.sel { background: var(--orange); border-color: var(--orange); color: white; }
+  .vote-bar-wrap { background: #F7F3EE; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+  .vote-label { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; color: var(--dark); margin-bottom: 7px; }
+  .vote-label .pct { color: var(--orange); font-size: 15px; font-weight: 900; }
+  .vote-track { background: #E5DDD5; border-radius: 100px; height: 7px; overflow: hidden; }
+  .vote-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg,var(--orange),var(--orange-light)); box-shadow: 0 2px 8px rgba(255,77,13,0.3); }
   .vote-note { font-size: 9px; color: #AAA; margin-top: 4px; }
+  .cm-status { background: #F7F3EE; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
+  .cm-status-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(34,197,94,0.2); animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow:0 0 0 3px rgba(34,197,94,0.2); } 50% { box-shadow:0 0 0 6px rgba(34,197,94,0.07); } }
+  .cm-status-text { font-size: 10px; font-weight: 600; color: #22C55E; }
 
-  .cm-status {
-    background: #FAFAF8; border-radius: 10px; padding: 10px 12px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .cm-status-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #4CAF50; flex-shrink: 0;
-    box-shadow: 0 0 0 3px rgba(76,175,80,0.2);
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%,100% { box-shadow: 0 0 0 3px rgba(76,175,80,0.2); }
-    50% { box-shadow: 0 0 0 6px rgba(76,175,80,0.1); }
-  }
-  .cm-status-text { font-size: 10px; font-weight: 600; color: #4CAF50; }
-
-  /* ─── FEATURE 4: REPORT ─── */
-  .report-section {
-    background: var(--orange-pale);
-    border-radius: 32px;
-    padding: 80px 64px;
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
-
-  /* report mockup */
-  .report-mock {
-    background: white; border-radius: 24px; padding: 20px;
-    box-shadow: 0 20px 60px rgba(255,92,26,0.12);
-  }
-  .rep-header { margin-bottom: 16px; }
+  /* ─── FEATURE 4 ─── */
+  .report-section { background: var(--orange-pale); border-radius: 28px; padding: 80px 72px; max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; border: 1px solid rgba(255,77,13,0.1); }
+  .report-mock { background: white; border-radius: 20px; padding: 22px; box-shadow: 0 20px 60px rgba(255,77,13,0.09), 0 0 0 1px rgba(255,77,13,0.05); }
+  .rep-header { margin-bottom: 14px; }
   .rep-title { font-size: 13px; font-weight: 800; color: var(--dark); }
-  .rep-period { font-size: 10px; color: #AAA; }
-
-  .rep-stats {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;
-  }
-  .rep-stat {
-    background: #F7F2ED; border-radius: 12px; padding: 12px 14px;
-  }
-  .rs-label { font-size: 9px; color: #AAA; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-  .rs-val { font-size: 20px; font-weight: 900; color: var(--dark); line-height: 1; }
-  .rs-val span { font-size: 10px; font-weight: 500; color: #999; }
-
-  /* ── 세로 바 차트 → SVG 도넛 + 히트맵으로 교체 ── */
-  .rep-chart-v2 { margin-bottom: 16px; }
-  .rc-label {
-    font-size: 10px; font-weight: 700; color: #AAA;
-    text-transform: uppercase; letter-spacing: 1px;
-    margin-bottom: 10px; display: block;
-  }
-
-  /* 히트맵 스타일 요일 그리드 */
-  .heatmap-wrap {
-    display: flex; gap: 4px; align-items: flex-start;
-  }
-  .heatmap-col {
-    flex: 1; display: flex; flex-direction: column; gap: 3px; align-items: center;
-  }
-  .heatmap-day-label {
-    font-size: 9px; font-weight: 800; color: #AAA; margin-bottom: 2px;
-  }
-  .hm-cell {
-    width: 100%;
-    height: 10px;
-    border-radius: 3px;
-    position: relative;
-  }
-
-  /* 도넛 차트 */
-  .donut-wrap {
-    display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
-  }
-  .donut-svg { flex-shrink: 0; }
+  .rep-period { font-size: 10px; color: #AAA; margin-top: 2px; }
+  .rc-label { font-size: 9.5px; font-weight: 700; color: #AAA; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 10px; display: block; }
+  .donut-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
   .donut-legend { display: flex; flex-direction: column; gap: 6px; }
   .dl-item { display: flex; align-items: center; gap: 6px; }
-  .dl-dot {
-    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-  }
+  .dl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .dl-text { font-size: 10px; font-weight: 600; color: var(--dark); }
-  .dl-pct  { font-size: 10px; font-weight: 800; margin-left: auto; padding-left: 8px; }
-
-  /* ── 배지 ── */
-  .rep-badges-clean { }
-  .badges-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 4px;
-  }
-  .badge-clean {
-    display: flex; flex-direction: column; align-items: center; gap: 5px;
-    padding: 10px 4px 8px;
-    border-radius: 14px;
-    border: 1.5px solid rgba(255,92,26,0.18);
-    background: white;
-    position: relative;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: default;
-  }
-  .badge-clean:not(.badge-locked):hover {
-    transform: translateY(-4px) scale(1.04);
-    box-shadow: 0 10px 24px rgba(255,92,26,0.18);
-  }
+  .dl-pct { font-size: 10px; font-weight: 800; margin-left: auto; padding-left: 8px; }
+  .badges-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-top: 4px; }
+  .badge-clean { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px 8px; border-radius: 12px; border: 1.5px solid rgba(255,77,13,0.15); background: white; position: relative; transition: transform 0.2s, box-shadow 0.2s; cursor: default; }
+  .badge-clean:not(.badge-locked):hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 24px rgba(255,77,13,0.14); }
   .badge-locked { border-color: #EEE; background: #FAFAFA; }
-  .badge-emoji { font-size: 30px; line-height: 1; filter: drop-shadow(0 2px 6px rgba(255,92,26,0.25)); }
-  .badge-locked .badge-emoji { filter: grayscale(1); opacity: .3; }
-  .badge-nm { font-size: 9px; font-weight: 800; color: var(--dark); text-align: center; line-height: 1.3; }
+  .badge-emoji { font-size: 28px; line-height: 1; }
+  .badge-locked .badge-emoji { filter: grayscale(1); opacity: .22; }
+  .badge-nm { font-size: 8.5px; font-weight: 800; color: var(--dark); text-align: center; line-height: 1.3; }
   .badge-locked .badge-nm { color: #CCC; }
-  .badge-dt { font-size: 8px; color: var(--orange); font-weight: 700; }
+  .badge-dt { font-size: 7.5px; color: var(--orange); font-weight: 700; }
   .badge-locked .badge-dt { color: #DDD; }
-  .badge-new {
-    position: absolute; top: -5px; right: -5px;
-    background: var(--orange); color: white;
-    font-size: 7px; font-weight: 900; padding: 2px 5px;
-    border-radius: 100px; letter-spacing: 0.5px;
-  }
+  .badge-new { position: absolute; top: -5px; right: -5px; background: var(--orange); color: white; font-size: 7px; font-weight: 900; padding: 2px 5px; border-radius: 4px; }
 
   /* ─── STATS ─── */
-  .stats-row {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-    max-width: 1280px; margin: 0 auto;
+  /* ─── STATS ─── */
+  .stats-outer { background: var(--bg); padding: 80px 0; }
+  .stats-inner {
+    max-width: 1320px; margin: 0 auto; padding: 0 52px;
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
   }
-  .stat-card {
-    background: var(--dark); padding: 56px 48px;
-    text-align: center;
+  .stat-block {
+    background: white; border-radius: 20px;
+    padding: 48px 40px 44px;
+    border: 1px solid rgba(0,0,0,0.07);
+    position: relative; overflow: hidden;
+    transition: transform 0.22s, box-shadow 0.22s;
   }
-  .stat-card:first-child { border-radius: 24px 0 0 24px; }
-  .stat-card:last-child  { border-radius: 0 24px 24px 0; }
-  .stat-num {
+  .stat-block:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.08); }
+  /* orange sweep line on top */
+  .stat-block::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    height: 3px; width: 0; background: var(--orange);
+    transition: width 0.7s cubic-bezier(0.16,1,0.3,1);
+    border-radius: 0 2px 0 0;
+  }
+  .stat-block.visible::before { width: 100%; }
+  .stat-kicker {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    color: var(--orange); text-transform: uppercase; margin-bottom: 20px;
+  }
+  .stat-big {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px; color: var(--orange); line-height: 1;
+    font-size: 80px; line-height: 0.9; letter-spacing: -1px;
+    color: var(--dark); margin-bottom: 16px;
   }
-  .stat-unit { font-size: 32px; }
-  .stat-desc { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 8px; font-weight: 300; }
+  .stat-big .su { font-size: 46px; color: var(--orange); }
+  .stat-divline { width: 28px; height: 2px; background: rgba(0,0,0,0.08); margin-bottom: 14px; }
+  .stat-body { font-size: 13px; color: var(--light-text); font-weight: 300; line-height: 1.75; }
+  .stats-section { display:none; }
+  .stats-label-row { display:none; }
+  .stats-row { display:none; }
+  .stat-card { display:none; }
 
-  /* ─── CTA ─── */
-  .cta-section {
-    max-width: 1280px; margin: 0 auto;
-    padding: 120px 48px;
-    text-align: center;
+  /* ════════════════════════
+     CTA — clean light redesign
+  ════════════════════════ */
+  #cta {
+    position: relative; overflow: hidden;
+    background: white;
+    margin: 0 52px;
+    max-width: 1320px; margin-left: auto; margin-right: auto;
+    border-radius: 28px; padding: 0;
+    border: 1px solid rgba(0,0,0,0.07);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.06);
   }
-  .cta-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 20px; }
+  .cta-grid {
+    display: grid; grid-template-columns: 1fr 420px;
+  }
+  /* Left panel */
+  .cta-left {
+    padding: 80px 72px;
+    position: relative; overflow: hidden;
+    border-right: 1px solid rgba(0,0,0,0.07);
+    background: var(--bg);
+  }
+  .cta-left::before {
+    content: '';
+    position: absolute; bottom: -120px; right: -80px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(255,77,13,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-content { position: relative; z-index: 1; }
+  .cta-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    color: var(--orange); text-transform: uppercase; margin-bottom: 28px;
+    padding: 6px 14px; border-radius: 100px;
+    border: 1px solid rgba(255,77,13,0.2);
+    background: rgba(255,77,13,0.06);
+  }
+  .cta-eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); animation: pulse 1.5s ease-in-out infinite; }
   .cta-title {
-    font-size: clamp(40px, 7vw, 80px); font-weight: 900; line-height: 1.1; letter-spacing: -2px;
+    font-size: clamp(38px,4.5vw,60px); font-weight: 900;
+    line-height: 1.06; letter-spacing: -2.5px;
     color: var(--dark); margin-bottom: 20px;
   }
-  .cta-sub { font-size: 17px; color: var(--light-text); font-weight: 300; line-height: 1.7; max-width: 480px; margin: 0 auto 40px; }
+  .cta-title .cta-accent { color: var(--orange); }
+  .cta-sub {
+    font-size: 15px; color: var(--light-text);
+    font-weight: 300; line-height: 1.85; max-width: 360px;
+  }
+  .cta-stats {
+    display: flex; gap: 36px; margin-top: 52px;
+    padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .cta-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px; color: var(--dark); line-height: 1;
+  }
+  .cta-stat-label { font-size: 11px; color: var(--light-text); margin-top: 3px; font-weight: 400; }
 
-  .email-form {
-    display: flex; gap: 8px; max-width: 420px; margin: 0 auto;
-    background: white; border-radius: 100px; padding: 6px 6px 6px 24px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  /* Right panel */
+  .cta-right {
+    padding: 64px 52px;
+    background: white;
+    display: flex; flex-direction: column; justify-content: center;
   }
-  .email-form input {
-    flex: 1; border: none; outline: none; font-family: inherit;
-    font-size: 14px; color: var(--dark);
-    background: transparent;
+  .cta-form-title {
+    font-size: 20px; font-weight: 900; color: var(--dark);
+    margin-bottom: 8px; letter-spacing: -0.6px;
   }
-  .email-form input::placeholder { color: #CCC; }
-  .email-form button {
-    background: var(--orange); color: white;
-    border: none; border-radius: 100px; padding: 12px 28px;
-    font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
-    transition: all 0.2s;
+  .cta-form-sub {
+    font-size: 13px; color: var(--light-text); margin-bottom: 28px; line-height: 1.7;
   }
-  .email-form button:hover { background: var(--orange-light); transform: scale(1.02); }
+  .email-field {
+    width: 100%;
+    background: var(--bg);
+    border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: 10px; padding: 15px 18px;
+    font-family: inherit; font-size: 14px; color: var(--dark);
+    outline: none; margin-bottom: 10px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .email-field::placeholder { color: #C0B8B0; }
+  .email-field:focus {
+    border-color: var(--orange);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255,77,13,0.08);
+  }
+  .cta-btn {
+    width: 100%; background: var(--orange); color: white;
+    border: none; border-radius: 10px; padding: 16px;
+    font-family: inherit; font-size: 14px; font-weight: 800;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(255,77,13,0.3);
+    letter-spacing: -0.3px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .cta-btn:hover { background: var(--orange-mid); box-shadow: 0 8px 32px rgba(255,77,13,0.42); transform: translateY(-1px); }
+  .cta-btn svg { transition: transform 0.2s; }
+  .cta-btn:hover svg { transform: translateX(3px); }
+  .cta-fine {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 14px; font-size: 11.5px; color: #B0A89E;
+  }
+  .cta-proof {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 28px; padding-top: 22px;
+    border-top: 1px solid rgba(0,0,0,0.07);
+  }
+  .proof-avatars { display: flex; }
+  .proof-av {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid white; display: flex; align-items: center;
+    justify-content: center; font-size: 13px;
+    background: var(--orange-pale); margin-left: -8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  .proof-av:first-child { margin-left: 0; }
+  .proof-copy { font-size: 12px; color: var(--light-text); line-height: 1.5; }
+  .proof-count {
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .proof-blink-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--orange);
+    animation: proofBlink 1.3s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes proofBlink {
+    0%,100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255,77,13,0.3); }
+    50% { opacity: 0.5; transform: scale(0.8); box-shadow: 0 0 0 4px rgba(255,77,13,0); }
+  }
+  .proof-copy strong { color: var(--dark); font-weight: 800; }
+  .proof-av { width: 28px; height: 28px; border-radius: 50%; border: 2px solid white; margin-left: -8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); flex-shrink: 0; }
+  .proof-av:first-child { margin-left: 0; }
+  .proof-av-a { background: linear-gradient(135deg, #FFB347, #FF8C42); }
+  .proof-av-b { background: linear-gradient(135deg, #A8D8A8, #6CBF6C); }
+  .proof-av-c { background: linear-gradient(135deg, #B8D4F0, #6EA8DA); }
+  .proof-av-d { background: linear-gradient(135deg, #F0C8D8, #D87FA8); }
 
   /* ─── FOOTER ─── */
-  footer {
-    background: var(--dark); padding: 48px;
-    display: flex; align-items: center; justify-content: space-between;
+  footer { background: var(--dark); padding: 52px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); }
+  .footer-logo-wrap { display: flex; align-items: center; gap: 14px; }
+  .footer-logo-icon {
+    width: 40px; height: 40px; border-radius: 11px;
+    background: var(--orange); display: flex; align-items: center; justify-content: center;
+    font-size: 19px; box-shadow: 0 0 18px rgba(255,77,13,0.28); flex-shrink: 0;
   }
-  .footer-logo { font-size: 18px; font-weight: 900; color: var(--orange); }
-  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+  .footer-brand { font-size: 17px; font-weight: 900; color: white; letter-spacing: -0.5px; line-height: 1; }
+  .footer-brand span { color: var(--orange); }
+  .footer-tagline { font-size: 11px; color: rgba(255,255,255,0.22); margin-top: 4px; font-weight: 300; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.18); }
 
-  /* ─── SCROLL ANIMATIONS ─── */
-  .reveal {
-    opacity: 0; transform: translateY(32px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     nav { padding: 16px 24px; }
+    .nav-links { display: none; }
     section { padding: 80px 24px; }
-    #feature-seat, #feature-community, #feature-complaint, .report-section {
-      grid-template-columns: 1fr; gap: 48px;
-    }
+    #feature-seat, #feature-community, #feature-complaint, .report-section { grid-template-columns: 1fr; gap: 48px; }
     #feature-community, .report-section { padding: 48px 32px; }
-    .stats-row { grid-template-columns: 1fr; }
-    .stat-card:first-child, .stat-card:last-child { border-radius: 0; }
-    footer { flex-direction: column; gap: 16px; text-align: center; }
-    .email-form { flex-direction: column; border-radius: 16px; padding: 16px; }
-    .email-form input { padding: 8px 0; }
-    .email-form button { border-radius: 100px; }
-    .hero-title { font-size: 64px; }
+    .stats-row { grid-template-columns: 1fr; border-radius: 16px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; } .footer-logo-wrap { flex-direction: column; gap: 10px; }
+    .cta-grid { grid-template-columns: 1fr; }
+    .cta-left { padding: 52px 32px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .cta-right { padding: 40px 32px; }
+    #cta { margin: 0 24px; }
+    .strip-label { display: none; }
+    .strip-chevron { display: none; }
   }
 </style>
 </head>
@@ -793,121 +569,298 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo"><span>🚇</span> 이칸저칸</div>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🚇</div>
+    이칸저칸
+  </div>
+  <ul class="nav-links">
+    <li><a href="#feature-seat">착석 가이드</a></li>
+    <li><a href="#feature-community">커뮤니티</a></li>
+    <li><a href="#feature-complaint">민원 투표</a></li>
+    <li><a href="#cta">소개</a></li>
+  </ul>
   <a href="#cta" class="nav-cta">출시 알림 받기</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero" style="padding:0; max-width:100%; width:100%; overflow:hidden;">
-  <div class="rail-bg"></div>
   <div class="hero-glow"></div>
-
-  <!-- Train scene: full-section layer -->
+  <div class="hero-glow-2"></div>
+  <div class="hero-floor"></div>
   <div class="train-scene">
-    <div class="sleepers"></div>
-    <div class="rail-line top"></div>
-    <div class="rail-line bottom"></div>
+    <div class="track-assembly">
+      <div class="track-ballast"></div>
+      <div class="track-sleepers" id="sleepers"></div>
+      <div class="track-rail-top"></div>
+      <div class="track-rail-bottom"></div>
+    </div>
 
-    <svg class="train-svg" width="440" height="100" viewBox="0 0 440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- wheels -->
-      <circle cx="72"  cy="88" r="10" fill="#2A2A2A" stroke="#555" stroke-width="2"/>
-      <circle cx="72"  cy="88" r="4"  fill="#444"/>
-      <circle cx="160" cy="88" r="10" fill="#2A2A2A" stroke="#555" stroke-width="2"/>
-      <circle cx="160" cy="88" r="4"  fill="#444"/>
-      <circle cx="268" cy="88" r="10" fill="#2A2A2A" stroke="#555" stroke-width="2"/>
-      <circle cx="268" cy="88" r="4"  fill="#444"/>
-      <circle cx="376" cy="88" r="10" fill="#2A2A2A" stroke="#555" stroke-width="2"/>
-      <circle cx="376" cy="88" r="4"  fill="#444"/>
-      <!-- axles -->
-      <rect x="60"  y="77" width="24" height="4" rx="2" fill="#3A3A3A"/>
-      <rect x="148" y="77" width="24" height="4" rx="2" fill="#3A3A3A"/>
-      <rect x="256" y="77" width="24" height="4" rx="2" fill="#3A3A3A"/>
-      <rect x="364" y="77" width="24" height="4" rx="2" fill="#3A3A3A"/>
-      <!-- undercarriage -->
-      <rect x="40" y="68" width="360" height="11" rx="4" fill="#2E2E2E"/>
-      <!-- car body 1 -->
-      <rect x="42" y="16" width="168" height="56" rx="8" fill="#E8E4E0"/>
-      <!-- car body 2 -->
-      <rect x="220" y="16" width="178" height="56" rx="8" fill="#E8E4E0"/>
-      <!-- coupler -->
-      <rect x="208" y="40" width="14" height="8" rx="3" fill="#BBBBB5"/>
-      <!-- orange stripe car 1 -->
-      <rect x="42" y="16" width="168" height="9" rx="4" fill="#FF5C1A"/>
-      <rect x="42" y="21" width="168" height="4" fill="#FF5C1A"/>
-      <!-- orange stripe car 2 -->
-      <rect x="220" y="16" width="178" height="9" rx="4" fill="#FF5C1A"/>
-      <rect x="220" y="21" width="178" height="4" fill="#FF5C1A"/>
-      <!-- windows car 1 -->
-      <rect x="60"  y="32" width="30" height="26" rx="4" fill="#1E4B7A" opacity="0.85"/>
-      <rect x="100" y="32" width="30" height="26" rx="4" fill="#1E4B7A" opacity="0.85"/>
-      <rect x="140" y="32" width="30" height="26" rx="4" fill="#1E4B7A" opacity="0.85"/>
-      <!-- window glare -->
-      <rect x="62"  y="34" width="10" height="22" rx="2" fill="white" opacity="0.15"/>
-      <rect x="102" y="34" width="10" height="22" rx="2" fill="white" opacity="0.15"/>
-      <rect x="142" y="34" width="10" height="22" rx="2" fill="white" opacity="0.15"/>
-      <!-- windows car 2 -->
-      <rect x="238" y="32" width="30" height="26" rx="4" fill="#1E4B7A" opacity="0.85"/>
-      <rect x="278" y="32" width="30" height="26" rx="4" fill="#1E4B7A" opacity="0.85"/>
-      <rect x="318" y="32" width="30" height="26" rx="4" fill="#1E4B7A" opacity="0.85"/>
-      <rect x="358" y="32" width="30" height="26" rx="4" fill="#1E4B7A" opacity="0.85"/>
-      <rect x="240" y="34" width="10" height="22" rx="2" fill="white" opacity="0.15"/>
-      <rect x="280" y="34" width="10" height="22" rx="2" fill="white" opacity="0.15"/>
-      <rect x="320" y="34" width="10" height="22" rx="2" fill="white" opacity="0.15"/>
-      <rect x="360" y="34" width="10" height="22" rx="2" fill="white" opacity="0.15"/>
-      <!-- door lines -->
-      <rect x="126" y="22" width="2" height="50" rx="1" fill="#CCC8C2" opacity="0.5"/>
-      <rect x="308" y="22" width="2" height="50" rx="1" fill="#CCC8C2" opacity="0.5"/>
-      <!-- front nose -->
-      <path d="M42 24 Q20 24 14 46 L14 70 L42 70 Z" fill="#D0CCC8"/>
-      <rect x="14" y="24" width="6" height="46" rx="3" fill="#B0ACA8"/>
-      <!-- headlight -->
-      <circle cx="22" cy="38" r="6" fill="#FFE066" opacity="0.95"/>
-      <circle cx="22" cy="38" r="3" fill="white"/>
-      <circle cx="22" cy="38" r="14" fill="#FFE066" opacity="0.1"/>
+    <!--
+      Seoul Metro 2호선 style — 2 car consist
+      Realistic flat-nose cab, stainless steel body,
+      orange livery stripe, deep blue-tinted windows
+      Proper bogies with detailed wheels
+    -->
+    <svg class="train-svg" width="720" height="160" viewBox="0 0 590 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#F8F5F2"/>
+          <stop offset="35%"  stop-color="#EEEAE6"/>
+          <stop offset="100%" stop-color="#DDD9D3"/>
+        </linearGradient>
+        <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="rgba(255,255,255,0.42)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+        <linearGradient id="ors" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#FF4D0D"/>
+          <stop offset="100%" stop-color="#FF6E35"/>
+        </linearGradient>
+        <linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#3A638E"/>
+          <stop offset="100%" stop-color="#1C3C5E"/>
+        </linearGradient>
+        <linearGradient id="wglare" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="rgba(255,255,255,0.2)"/>
+          <stop offset="55%"  stop-color="rgba(255,255,255,0.04)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+        <linearGradient id="cab" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#BDB9B3"/>
+          <stop offset="100%" stop-color="#D3CFCA"/>
+        </linearGradient>
+        <linearGradient id="und" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#282420"/>
+          <stop offset="100%" stop-color="#161310"/>
+        </linearGradient>
+        <radialGradient id="whl" cx="50%" cy="38%" r="52%">
+          <stop offset="0%"   stop-color="#383028"/>
+          <stop offset="55%"  stop-color="#22201A"/>
+          <stop offset="100%" stop-color="#151210"/>
+        </radialGradient>
+        <radialGradient id="hl" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#FFF5D0" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#FFF5D0" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- ═══ UNDERFRAME ═══ -->
+      <rect x="20" y="94" width="552" height="13" rx="3" fill="url(#und)"/>
+      <!-- Skirt panels -->
+      <rect x="20" y="91"  width="224" height="5" rx="2" fill="#1E1B16"/>
+      <rect x="256" y="91" width="316" height="5" rx="2" fill="#1E1B16"/>
+
+      <!-- ═══ BOGIES ═══ (4x, at x=70,190,395,512) -->
+      <!-- Macro: bogie at cx -->
+      <!-- Bogie 1 -->
+      <g transform="translate(70,107)">
+        <rect x="-30" y="-7" width="60" height="11" rx="3" fill="#1E1A16"/>
+        <rect x="-25" y="1"  width="50" height="7"  rx="2" fill="#2A261E"/>
+        <rect x="-17" y="9.5" width="34" height="3" rx="1.5" fill="#252118"/>
+        <circle cx="-17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="-17" cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="-17" cy="16" r="4.5" fill="#282420"/>
+        <circle cx="-17" cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+        <circle cx="17"  cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="17"  cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="17"  cy="16" r="4.5" fill="#282420"/>
+        <circle cx="17"  cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+      </g>
+      <!-- Bogie 2 -->
+      <g transform="translate(194,107)">
+        <rect x="-30" y="-7" width="60" height="11" rx="3" fill="#1E1A16"/>
+        <rect x="-25" y="1"  width="50" height="7"  rx="2" fill="#2A261E"/>
+        <rect x="-17" y="9.5" width="34" height="3" rx="1.5" fill="#252118"/>
+        <circle cx="-17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="-17" cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="-17" cy="16" r="4.5" fill="#282420"/>
+        <circle cx="-17" cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+        <circle cx="17"  cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="17"  cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="17"  cy="16" r="4.5" fill="#282420"/>
+        <circle cx="17"  cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+      </g>
+      <!-- Bogie 3 -->
+      <g transform="translate(396,107)">
+        <rect x="-30" y="-7" width="60" height="11" rx="3" fill="#1E1A16"/>
+        <rect x="-25" y="1"  width="50" height="7"  rx="2" fill="#2A261E"/>
+        <rect x="-17" y="9.5" width="34" height="3" rx="1.5" fill="#252118"/>
+        <circle cx="-17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="-17" cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="-17" cy="16" r="4.5" fill="#282420"/>
+        <circle cx="-17" cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+        <circle cx="17"  cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="17"  cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="17"  cy="16" r="4.5" fill="#282420"/>
+        <circle cx="17"  cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+      </g>
+      <!-- Bogie 4 -->
+      <g transform="translate(514,107)">
+        <rect x="-30" y="-7" width="60" height="11" rx="3" fill="#1E1A16"/>
+        <rect x="-25" y="1"  width="50" height="7"  rx="2" fill="#2A261E"/>
+        <rect x="-17" y="9.5" width="34" height="3" rx="1.5" fill="#252118"/>
+        <circle cx="-17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="-17" cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="-17" cy="16" r="4.5" fill="#282420"/>
+        <circle cx="-17" cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+        <circle cx="17"  cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="17"  cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="17"  cy="16" r="4.5" fill="#282420"/>
+        <circle cx="17"  cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+      </g>
+
+      <!-- ═══ CAR BODIES ═══ -->
+      <!-- Car 1: x=24..240 -->
+      <rect x="24"  y="14" width="216" height="80" rx="7" fill="url(#body)"/>
+      <rect x="24"  y="14" width="216" height="20" rx="7" fill="url(#sheen)" opacity="0.65"/>
+      <rect x="24"  y="85" width="216" height="9"  rx="4" fill="rgba(0,0,0,0.06)"/>
+      <!-- Car 2: x=256..566 -->
+      <rect x="256" y="14" width="310" height="80" rx="7" fill="url(#body)"/>
+      <rect x="256" y="14" width="310" height="20" rx="7" fill="url(#sheen)" opacity="0.65"/>
+      <rect x="256" y="85" width="310" height="9"  rx="4" fill="rgba(0,0,0,0.06)"/>
+
+      <!-- ═══ ORANGE STRIPE ═══ -->
+      <!-- Car 1 stripe -->
+      <rect x="24"  y="14" width="216" height="11" rx="5" fill="url(#ors)"/>
+      <rect x="28"  y="21" width="212" height="4"  fill="url(#ors)"/>
+      <rect x="24"  y="24" width="216" height="1.5" fill="rgba(255,255,255,0.55)"/>
+      <!-- Car 2 stripe -->
+      <rect x="256" y="14" width="310" height="11" rx="5" fill="url(#ors)"/>
+      <rect x="260" y="21" width="306" height="4"  fill="url(#ors)"/>
+      <rect x="256" y="24" width="310" height="1.5" fill="rgba(255,255,255,0.55)"/>
+
+      <!-- ═══ WINDOWS — Car 1 (3 panes) ═══ -->
+      <!-- W1 x=40, W2 x=104, W3 x=168, each 44×34 -->
+      <rect x="40"  y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
+      <rect x="40"  y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
+      <rect x="40"  y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+      <rect x="104" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
+      <rect x="104" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
+      <rect x="104" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+      <rect x="168" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
+      <rect x="168" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
+      <rect x="168" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+      <!-- Door seam car 1 -->
+      <line x1="155" y1="25" x2="155" y2="91" stroke="rgba(0,0,0,0.09)" stroke-width="1.5"/>
+
+      <!-- ═══ WINDOWS — Car 2 (4 panes) ═══ -->
+      <!-- W1 x=272, W2 x=336, W3 x=400, W4 x=464 -->
+      <rect x="272" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
+      <rect x="272" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
+      <rect x="272" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+      <rect x="336" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
+      <rect x="336" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
+      <rect x="336" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+      <rect x="400" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
+      <rect x="400" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
+      <rect x="400" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+      <rect x="464" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
+      <rect x="464" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
+      <rect x="464" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+      <!-- Door seam car 2 -->
+      <line x1="378" y1="25" x2="378" y2="91" stroke="rgba(0,0,0,0.09)" stroke-width="1.5"/>
+
+      <!-- ═══ INTER-CAR BELLOWS ═══ -->
+      <rect x="240" y="20" width="16" height="74" rx="2" fill="rgba(0,0,0,0.32)"/>
+      <line x1="243" y1="24" x2="243" y2="90" stroke="rgba(255,255,255,0.055)" stroke-width="0.8" stroke-dasharray="3 3"/>
+      <line x1="248" y1="24" x2="248" y2="90" stroke="rgba(255,255,255,0.055)" stroke-width="0.8" stroke-dasharray="3 3"/>
+      <line x1="253" y1="24" x2="253" y2="90" stroke="rgba(255,255,255,0.055)" stroke-width="0.8" stroke-dasharray="3 3"/>
+
+      <!-- ═══ CAB NOSE (left / front) ═══ -->
+      <!-- Cab face panel -->
+      <path d="M24 14 Q9 14 5 32 L5 92 Q5 95 9 95 L24 95 Z" fill="url(#cab)"/>
+      <!-- Inner face shading -->
+      <path d="M24 22 Q14 22 11 38 L11 92 L24 92 Z" fill="rgba(0,0,0,0.07)"/>
+      <!-- Orange cab stripe -->
+      <path d="M24 14 Q9 14 5 30 L5 34 Q9 18 24 18 Z" fill="url(#ors)"/>
+      <path d="M24 17 Q11 17 5 30 L5 27 Q10 20 24 20 Z" fill="rgba(255,255,255,0.22)"/>
+      <!-- Windshield — large raked pane -->
+      <path d="M24 32 Q15 32 12 48 L12 76 L24 76 Z" fill="url(#win)" opacity="0.86"/>
+      <path d="M24 34 Q17 34 15 48 L15 56 L24 56 Z" fill="rgba(255,255,255,0.09)"/>
+      <path d="M24 32 Q15 32 12 48 L12 76 L24 76 Z" fill="none" stroke="rgba(0,0,0,0.14)" stroke-width="1"/>
+      <!-- Wiper line -->
+      <line x1="13" y1="74" x2="23" y2="60" stroke="rgba(0,0,0,0.18)" stroke-width="0.8" stroke-linecap="round"/>
+      <!-- LED destination board -->
+      <rect x="6"  y="16" width="18" height="13" rx="2.5" fill="#111"/>
+      <rect x="7"  y="17" width="16" height="11" rx="2" fill="#160800"/>
+      <rect x="8"  y="18.5" width="11" height="2.5" rx="1.2" fill="#FF8800" opacity="0.88"/>
+      <rect x="8"  y="22"   width="8"  height="2"   rx="1"   fill="#FF8800" opacity="0.58"/>
+      <!-- Headlight housing -->
+      <rect x="5"  y="78" width="18" height="13" rx="3" fill="#D0CCC5"/>
+      <!-- Main lamp -->
+      <ellipse cx="14" cy="84.5" rx="6.5" ry="5.5" fill="#FFF8DC" opacity="0.96"/>
+      <ellipse cx="14" cy="84.5" rx="4"   ry="3.5" fill="white"/>
+      <!-- Glow halo -->
+      <ellipse cx="14" cy="84.5" rx="11" ry="9" fill="url(#hl)" opacity="0.18"/>
+      <!-- Fog/marker -->
+      <rect x="6"  y="92" width="8" height="4" rx="2" fill="#FF3300" opacity="0.78"/>
+      <!-- Horn louvres -->
+      <rect x="6"  y="63" width="7" height="13" rx="1.5" fill="#B5B1AA"/>
+      <rect x="7"  y="64.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <rect x="7"  y="67"   width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <rect x="7"  y="69.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <rect x="7"  y="72"   width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <rect x="7"  y="74.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <!-- Side mirror -->
+      <rect x="2" y="33" width="6" height="9" rx="2" fill="#C4C0BA"/>
+
+      <!-- ═══ TAIL ═══ -->
+      <rect x="556" y="78" width="10" height="13" rx="2" fill="#C4C0BA"/>
+      <rect x="557" y="79" width="8"  height="11" rx="1.5" fill="#BB1100" opacity="0.85"/>
+      <rect x="558" y="80" width="6"  height="9"  rx="1"   fill="#FF2200" opacity="0.65"/>
+      <ellipse cx="561" cy="84.5" rx="5" ry="4" fill="#FF2200" opacity="0.08"/>
+      <rect x="557" y="91" width="5" height="3" rx="1" fill="#880000" opacity="0.7"/>
     </svg>
 
-    <!-- Service name revealed as train arrives -->
+    <!-- Title reveal -->
     <div class="hero-title-wrap">
       <span class="service-eyebrow">실시간 지하철 커뮤니티</span>
       <span class="service-name">이칸<span class="accent">저칸</span></span>
     </div>
   </div>
 
-  <!-- Sub text + CTA: fades in after train departs, pinned to bottom -->
   <div class="hero-text">
-    <p class="hero-sub">매일 타는 지하철, 이제는 더 현명하게.<br>앉을 칸부터 실시간 정보까지 — 승객이 만드는 지하철 경험.</p>
+    <p class="hero-sub">매일 타는 지하철, 이제는 다르게.<br>앉을 칸, 실시간 정보, 그리고 변화 — 같이 만들어요.</p>
     <div class="hero-btns">
       <a href="#feature-seat" class="btn-primary">서비스 알아보기</a>
       <a href="#cta" class="btn-ghost">출시 알림 받기</a>
     </div>
   </div>
-
   <div class="scroll-hint">
     <span>Scroll</span>
-    <div class="scroll-dot"></div>
+    <div class="scroll-arrow"></div>
   </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="strip">
-  <div class="strip-inner">
-    <span class="strip-item">앉을 확률 가장 높은 칸 추천</span>
-    <span class="strip-item">실시간 지연·사고 정보</span>
-    <span class="strip-item">같은 노선 승객끼리 소통</span>
-    <span class="strip-item">민원 투표로 철도공사에 즉시 전달</span>
-    <span class="strip-item">지하철 이용 리포트</span>
-    <span class="strip-item">게이미피케이션 배지 시스템</span>
-    <span class="strip-item">앉을 확률 가장 높은 칸 추천</span>
-    <span class="strip-item">실시간 지연·사고 정보</span>
-    <span class="strip-item">같은 노선 승객끼리 소통</span>
-    <span class="strip-item">민원 투표로 철도공사에 즉시 전달</span>
-    <span class="strip-item">지하철 이용 리포트</span>
-    <span class="strip-item">게이미피케이션 배지 시스템</span>
+  <div class="strip-track">
+    <div class="strip-label">
+      <div class="strip-label-dot"></div>
+      Live
+    </div>
+    <div class="strip-chevron"></div>
+    <div class="strip-scroll-wrap">
+      <div class="strip-inner">
+        <div class="strip-item"><span class="strip-ko">자리 날 칸, 미리 알고 탄다</span><span class="strip-dot-sep">✦</span><span class="strip-en">Seat Prediction</span></div>
+        <div class="strip-item"><span class="strip-ko">지금 내 노선, 무슨 일이야?</span><span class="strip-dot-sep">✦</span><span class="strip-en">Real-time Alerts</span></div>
+        <div class="strip-item"><span class="strip-ko">같은 칸 승객끼리, 이칸저칸</span><span class="strip-dot-sep">✦</span><span class="strip-en">Line Community</span></div>
+        <div class="strip-item"><span class="strip-ko">우리가 투표하면 철도공사가 움직인다</span><span class="strip-dot-sep">✦</span><span class="strip-en">Collective Voice</span></div>
+        <div class="strip-item"><span class="strip-ko">지루한 출퇴근, 데이터로 바뀐다</span><span class="strip-dot-sep">✦</span><span class="strip-en">Monthly Report</span></div>
+        <div class="strip-item"><span class="strip-ko">탈수록 쌓이는 나만의 기록</span><span class="strip-dot-sep">✦</span><span class="strip-en">Gamification</span></div>
+        <div class="strip-item"><span class="strip-ko">자리 날 칸, 미리 알고 탄다</span><span class="strip-dot-sep">✦</span><span class="strip-en">Seat Prediction</span></div>
+        <div class="strip-item"><span class="strip-ko">지금 내 노선, 무슨 일이야?</span><span class="strip-dot-sep">✦</span><span class="strip-en">Real-time Alerts</span></div>
+        <div class="strip-item"><span class="strip-ko">같은 칸 승객끼리, 이칸저칸</span><span class="strip-dot-sep">✦</span><span class="strip-en">Line Community</span></div>
+        <div class="strip-item"><span class="strip-ko">우리가 투표하면 철도공사가 움직인다</span><span class="strip-dot-sep">✦</span><span class="strip-en">Collective Voice</span></div>
+        <div class="strip-item"><span class="strip-ko">지루한 출퇴근, 데이터로 바뀐다</span><span class="strip-dot-sep">✦</span><span class="strip-en">Monthly Report</span></div>
+        <div class="strip-item"><span class="strip-ko">탈수록 쌓이는 나만의 기록</span><span class="strip-dot-sep">✦</span><span class="strip-en">Gamification</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- FEATURE 1: SEATING GUIDE -->
-<section style="max-width:1280px; margin:0 auto; padding:120px 48px;">
+<!-- FEATURE 1 -->
+<section style="max-width:1320px;margin:0 auto;padding:130px 52px;">
   <div id="feature-seat">
     <div class="feature-copy reveal">
       <p class="section-label">핵심 기능 01</p>
@@ -921,15 +874,9 @@
     </div>
     <div class="phone-wrap reveal reveal-delay-2">
       <div class="phone">
-        <div class="phone-status">
-          <span>9:41</span>
-          <span>●●● 100%</span>
-        </div>
+        <div class="phone-status"><span>9:41</span><span style="color:rgba(255,255,255,0.5);">●●● 100%</span></div>
         <div class="phone-inner">
-          <div class="ui-header">
-            <div class="ui-logo-sm">이</div>
-            <span class="ui-header-text">이칸저칸</span>
-          </div>
+          <div class="ui-header"><div class="ui-logo-sm">이</div><span class="ui-header-text">이칸저칸</span></div>
           <div class="ui-body">
             <div class="ui-greeting">
               <div class="g-small">오늘도 고생하셨어요, 홍길동님 👋</div>
@@ -939,37 +886,20 @@
               <div class="ui-seat-label">🪑 착석 확률 가이드</div>
               <div class="ui-seat-main"><span>3-3, 7-1칸</span>에 타시면<br><span>석계역</span>에서 앉을 확률이 높아요!</div>
               <div class="train-diagram">
-                <div class="t-car">1</div>
-                <div class="t-car">2</div>
-                <div class="t-car hot">3-3</div>
-                <div class="t-car">4</div>
-                <div class="t-car">5</div>
-                <div class="t-car warm">6</div>
-                <div class="t-car hot">7-1</div>
-                <div class="t-car">8</div>
+                <div class="t-car">1</div><div class="t-car">2</div>
+                <div class="t-car hot">3-3</div><div class="t-car">4</div>
+                <div class="t-car">5</div><div class="t-car warm">6</div>
+                <div class="t-car hot">7-1</div><div class="t-car">8</div>
               </div>
             </div>
             <div class="ui-route-card">
               <div class="ui-route-label">나의 출근 루트</div>
-              <div class="route-line">
-                <div class="route-dot start"></div>
-                <span class="route-text">1호선 창동역</span>
-                <span class="route-time">08:10</span>
-              </div>
+              <div class="route-line"><div class="route-dot start"></div><span class="route-text">1호선 창동역</span><span class="route-time">08:10</span></div>
               <div class="route-bar"></div>
-              <div class="route-line">
-                <div class="route-dot end"></div>
-                <span class="route-text">2호선 신설동역</span>
-              </div>
+              <div class="route-line"><div class="route-dot end"></div><span class="route-text">2호선 신설동역</span></div>
               <div class="ui-badges">
-                <div class="badge-item">
-                  <span class="badge-icon">🏅</span>
-                  <span class="badge-name">2호선 마스터</span>
-                </div>
-                <div class="badge-item">
-                  <span class="badge-icon">♻️</span>
-                  <span class="badge-name">환승왕</span>
-                </div>
+                <div class="badge-item"><span class="badge-icon">🏅</span><span class="badge-name">2호선 마스터</span></div>
+                <div class="badge-item"><span class="badge-icon">♻️</span><span class="badge-name">환승왕</span></div>
               </div>
             </div>
           </div>
@@ -979,8 +909,8 @@
   </div>
 </section>
 
-<!-- FEATURE 2: COMMUNITY BOARD -->
-<div style="padding:0 48px; max-width:1280px; margin:0 auto 0; box-sizing:border-box;">
+<!-- FEATURE 2 -->
+<div style="padding:0 52px;max-width:1320px;margin:0 auto;box-sizing:border-box;">
   <div id="feature-community" class="reveal">
     <div>
       <p class="section-label">핵심 기능 02</p>
@@ -988,10 +918,7 @@
       <p>지금 2호선 무슨 일인지 아무도 몰랐던 그 순간. 이칸저칸에선 같은 칸 승객이 이미 올려놨습니다. 정보 게시판, 자리나눔, 스터디, 자유 게시판까지 — 노선별로 운영됩니다.</p>
     </div>
     <div class="board-mock reveal reveal-delay-2">
-      <div class="board-top">
-        <span class="board-line-badge">🟢 2호선</span>
-        <span style="font-size:11px;color:#AAA;font-weight:600;">실시간 업데이트 중</span>
-      </div>
+      <div class="board-top"><span class="board-line-badge">🟢 2호선</span><span class="board-live-badge"><span class="board-live-dot"></span>실시간 업데이트 중</span></div>
       <div class="board-tabs">
         <span class="btab active" data-tab="info">정보</span>
         <span class="btab" data-tab="seat">자리나눔</span>
@@ -999,15 +926,13 @@
         <span class="btab" data-tab="free">자유</span>
         <span class="btab" data-tab="suggest">건의</span>
       </div>
-      <div class="board-posts" id="board-posts-area">
-        <!-- posts injected by JS -->
-      </div>
+      <div class="board-posts" id="board-posts-area"></div>
     </div>
   </div>
 </div>
 
-<!-- FEATURE 3: COMPLAINT VOTE -->
-<section style="max-width:1280px; margin:0 auto; padding:120px 48px;">
+<!-- FEATURE 3 -->
+<section style="max-width:1320px;margin:0 auto;padding:130px 52px;">
   <div id="feature-complaint">
     <div class="feature-copy reveal">
       <p class="section-label">핵심 기능 03</p>
@@ -1022,55 +947,32 @@
     <div class="reveal reveal-delay-2">
       <div class="complaint-mock">
         <div class="cm-title">오늘 우리 칸의 컨디션은?</div>
-        <div class="cm-sub">민원 유형을 선택해 투표하세요</div>
+        <div class="cm-sub">노선과 칸을 선택해 투표하세요</div>
         <div class="cm-selector">
-          <div class="cm-sel active">2호선</div>
-          <div class="cm-sel">3-2칸</div>
+          <div class="cm-sel active" id="sel-line">2호선</div>
+          <div class="cm-sel" id="sel-car" onclick="toggleCar()">3-2칸</div>
         </div>
         <div class="cm-type-label">민원 유형</div>
         <div class="cm-types">
-          <span class="cm-type sel">🌡️ 온도</span>
-          <span class="cm-type">🔊 소리</span>
-          <span class="cm-type">💨 냄새</span>
-          <span class="cm-type">🧹 청결</span>
+          <span class="cm-type sel" data-type="temp">🌡️ 온도</span>
+          <span class="cm-type" data-type="noise">🔊 소리</span>
+          <span class="cm-type" data-type="smell">💨 냄새</span>
+          <span class="cm-type" data-type="clean">🧹 청결</span>
         </div>
-        <div class="vote-bar-wrap">
-          <div class="vote-label">
-            <span>🥶 추워요</span>
-            <span class="pct">70%</span>
-          </div>
-          <div class="vote-track">
-            <div class="vote-fill" style="width:70%"></div>
-          </div>
-          <div class="vote-note">142명이 투표했습니다</div>
-        </div>
-        <div class="vote-bar-wrap" style="background:#F7F2ED;">
-          <div class="vote-label">
-            <span>🥵 더워요</span>
-            <span style="font-size:14px;font-weight:900;color:#AAA;">30%</span>
-          </div>
-          <div class="vote-track">
-            <div class="vote-fill" style="width:30%;background:linear-gradient(90deg,#DDD,#CCC);box-shadow:none;"></div>
-          </div>
-        </div>
-        <div class="cm-status">
-          <div class="cm-status-dot"></div>
-          <span class="cm-status-text">철도공사에 실시간 전달 중 · 3분 전 온도 조치 완료</span>
-        </div>
+        <div id="vote-area"></div>
+        <div class="cm-status"><div class="cm-status-dot"></div><span class="cm-status-text" id="status-text">철도공사에 실시간 전달 중 · 3분 전 온도 조치 완료</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURE 4: REPORT + GAMIFICATION -->
-<div style="padding:0 48px; max-width:1280px; margin:0 auto; box-sizing:border-box;">
+<!-- FEATURE 4 -->
+<div style="padding:0 52px;max-width:1320px;margin:0 auto;box-sizing:border-box;">
   <div class="report-section reveal">
     <div>
       <p class="section-label" style="color:var(--orange);">핵심 기능 04</p>
       <h2 class="section-title">지하철<br>이용 <em>리포트</em></h2>
-      <p style="margin-top:20px;font-size:16px;line-height:1.75;color:var(--light-text);font-weight:300;">
-        매달 내 지하철 생활을 돌아보세요. 보낸 시간, 지나온 역, 모은 배지까지. 지루한 출퇴근이 나만의 데이터로 쌓입니다.
-      </p>
+      <p style="margin-top:22px;font-size:15.5px;line-height:1.85;color:var(--light-text);font-weight:300;">매달 내 지하철 생활을 돌아보세요. 보낸 시간, 지나온 역, 모은 배지까지. 지루한 출퇴근이 나만의 데이터로 쌓입니다.</p>
       <div class="feature-tags" style="margin-top:28px;">
         <span class="tag">📈 월간 통계</span>
         <span class="tag">🏅 배지 컬렉션</span>
@@ -1078,87 +980,43 @@
       </div>
     </div>
     <div class="report-mock reveal reveal-delay-2">
-      <!-- 헤더 -->
-      <div class="rep-header">
-        <div class="rep-title">🗓️ 3월 지하철 이용 리포트</div>
-        <div class="rep-period">2025.03.01 — 03.31</div>
-      </div>
-
-      <!-- 핵심 지표: 지하철에서 보낸 시간 -->
+      <div class="rep-header"><div class="rep-title">🗓️ 3월 지하철 이용 리포트</div><div class="rep-period">2025.03.01 — 03.31</div></div>
       <div style="margin-bottom:10px;">
-        <div style="background:linear-gradient(135deg,#FF5C1A,#FF8A50);border-radius:12px;padding:14px 16px 12px;">
-          <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">이번달 지하철에서 보낸 시간</div>
+        <div style="background:linear-gradient(135deg,#FF4D0D,#FF7A40);border-radius:12px;padding:14px 16px 12px;position:relative;overflow:hidden;">
+          <div style="position:absolute;right:12px;bottom:-6px;font-size:40px;opacity:0.18;">🚇</div>
+          <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.65);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">이번달 지하철에서 보낸 시간</div>
           <div style="font-size:30px;font-weight:900;color:white;line-height:1;margin-bottom:4px;">40<span style="font-size:14px;font-weight:500;margin-left:3px;">시간</span></div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.65);">= 영화 20편 🎬 = 책 4권 📚</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.6);">= 영화 20편 🎬 = 책 4권 📚</div>
         </div>
-        <!-- 스터디 넛지 카드 -->
-        <div onclick="document.querySelector('.btab[data-tab=study]').click();document.getElementById('feature-community').scrollIntoView({behavior:'smooth'})"
-          style="margin-top:8px;background:white;border:1.5px solid rgba(255,92,26,0.2);border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.2s;"
-          onmouseover="this.style.background='#FFF5F0';this.style.borderColor='rgba(255,92,26,0.45)'"
-          onmouseout="this.style.background='white';this.style.borderColor='rgba(255,92,26,0.2)'">
-          <div>
-            <div style="font-size:11px;font-weight:800;color:var(--dark);margin-bottom:2px;">💡 이 시간, 스터디로 활용해볼까요?</div>
-            <div style="font-size:10px;color:#AAA;font-weight:400;">같은 노선 스터디원이 기다리고 있어요</div>
-          </div>
+        <div id="study-nudge" style="margin-top:8px;background:white;border:1.5px solid rgba(255,77,13,0.18);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#FFF5F0';this.style.borderColor='rgba(255,77,13,0.4)'" onmouseout="this.style.background='white';this.style.borderColor='rgba(255,77,13,0.18)'" onclick="goToStudy()">
+          <div><div style="font-size:11px;font-weight:800;color:var(--dark);margin-bottom:2px;">💡 이 시간, 스터디로 활용해볼까요?</div><div style="font-size:10px;color:#AAA;">같은 노선 스터디원이 기다리고 있어요</div></div>
           <div style="font-size:18px;color:var(--orange);font-weight:900;flex-shrink:0;margin-left:8px;">→</div>
         </div>
       </div>
-
-      <!-- 노선 이용 도넛 차트 + 범례 -->
-      <div style="background:#F7F2ED;border-radius:12px;padding:12px 14px;margin-bottom:12px;">
+      <div style="background:#F5F0EB;border-radius:10px;padding:12px 14px;margin-bottom:10px;">
         <span class="rc-label">노선별 이용 비율</span>
         <div class="donut-wrap">
-          <svg class="donut-svg" width="72" height="72" viewBox="0 0 72 72">
-            <!-- 2호선 55% → stroke-dasharray: 55 100 on r=18 circle, circumference=113.1 -->
-            <!-- circumference = 2π×18 ≈ 113.1 -->
-            <!-- 2호선 55% = 62.2, 9호선 27% = 30.5, 1호선 18% = 20.4 -->
-            <circle cx="36" cy="36" r="18" fill="none" stroke="#F0EBE5" stroke-width="10"/>
-            <!-- 2호선 green -->
-            <circle cx="36" cy="36" r="18" fill="none" stroke="#FF5C1A" stroke-width="10"
-              stroke-dasharray="62.2 113.1" stroke-dashoffset="28.3" stroke-linecap="butt" transform="rotate(-90 36 36)"/>
-            <!-- 9호선 gold -->
-            <circle cx="36" cy="36" r="18" fill="none" stroke="#FFC043" stroke-width="10"
-              stroke-dasharray="30.5 113.1" stroke-dashoffset="-33.9" stroke-linecap="butt" transform="rotate(-90 36 36)"/>
-            <!-- 1호선 navy -->
-            <circle cx="36" cy="36" r="18" fill="none" stroke="#4A90D9" stroke-width="10"
-              stroke-dasharray="20.4 113.1" stroke-dashoffset="-64.4" stroke-linecap="butt" transform="rotate(-90 36 36)"/>
+          <svg width="72" height="72" viewBox="0 0 72 72">
+            <circle cx="36" cy="36" r="18" fill="none" stroke="#EDE8E2" stroke-width="10"/>
+            <circle cx="36" cy="36" r="18" fill="none" stroke="#FF4D0D" stroke-width="10" stroke-dasharray="62.2 113.1" stroke-dashoffset="28.3" transform="rotate(-90 36 36)"/>
+            <circle cx="36" cy="36" r="18" fill="none" stroke="#FFC043" stroke-width="10" stroke-dasharray="30.5 113.1" stroke-dashoffset="-33.9" transform="rotate(-90 36 36)"/>
+            <circle cx="36" cy="36" r="18" fill="none" stroke="#4A90D9" stroke-width="10" stroke-dasharray="20.4 113.1" stroke-dashoffset="-64.4" transform="rotate(-90 36 36)"/>
             <text x="36" y="39" text-anchor="middle" font-size="9" font-weight="900" fill="#1A1208" font-family="Noto Sans KR">150역</text>
           </svg>
           <div class="donut-legend">
-            <div class="dl-item"><span class="dl-dot" style="background:#FF5C1A;"></span><span class="dl-text">2호선</span><span class="dl-pct" style="color:#FF5C1A;">55%</span></div>
+            <div class="dl-item"><span class="dl-dot" style="background:#FF4D0D;"></span><span class="dl-text">2호선</span><span class="dl-pct" style="color:#FF4D0D;">55%</span></div>
             <div class="dl-item"><span class="dl-dot" style="background:#FFC043;"></span><span class="dl-text">9호선</span><span class="dl-pct" style="color:#FFC043;">27%</span></div>
             <div class="dl-item"><span class="dl-dot" style="background:#4A90D9;"></span><span class="dl-text">1호선</span><span class="dl-pct" style="color:#4A90D9;">18%</span></div>
           </div>
         </div>
       </div>
-
-      <!-- 배지 -->
-      <div class="rep-badges-clean">
+      <div>
         <span class="rc-label">이번달 획득 배지</span>
         <div class="badges-grid">
-          <div class="badge-clean">
-            <span class="badge-new">NEW</span>
-            <div class="badge-emoji">🏅</div>
-            <div class="badge-nm">2호선 마스터</div>
-            <div class="badge-dt">3.8 획득</div>
-          </div>
-          <div class="badge-clean">
-            <span class="badge-new">NEW</span>
-            <div class="badge-emoji">♻️</div>
-            <div class="badge-nm">환승왕</div>
-            <div class="badge-dt">3.15 획득</div>
-          </div>
-          <div class="badge-clean">
-            <span class="badge-new">NEW</span>
-            <div class="badge-emoji">⚡</div>
-            <div class="badge-nm">출근 마스터</div>
-            <div class="badge-dt">3.22 획득</div>
-          </div>
-          <div class="badge-clean badge-locked">
-            <div class="badge-emoji">🌟</div>
-            <div class="badge-nm">지하철 영웅</div>
-            <div class="badge-dt">잠금</div>
-          </div>
+          <div class="badge-clean"><span class="badge-new">NEW</span><div class="badge-emoji">🏅</div><div class="badge-nm">2호선 마스터</div><div class="badge-dt">3.8</div></div>
+          <div class="badge-clean"><span class="badge-new">NEW</span><div class="badge-emoji">♻️</div><div class="badge-nm">환승왕</div><div class="badge-dt">3.15</div></div>
+          <div class="badge-clean"><span class="badge-new">NEW</span><div class="badge-emoji">⚡</div><div class="badge-nm">출근 마스터</div><div class="badge-dt">3.22</div></div>
+          <div class="badge-clean badge-locked"><div class="badge-emoji">🌟</div><div class="badge-nm">지하철 영웅</div><div class="badge-dt">잠금</div></div>
         </div>
       </div>
     </div>
@@ -1166,129 +1024,265 @@
 </div>
 
 <!-- STATS -->
-<div style="padding:80px 48px; max-width:1280px; margin:0 auto; box-sizing:border-box;">
-  <div class="stats-row reveal">
-    <div class="stat-card">
-      <div class="stat-num">80<span class="stat-unit">%</span></div>
-      <div class="stat-desc">지하철 돌발 상황 시<br>실시간 정보를 원하는 승객</div>
+<div class="stats-outer">
+  <div class="stats-inner">
+    <div class="stat-block reveal">
+      <div class="stat-kicker">Real-time Info</div>
+      <div class="stat-big">80<span class="su">%</span></div>
+      <div class="stat-divline"></div>
+      <div class="stat-body">지하철 돌발 상황 시<br>실시간 정보를 원하는 승객</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-num">668<span class="stat-unit">만</span></div>
-      <div class="stat-desc">서울 지하철 하루 평균<br>이용 승객 수 (2025)</div>
+    <div class="stat-block reveal reveal-delay-1">
+      <div class="stat-kicker">Daily Riders</div>
+      <div class="stat-big">668<span class="su">만</span></div>
+      <div class="stat-divline"></div>
+      <div class="stat-body">서울 지하철 하루 평균<br>이용 승객 수</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-num">62<span class="stat-unit">%</span></div>
-      <div class="stat-desc">내가 내릴 역의 빠른 환승칸에<br>탑승하는 승객 비율</div>
+    <div class="stat-block reveal reveal-delay-2">
+      <div class="stat-kicker">Missed Seats</div>
+      <div class="stat-big">62<span class="su">%</span></div>
+      <div class="stat-divline"></div>
+      <div class="stat-body">빠른 환승칸만 타다가<br>자리를 놓치는 승객 비율</div>
     </div>
   </div>
 </div>
 
 <!-- CTA -->
-<div id="cta" class="cta-section reveal">
-  <p class="cta-label">지금 바로 시작하세요</p>
-  <h2 class="cta-title">지하철이<br>달라집니다</h2>
-  <p class="cta-sub">이칸저칸 출시 소식을 가장 먼저 받아보세요. 얼리버드 혜택도 함께 드립니다.</p>
-  <form class="email-form" onsubmit="return false">
-    <input type="email" placeholder="이메일 주소를 입력하세요">
-    <button type="submit">출시 알림 받기</button>
-  </form>
+<div style="padding:0 52px 120px;max-width:1320px;margin:0 auto;box-sizing:border-box;">
+  <div id="cta" class="reveal">
+    <div class="cta-grid">
+
+      <!-- Left -->
+      <div class="cta-left">
+        <div class="cta-content">
+          <div class="cta-eyebrow"><div class="cta-eyebrow-dot"></div>출시 준비 중</div>
+          <h2 class="cta-title">지하철이<br><span class="cta-accent">달라집니다.</span></h2>
+          <p class="cta-sub">매일 반복되는 출퇴근 — 이제 앉아서 가고, 알고 타고, 함께 바꾸세요.</p>
+          <div class="cta-stats">
+            <div>
+              <div class="cta-stat-num">668만</div>
+              <div class="cta-stat-label">하루 서울 지하철 이용자</div>
+            </div>
+            <div>
+              <div class="cta-stat-num">2,400+</div>
+              <div class="cta-stat-label">알림 신청 완료</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="cta-right">
+        <div class="cta-form-title">출시 알림 신청</div>
+        <div class="cta-form-sub">가장 먼저 탑승할 수 있도록<br>이메일을 남겨주세요.</div>
+        <input class="email-field" type="email" id="cta-email" placeholder="your@email.com">
+        <button class="cta-btn" id="cta-btn" onclick="handleCta()">
+          알림 받기
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="cta-fine">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1a2.5 2.5 0 0 1 2.5 2.5V5H3.5V3.5A2.5 2.5 0 0 1 6 1Z" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          스팸 없이, 출시 소식만 한 번 보내드려요.
+        </div>
+        <div class="cta-proof">
+          <div class="proof-avatars">
+            <div class="proof-av proof-av-a"></div>
+            <div class="proof-av proof-av-b"></div>
+            <div class="proof-av proof-av-c"></div>
+            <div class="proof-av proof-av-d"></div>
+          </div>
+          <div class="proof-copy"><span class="proof-count"><span class="proof-blink-dot"></span><strong>2,400명</strong></span>이 이미 대기 중이에요</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">🚇 이칸저칸</div>
-  <div class="footer-copy">© 2025 Team 썹 타는 중 · 더 나은 지하철 이용을 위한 서비스</div>
+  <div class="footer-logo-wrap">
+    <div class="footer-logo-icon">🚇</div>
+    <div>
+      <div class="footer-brand">이칸<span>저칸</span></div>
+      <div class="footer-tagline">더 나은 지하철 이용을 위한 서비스</div>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Team 썹 타는 중</div>
 </footer>
 
 <script>
-  // ── Scroll reveal ──
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } }), { threshold: 0.1 });
+  document.querySelectorAll('.stat-block').forEach(el => obs.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // ── Email CTA ──
-  document.querySelector('.email-form button').addEventListener('click', function() {
-    const input = document.querySelector('.email-form input');
-    if (input.value && input.value.includes('@')) {
-      this.textContent = '✓ 등록 완료!';
-      this.style.background = '#22C55E';
-      input.value = '';
+  // Sleepers pause during stop
+  const sl = document.getElementById('sleepers');
+  setTimeout(() => sl.classList.add('paused'), 1360);
+  setTimeout(() => sl.classList.remove('paused'), 1836);
+
+  // ── Study nudge → scroll + switch tab ──
+  function goToStudy() {
+    const communityEl = document.getElementById('feature-community');
+    communityEl.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      document.querySelectorAll('.btab').forEach(t => t.classList.remove('active'));
+      const studyTab = document.querySelector('.btab[data-tab="study"]');
+      studyTab.classList.add('active');
+      renderPosts('study');
+    }, 600);
+  }
+
+  // CTA
+  function handleCta() {
+    const inp = document.getElementById('cta-email');
+    const btn = document.getElementById('cta-btn');
+    if (inp.value && inp.value.includes('@')) {
+      btn.innerHTML = '✓ 등록 완료!';
+      btn.style.background = '#22C55E';
+      btn.style.boxShadow = '0 4px 24px rgba(34,197,94,0.3)';
+      inp.value = ''; inp.placeholder = '등록되었습니다 🎉'; inp.disabled = true;
     } else {
-      input.placeholder = '올바른 이메일을 입력해주세요';
+      inp.style.borderColor = 'rgba(255,77,13,0.55)';
+      inp.placeholder = '올바른 이메일을 입력해주세요'; inp.value = '';
+      setTimeout(() => { inp.style.borderColor = ''; }, 1600);
     }
-  });
+  }
 
-  // ── Community board tab data ──
-  const boardData = {
-    info: [
-      { tag: '🚨 지연', time: '방금', title: '건대입구~성수 구간 10분 지연 중', preview: '앞 열차 문 고장으로 지연 중이에요. 대체 경로로 돌아가세요.', likes: 142, comments: 38 },
-      { tag: '📢 시위', time: '3분 전', title: '홍대입구역 출구 시위로 혼잡', preview: '3번 출구 앞 집회 중. 2번 출구로 우회하세요!', likes: 89, comments: 21 },
-      { tag: '🔧 고장', time: '11분 전', title: '잠실역 에스컬레이터 운행 중단', preview: '2호선 잠실역 8번 출구 에스컬레이터 점검 중. 계단 이용 바랍니다.', likes: 54, comments: 9 },
-    ],
-    seat: [
-      { tag: '🪑 자리', time: '방금', title: '3-2칸 합정역에서 자리 납니다', preview: '창가 자리 2개요. 홍대 방향 이용자분들~', likes: 27, comments: 5 },
-      { tag: '🪑 자리', time: '5분 전', title: '7-1칸 신도림 직전 3자리 빔', preview: '신도림 내리는 분들 많아요. 타이밍 맞추시면 바로 앉을 수 있어요.', likes: 61, comments: 12 },
-      { tag: '🚶 혼잡', time: '9분 전', title: '지금 5-3칸 엄청 붐벼요 ㅠ', preview: '강남 출근 시간대라 5칸대 전부 꽉 찼습니다. 앞쪽 칸 추천!', likes: 33, comments: 7 },
-    ],
-    study: [
-      { tag: '📚 모집', time: '2분 전', title: '2호선 토익 스터디원 구해요 👋', preview: '매일 아침 강남~홍대 구간 30분 퀴즈 함께 하실 분! 카톡 오픈채팅 운영 중.', likes: 61, comments: 14 },
-      { tag: '📖 독서', time: '15분 전', title: '출퇴근 독서모임 2호선 멤버 모집', preview: '매주 월·수 책 한 권씩 같이 읽어요. 강남역 출발 기준으로 모입니다.', likes: 44, comments: 18 },
-      { tag: '🎧 어학', time: '22분 전', title: '일본어 회화 스터디 — 9호선 한 정류장', preview: '가양~여의도 구간 딱 10분, 일본어 문장 하루 3개씩 같이 외워요!', likes: 29, comments: 6 },
-    ],
-    free: [
-      { tag: '💬 자유', time: '1분 전', title: '오늘 2호선 에어컨 왜 이렇게 세요?? 🥶', preview: '여름도 아닌데 진짜 너무 춥다... 점퍼 입고 탈 걸 그랬나봐요', likes: 108, comments: 47 },
-      { tag: '😂 유머', time: '7분 전', title: '오늘 3-4칸에서 강아지 목격함 🐶', preview: '가방에서 쏙 내밀고 있는 거 너무 귀여웠는데 역에서 내리셨어요ㅠ', likes: 215, comments: 63 },
-      { tag: '💬 자유', time: '19분 전', title: '출근길 선릉역 커피 추천해주세요', preview: '역 주변 아메리카노 맛있는 곳 아시는 분~ 선릉3번출구 근처요!', likes: 38, comments: 22 },
-    ],
-    suggest: [
-      { tag: '💡 건의', time: '4분 전', title: '노약자석 칸 위치 알림 기능 있으면 좋겠어요', preview: '고령 승객분들이 노약자석 찾기 어려워하시는 거 자주 봅니다. 칸 위치 표시 부탁드려요.', likes: 72, comments: 15 },
-      { tag: '💡 건의', time: '32분 전', title: '혼잡도 그래프 기능 추가 요청', preview: '특정 역 혼잡도를 시간대별 그래프로 보여주면 출발 시간 조절하는 데 도움이 될 것 같아요!', likes: 91, comments: 20 },
-      { tag: '🙏 요청', time: '1시간 전', title: '카풀/동승자 매칭 기능도 넣어주세요', preview: '지하철 넘어서 주변 카풀까지 연결되면 완전 꿀이지 않나요ㅎㅎ 고려해주세요!', likes: 55, comments: 31 },
-    ]
+  // ── Complaint: per-line AND per-car vote data ──
+  // Structure: voteData[car][type]
+  // car: 'line' (2호선 전체) | 'car32' (3-2칸)
+  const voteData = {
+    line: {
+      temp:  { options:[{e:'🥶',label:'추워요',pct:70},{e:'🥵',label:'더워요',pct:30}], total:142, status:'3분 전 온도 조치 완료' },
+      noise: { options:[{e:'🔇',label:'너무 조용해요',pct:18},{e:'🔊',label:'너무 시끄러워요',pct:64},{e:'🎵',label:'음악/통화 소음',pct:18}], total:89, status:'소리 민원 접수 완료 · 검토 중' },
+      smell: { options:[{e:'🤢',label:'악취가 심해요',pct:55},{e:'🌸',label:'향수/음식 냄새',pct:32},{e:'😤',label:'환기가 안 돼요',pct:13}], total:61, status:'환기 민원 전달 완료 · 5분 전' },
+      clean: { options:[{e:'🗑️',label:'쓰레기가 있어요',pct:42},{e:'💧',label:'바닥이 더러워요',pct:35},{e:'🧻',label:'좌석이 더러워요',pct:23}], total:38, status:'청결 민원 접수 완료 · 검토 중' }
+    },
+    car32: {
+      temp:  { options:[{e:'🥶',label:'추워요',pct:82},{e:'🥵',label:'더워요',pct:18}], total:37, status:'3-2칸 온도 민원 전달 완료' },
+      noise: { options:[{e:'🔊',label:'너무 시끄러워요',pct:71},{e:'🎵',label:'음악/통화 소음',pct:29}], total:21, status:'3-2칸 소리 민원 접수 중' },
+      smell: { options:[{e:'🌸',label:'향수/음식 냄새',pct:60},{e:'🤢',label:'악취가 심해요',pct:40}], total:15, status:'3-2칸 환기 민원 검토 중' },
+      clean: { options:[{e:'💧',label:'바닥이 더러워요',pct:55},{e:'🗑️',label:'쓰레기가 있어요',pct:45}], total:11, status:'3-2칸 청결 민원 접수 완료' }
+    }
   };
 
-  function renderPosts(tabKey) {
-    const posts = boardData[tabKey];
-    const area = document.getElementById('board-posts-area');
-    // fade out
+  let currentCar = 'line';
+  let currentType = 'temp';
+
+  function renderVotes(type) {
+    currentType = type;
+    const d = voteData[currentCar][type];
+    const area = document.getElementById('vote-area');
+    const maxPct = Math.max(...d.options.map(o => o.pct));
     area.style.opacity = '0';
     area.style.transform = 'translateY(6px)';
     setTimeout(() => {
-      area.innerHTML = posts.map(p => `
-        <div class="post-item">
-          <div class="post-meta">
-            <span class="post-tag">${p.tag}</span>
-            <span class="post-time">${p.time}</span>
+      area.innerHTML = d.options.map(o => `
+        <div class="vote-bar-wrap">
+          <div class="vote-label">
+            <span>${o.e} ${o.label}</span>
+            <span class="${o.pct === maxPct ? 'pct' : 'pct-dim'}">${o.pct}%</span>
           </div>
-          <div class="post-title">${p.title}</div>
-          <div class="post-preview">${p.preview}</div>
-          <div class="post-stats">
-            <span class="pstat"><span>👍</span> ${p.likes}</span>
-            <span class="pstat"><span>💬</span> ${p.comments}</span>
-            <span class="pstat"><span>🔁</span> 공유</span>
+          <div class="vote-track">
+            <div class="${o.pct === maxPct ? 'vote-fill' : 'vote-fill-dim'}" style="width:${o.pct}%"></div>
           </div>
-        </div>
-      `).join('');
-      // fade in
+        </div>`).join('') +
+        `<div class="vote-note" style="margin-top:-4px;margin-bottom:12px;">${d.total}명이 투표했습니다</div>`;
       area.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
       area.style.opacity = '1';
       area.style.transform = 'translateY(0)';
-    }, 150);
+      requestAnimationFrame(() => {
+        area.querySelectorAll('.vote-fill, .vote-fill-dim').forEach(el => {
+          const w = el.style.width; el.style.width = '0';
+          requestAnimationFrame(() => {
+            el.style.transition = 'width 0.7s cubic-bezier(0.16,1,0.3,1)';
+            el.style.width = w;
+          });
+        });
+      });
+    }, 160);
+    document.getElementById('status-text').textContent = '철도공사에 실시간 전달 중 · ' + d.status;
   }
 
-  // Init default tab
-  renderPosts('info');
+  function toggleCar() {
+    const selCar  = document.getElementById('sel-car');
+    const selLine = document.getElementById('sel-line');
+    if (currentCar === 'line') {
+      currentCar = 'car32';
+      selCar.classList.add('active');
+      selLine.classList.remove('active');
+    } else {
+      currentCar = 'line';
+      selLine.classList.add('active');
+      selCar.classList.remove('active');
+    }
+    renderVotes(currentType);
+  }
 
-  // Tab click handler
-  document.querySelectorAll('.btab').forEach(tab => {
-    tab.addEventListener('click', function() {
-      document.querySelectorAll('.btab').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      renderPosts(this.dataset.tab);
+  // Dim bar style injection
+  const styleEl = document.createElement('style');
+  styleEl.textContent = `
+    .pct-dim { font-size:15px; font-weight:900; color:#AAA; }
+    .vote-fill-dim { height:100%; border-radius:100px; background:linear-gradient(90deg,#DDD,#CCC); }
+  `;
+  document.head.appendChild(styleEl);
+
+  renderVotes('temp');
+
+  document.querySelectorAll('.cm-type').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.cm-type').forEach(b => b.classList.remove('sel'));
+      this.classList.add('sel');
+      renderVotes(this.dataset.type);
     });
   });
+
+  // Board
+  const boardData = {
+    info: [
+      { tag:'🚨 지연', time:'방금', title:'건대입구~성수 구간 10분 지연 중', preview:'앞 열차 문 고장으로 지연 중이에요. 대체 경로로 돌아가세요.', likes:142, comments:38 },
+      { tag:'📢 시위', time:'3분 전', title:'홍대입구역 출구 시위로 혼잡', preview:'3번 출구 앞 집회 중. 2번 출구로 우회하세요!', likes:89, comments:21 },
+      { tag:'🔧 고장', time:'11분 전', title:'잠실역 에스컬레이터 운행 중단', preview:'8번 출구 에스컬레이터 점검 중. 계단 이용 바랍니다.', likes:54, comments:9 },
+    ],
+    seat: [
+      { tag:'🪑 자리', time:'방금', title:'3-2칸 합정역에서 자리 납니다', preview:'창가 자리 2개요. 홍대 방향 이용자분들~', likes:27, comments:5 },
+      { tag:'🪑 자리', time:'5분 전', title:'7-1칸 신도림 직전 3자리 빔', preview:'신도림 내리는 분들 많아요. 타이밍 맞추시면 바로 앉을 수 있어요.', likes:61, comments:12 },
+      { tag:'🚶 혼잡', time:'9분 전', title:'지금 5-3칸 엄청 붐벼요 ㅠ', preview:'강남 출근 시간대라 5칸대 전부 꽉 찼습니다. 앞쪽 칸 추천!', likes:33, comments:7 },
+    ],
+    study: [
+      { tag:'📚 모집', time:'2분 전', title:'2호선 토익 스터디원 구해요 👋', preview:'매일 아침 강남~홍대 30분 퀴즈 함께 하실 분! 카톡 오픈채팅 운영 중.', likes:61, comments:14 },
+      { tag:'📖 독서', time:'15분 전', title:'출퇴근 독서모임 2호선 멤버 모집', preview:'매주 월·수 책 한 권씩 같이 읽어요. 강남역 출발 기준.', likes:44, comments:18 },
+      { tag:'🎧 어학', time:'22분 전', title:'일본어 회화 스터디 — 9호선 한 정류장', preview:'가양~여의도 딱 10분, 일본어 문장 하루 3개씩 같이 외워요!', likes:29, comments:6 },
+    ],
+    free: [
+      { tag:'💬 자유', time:'1분 전', title:'오늘 2호선 에어컨 왜 이렇게 세요?? 🥶', preview:'여름도 아닌데 진짜 너무 춥다... 점퍼 입고 탈 걸 그랬나봐요', likes:108, comments:47 },
+      { tag:'😂 유머', time:'7분 전', title:'오늘 3-4칸에서 강아지 목격함 🐶', preview:'가방에서 쏙 내밀고 있는 거 너무 귀여웠는데 역에서 내리셨어요ㅠ', likes:215, comments:63 },
+      { tag:'💬 자유', time:'19분 전', title:'출근길 선릉역 커피 추천해주세요', preview:'역 주변 아메리카노 맛있는 곳 아시는 분~ 선릉3번출구 근처요!', likes:38, comments:22 },
+    ],
+    suggest: [
+      { tag:'💡 건의', time:'4분 전', title:'노약자석 칸 위치 알림 기능 있으면 좋겠어요', preview:'고령 승객분들이 노약자석 찾기 어려워하시는 거 자주 봅니다.', likes:72, comments:15 },
+      { tag:'💡 건의', time:'32분 전', title:'혼잡도 그래프 기능 추가 요청', preview:'시간대별 혼잡도 그래프가 있으면 출발 시간 조절하기 딱 좋을 것 같아요!', likes:91, comments:20 },
+      { tag:'🙏 요청', time:'1시간 전', title:'카풀/동승자 매칭 기능도 넣어주세요', preview:'지하철 넘어서 카풀까지 연결되면 완전 꿀이지 않나요ㅎㅎ', likes:55, comments:31 },
+    ]
+  };
+  function renderPosts(key) {
+    const area = document.getElementById('board-posts-area');
+    area.style.opacity='0'; area.style.transform='translateY(6px)';
+    setTimeout(() => {
+      area.innerHTML = boardData[key].map(p=>`<div class="post-item"><div class="post-meta"><span class="post-tag">${p.tag}</span><span class="post-time">${p.time}</span></div><div class="post-title">${p.title}</div><div class="post-preview">${p.preview}</div><div class="post-stats"><span class="pstat"><span>👍</span> ${p.likes}</span><span class="pstat"><span>💬</span> ${p.comments}</span><span class="pstat"><span>🔁</span> 공유</span></div></div>`).join('');
+      area.style.transition='opacity 0.25s ease,transform 0.25s ease';
+      area.style.opacity='1'; area.style.transform='translateY(0)';
+    }, 150);
+  }
+  renderPosts('info');
+  document.querySelectorAll('.btab').forEach(t => t.addEventListener('click', function() {
+    document.querySelectorAll('.btab').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active'); renderPosts(this.dataset.tab);
+  }));
 </script>
 </body>
 </html>
