@@ -39,7 +39,7 @@
   .nav-cta { background: var(--orange); color: white; padding: 10px 22px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; letter-spacing: -0.3px; transition: all 0.2s; box-shadow: 0 0 22px rgba(255,77,13,0.28); }
   .nav-cta:hover { background: var(--orange-mid); transform: translateY(-1px); }
 
-  /* ─── HERO — DAWN INDIGO (새벽 하늘) ─── */
+  /* ─── HERO — DAWN INDIGO ─── */
   #hero {
     height: 100vh;
     background:
@@ -127,7 +127,7 @@
   @keyframes arrowBounce { 0%,100% { transform:rotate(45deg) translateY(0); opacity:0.35; } 50% { transform:rotate(45deg) translateY(5px); opacity:1; } }
 
   /* ════════════════════
-     MARQUEE — redesigned
+     MARQUEE
   ════════════════════ */
   .strip {
     background: var(--orange);
@@ -186,18 +186,13 @@
   /* PHONE */
   .phone-wrap { display: flex; justify-content: center; align-items: center; position: relative; }
   .phone-wrap::before { content: ''; position: absolute; inset: -60px; background: radial-gradient(circle, rgba(255,77,13,0.06) 0%, transparent 68%); border-radius: 50%; }
-  .phone { width: 265px; background: #111; border-radius: 44px; padding: 10px; box-shadow: 0 60px 120px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.07), inset 0 0 0 1px rgba(255,255,255,0.03); position: relative; z-index: 1; }
-  .phone-inner { background: #F5F0EB; border-radius: 36px; overflow: hidden; min-height: 490px; }
-  /* PHONE structure fix */
   .phone { width: 265px; background: #111; border-radius: 44px; padding: 10px; box-shadow: 0 60px 120px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.07), inset 0 0 0 1px rgba(255,255,255,0.03); position: relative; z-index: 1; overflow: hidden; }
   .phone-inner { background: #F5F0EB; border-radius: 28px; overflow: hidden; min-height: 490px; }
-  /* status bar: dark strip with centered pill cutout */
   .phone-status {
     background: #111; height: 44px;
     display: flex; align-items: flex-end; justify-content: space-between;
     padding: 0 18px 8px; position: relative;
   }
-  /* Dynamic Island pill centered at top of status bar */
   .phone-status::before {
     content: '';
     position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
@@ -220,7 +215,6 @@
   .ui-seat-main span { color: var(--orange); }
   .train-diagram { display: flex; gap: 2px; align-items: center; }
   .t-car { flex: 1; height: 26px; border-radius: 3px; background: #EDE8E2; display: flex; align-items: center; justify-content: center; font-size: 7.5px; font-weight: 700; color: #AAA; }
-  /* HOT seat: pulsing orange glow */
   .t-car.hot {
     background: var(--orange); color: white;
     animation: seatPulse 1.8s ease-in-out infinite;
@@ -229,7 +223,6 @@
     0%,100% { box-shadow: 0 2px 8px rgba(255,77,13,0.35); }
     50%      { box-shadow: 0 2px 18px rgba(255,77,13,0.7), 0 0 0 3px rgba(255,77,13,0.15); }
   }
-  /* WARM seat: soft pulse */
   .t-car.warm {
     background: #FFD4BC; color: var(--orange);
     animation: warmPulse 2.2s ease-in-out infinite 0.4s;
@@ -242,7 +235,6 @@
   .ui-route-label { font-size: 9.5px; font-weight: 600; color: #BBB; margin-bottom: 9px; }
   .route-line { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; }
   .route-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; position: relative; }
-  /* Start dot: orange pulse ring */
   .route-dot.start {
     background: var(--orange);
     animation: routePulse 1.6s ease-in-out infinite;
@@ -251,7 +243,6 @@
     0%,100% { box-shadow: 0 0 0 2px rgba(255,77,13,0.2); }
     50%      { box-shadow: 0 0 0 5px rgba(255,77,13,0.1); }
   }
-  /* End dot: subtle dark pulse */
   .route-dot.end {
     background: var(--dark);
     animation: routePulseEnd 2s ease-in-out infinite 0.5s;
@@ -303,7 +294,6 @@
     0%,100% { opacity: 1; box-shadow: 0 0 0 2px rgba(34,197,94,0.2); }
     50% { opacity: 0.4; box-shadow: 0 0 0 5px rgba(34,197,94,0.08); }
   }
-  /* car context badge */
   .cm-car-ctx {
     display: flex; align-items: center; gap: 6px;
     background: rgba(255,77,13,0.07); border: 1px solid rgba(255,77,13,0.15);
@@ -316,11 +306,11 @@
   .cm-title { font-size: 14px; font-weight: 800; color: var(--dark); margin-bottom: 3px; }
   .cm-sub { font-size: 10px; color: #AAA; margin-bottom: 18px; }
   .cm-selector { display: flex; gap: 8px; margin-bottom: 16px; }
-  .cm-sel { flex: 1; padding: 10px; border-radius: 8px; background: #F5F0EB; font-size: 11px; font-weight: 700; color: var(--dark); text-align: center; }
+  .cm-sel { flex: 1; padding: 10px; border-radius: 8px; background: #F5F0EB; font-size: 11px; font-weight: 700; color: var(--dark); text-align: center; cursor: pointer; }
   .cm-sel.active { background: var(--orange); color: white; box-shadow: 0 4px 16px rgba(255,77,13,0.28); }
   .cm-type-label { font-size: 10px; font-weight: 700; color: #AAA; margin-bottom: 8px; }
   .cm-types { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-  .cm-type { padding: 7px 13px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1.5px solid #E5DDD5; color: #999; }
+  .cm-type { padding: 7px 13px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1.5px solid #E5DDD5; color: #999; cursor: pointer; }
   .cm-type.sel { background: var(--orange); border-color: var(--orange); color: white; }
   .vote-bar-wrap { background: #F7F3EE; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
   .vote-label { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; color: var(--dark); margin-bottom: 7px; }
@@ -359,7 +349,6 @@
   .badge-new { position: absolute; top: -5px; right: -5px; background: var(--orange); color: white; font-size: 7px; font-weight: 900; padding: 2px 5px; border-radius: 4px; }
 
   /* ─── STATS ─── */
-  /* ─── STATS ─── */
   .stats-outer { background: var(--bg); padding: 80px 0; }
   .stats-inner {
     max-width: 1320px; margin: 0 auto; padding: 0 52px;
@@ -373,7 +362,6 @@
     transition: transform 0.22s, box-shadow 0.22s;
   }
   .stat-block:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.08); }
-  /* orange sweep line on top */
   .stat-block::before {
     content: ''; position: absolute; top: 0; left: 0;
     height: 3px; width: 0; background: var(--orange);
@@ -394,13 +382,9 @@
   .stat-big .su { font-size: 46px; color: var(--orange); }
   .stat-divline { width: 28px; height: 2px; background: rgba(0,0,0,0.08); margin-bottom: 14px; }
   .stat-body { font-size: 13px; color: var(--light-text); font-weight: 300; line-height: 1.75; }
-  .stats-section { display:none; }
-  .stats-label-row { display:none; }
-  .stats-row { display:none; }
-  .stat-card { display:none; }
 
   /* ════════════════════════
-     CTA — clean light redesign
+     CTA
   ════════════════════════ */
   #cta {
     position: relative; overflow: hidden;
@@ -414,7 +398,6 @@
   .cta-grid {
     display: grid; grid-template-columns: 1fr 420px;
   }
-  /* Left panel */
   .cta-left {
     padding: 80px 72px;
     position: relative; overflow: hidden;
@@ -458,7 +441,6 @@
   }
   .cta-stat-label { font-size: 11px; color: var(--light-text); margin-top: 3px; font-weight: 400; }
 
-  /* Right panel */
   .cta-right {
     padding: 64px 52px;
     background: white;
@@ -471,21 +453,6 @@
   .cta-form-sub {
     font-size: 13px; color: var(--light-text); margin-bottom: 28px; line-height: 1.7;
   }
-  .email-field {
-    width: 100%;
-    background: var(--bg);
-    border: 1.5px solid rgba(0,0,0,0.1);
-    border-radius: 10px; padding: 15px 18px;
-    font-family: inherit; font-size: 14px; color: var(--dark);
-    outline: none; margin-bottom: 10px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .email-field::placeholder { color: #C0B8B0; }
-  .email-field:focus {
-    border-color: var(--orange);
-    background: white;
-    box-shadow: 0 0 0 3px rgba(255,77,13,0.08);
-  }
   .cta-btn {
     width: 100%; background: var(--orange); color: white;
     border: none; border-radius: 10px; padding: 16px;
@@ -494,6 +461,7 @@
     box-shadow: 0 4px 20px rgba(255,77,13,0.3);
     letter-spacing: -0.3px;
     display: flex; align-items: center; justify-content: center; gap: 8px;
+    text-decoration: none;
   }
   .cta-btn:hover { background: var(--orange-mid); box-shadow: 0 8px 32px rgba(255,77,13,0.42); transform: translateY(-1px); }
   .cta-btn svg { transition: transform 0.2s; }
@@ -508,14 +476,6 @@
     border-top: 1px solid rgba(0,0,0,0.07);
   }
   .proof-avatars { display: flex; }
-  .proof-av {
-    width: 28px; height: 28px; border-radius: 50%;
-    border: 2px solid white; display: flex; align-items: center;
-    justify-content: center; font-size: 13px;
-    background: var(--orange-pale); margin-left: -8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  }
-  .proof-av:first-child { margin-left: 0; }
   .proof-copy { font-size: 12px; color: var(--light-text); line-height: 1.5; }
   .proof-count {
     display: inline-flex; align-items: center; gap: 5px;
@@ -563,7 +523,6 @@
 
     section { padding: 64px 20px; }
 
-    /* feature grids → 1열 */
     #feature-seat,
     #feature-community,
     #feature-complaint,
@@ -572,11 +531,9 @@
     #feature-community { padding: 44px 24px; border-radius: 20px; }
     .report-section    { padding: 44px 24px; border-radius: 20px; }
 
-    /* phone mockup — 모바일에서 너무 크지 않게 */
     .phone { width: 240px; }
     .phone-inner { min-height: 430px; }
 
-    /* inline wrappers that use hardcoded padding */
     div[style*="padding:0 52px"],
     div[style*="padding: 0 52px"] {
       padding-left: 20px !important;
@@ -595,7 +552,6 @@
       padding: 0 20px 80px !important;
     }
 
-    /* stats */
     .stats-outer { padding: 48px 0; }
     .stats-inner {
       grid-template-columns: 1fr;
@@ -611,7 +567,6 @@
     .stat-big .su { font-size: 34px; }
     .stat-body { font-size: 13px; }
 
-    /* CTA */
     #cta { margin: 0 20px; border-radius: 20px; }
     .cta-grid { grid-template-columns: 1fr; }
     .cta-left { padding: 44px 28px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
@@ -619,24 +574,19 @@
     .cta-title { font-size: 36px; letter-spacing: -1.5px; }
     .cta-stats { gap: 24px; margin-top: 32px; padding-top: 24px; }
     .cta-stat-num { font-size: 26px; }
-    .cta-card { width: 100%; padding: 28px; }
 
-    /* board mock */
     .board-mock { border-radius: 16px; }
 
-    /* marquee label hidden */
     .strip-label { display: none; }
     .strip-chevron { display: none; }
     .strip-ko { font-size: 12px; }
     .strip-en { display: none; }
     .strip-item { padding: 0 20px; gap: 10px; }
 
-    /* footer */
     footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 20px; }
     .footer-logo-wrap { flex-direction: column; align-items: center; gap: 10px; }
   }
 
-  /* 작은 폰 (360px 이하) 추가 대응 */
   @media (max-width: 400px) {
     .stat-big { font-size: 52px; }
     .phone { width: 210px; }
@@ -659,7 +609,7 @@
     <li><a href="#feature-complaint">민원 투표</a></li>
     <li><a href="#cta">소개</a></li>
   </ul>
-  <a href="#cta" class="nav-cta">출시 알림 받기</a>
+  <a href="https://url.kr/j5vmti" target="_blank" rel="noopener" class="nav-cta">출시 알림 받기</a>
 </nav>
 
 <!-- HERO -->
@@ -675,156 +625,131 @@
       <div class="track-rail-bottom"></div>
     </div>
 
-    <!--
-      Seoul Metro 2호선 style — 2 car consist
-      Realistic flat-nose cab, stainless steel body,
-      orange livery stripe, deep blue-tinted windows
-      Proper bogies with detailed wheels
-    -->
     <svg class="train-svg" width="500" height="112" viewBox="0 0 590 132" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#F8F5F2"/>
-          <stop offset="35%"  stop-color="#EEEAE6"/>
+          <stop offset="0%" stop-color="#F8F5F2"/>
+          <stop offset="35%" stop-color="#EEEAE6"/>
           <stop offset="100%" stop-color="#DDD9D3"/>
         </linearGradient>
         <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="rgba(255,255,255,0.42)"/>
+          <stop offset="0%" stop-color="rgba(255,255,255,0.42)"/>
           <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
         </linearGradient>
         <linearGradient id="ors" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#FF4D0D"/>
+          <stop offset="0%" stop-color="#FF4D0D"/>
           <stop offset="100%" stop-color="#FF6E35"/>
         </linearGradient>
         <linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#3A638E"/>
+          <stop offset="0%" stop-color="#3A638E"/>
           <stop offset="100%" stop-color="#1C3C5E"/>
         </linearGradient>
         <linearGradient id="wglare" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%"   stop-color="rgba(255,255,255,0.2)"/>
-          <stop offset="55%"  stop-color="rgba(255,255,255,0.04)"/>
+          <stop offset="0%" stop-color="rgba(255,255,255,0.2)"/>
+          <stop offset="55%" stop-color="rgba(255,255,255,0.04)"/>
           <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
         </linearGradient>
         <linearGradient id="cab" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#BDB9B3"/>
+          <stop offset="0%" stop-color="#BDB9B3"/>
           <stop offset="100%" stop-color="#D3CFCA"/>
         </linearGradient>
         <linearGradient id="und" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#282420"/>
+          <stop offset="0%" stop-color="#282420"/>
           <stop offset="100%" stop-color="#161310"/>
         </linearGradient>
         <radialGradient id="whl" cx="50%" cy="38%" r="52%">
-          <stop offset="0%"   stop-color="#383028"/>
-          <stop offset="55%"  stop-color="#22201A"/>
+          <stop offset="0%" stop-color="#383028"/>
+          <stop offset="55%" stop-color="#22201A"/>
           <stop offset="100%" stop-color="#151210"/>
         </radialGradient>
         <radialGradient id="hl" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stop-color="#FFF5D0" stop-opacity="0.9"/>
+          <stop offset="0%" stop-color="#FFF5D0" stop-opacity="0.9"/>
           <stop offset="100%" stop-color="#FFF5D0" stop-opacity="0"/>
         </radialGradient>
       </defs>
 
-      <!-- ═══ UNDERFRAME ═══ -->
       <rect x="20" y="94" width="552" height="13" rx="3" fill="url(#und)"/>
-      <!-- Skirt panels -->
-      <rect x="20" y="91"  width="224" height="5" rx="2" fill="#1E1B16"/>
+      <rect x="20" y="91" width="224" height="5" rx="2" fill="#1E1B16"/>
       <rect x="256" y="91" width="316" height="5" rx="2" fill="#1E1B16"/>
 
-      <!-- ═══ BOGIES ═══ (4x, at x=70,190,395,512) -->
-      <!-- Macro: bogie at cx -->
-      <!-- Bogie 1 -->
       <g transform="translate(70,107)">
         <rect x="-30" y="-7" width="60" height="11" rx="3" fill="#1E1A16"/>
-        <rect x="-25" y="1"  width="50" height="7"  rx="2" fill="#2A261E"/>
+        <rect x="-25" y="1" width="50" height="7" rx="2" fill="#2A261E"/>
         <rect x="-17" y="9.5" width="34" height="3" rx="1.5" fill="#252118"/>
         <circle cx="-17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
-        <circle cx="-17" cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="-17" cy="16" r="8" fill="#1C1914"/>
         <circle cx="-17" cy="16" r="4.5" fill="#282420"/>
-        <circle cx="-17" cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
-        <circle cx="17"  cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
-        <circle cx="17"  cy="16" r="8"  fill="#1C1914"/>
-        <circle cx="17"  cy="16" r="4.5" fill="#282420"/>
-        <circle cx="17"  cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+        <circle cx="-17" cy="16" r="2" fill="rgba(255,77,13,0.5)"/>
+        <circle cx="17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="17" cy="16" r="8" fill="#1C1914"/>
+        <circle cx="17" cy="16" r="4.5" fill="#282420"/>
+        <circle cx="17" cy="16" r="2" fill="rgba(255,77,13,0.5)"/>
       </g>
-      <!-- Bogie 2 -->
       <g transform="translate(194,107)">
         <rect x="-30" y="-7" width="60" height="11" rx="3" fill="#1E1A16"/>
-        <rect x="-25" y="1"  width="50" height="7"  rx="2" fill="#2A261E"/>
+        <rect x="-25" y="1" width="50" height="7" rx="2" fill="#2A261E"/>
         <rect x="-17" y="9.5" width="34" height="3" rx="1.5" fill="#252118"/>
         <circle cx="-17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
-        <circle cx="-17" cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="-17" cy="16" r="8" fill="#1C1914"/>
         <circle cx="-17" cy="16" r="4.5" fill="#282420"/>
-        <circle cx="-17" cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
-        <circle cx="17"  cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
-        <circle cx="17"  cy="16" r="8"  fill="#1C1914"/>
-        <circle cx="17"  cy="16" r="4.5" fill="#282420"/>
-        <circle cx="17"  cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+        <circle cx="-17" cy="16" r="2" fill="rgba(255,77,13,0.5)"/>
+        <circle cx="17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="17" cy="16" r="8" fill="#1C1914"/>
+        <circle cx="17" cy="16" r="4.5" fill="#282420"/>
+        <circle cx="17" cy="16" r="2" fill="rgba(255,77,13,0.5)"/>
       </g>
-      <!-- Bogie 3 -->
       <g transform="translate(396,107)">
         <rect x="-30" y="-7" width="60" height="11" rx="3" fill="#1E1A16"/>
-        <rect x="-25" y="1"  width="50" height="7"  rx="2" fill="#2A261E"/>
+        <rect x="-25" y="1" width="50" height="7" rx="2" fill="#2A261E"/>
         <rect x="-17" y="9.5" width="34" height="3" rx="1.5" fill="#252118"/>
         <circle cx="-17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
-        <circle cx="-17" cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="-17" cy="16" r="8" fill="#1C1914"/>
         <circle cx="-17" cy="16" r="4.5" fill="#282420"/>
-        <circle cx="-17" cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
-        <circle cx="17"  cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
-        <circle cx="17"  cy="16" r="8"  fill="#1C1914"/>
-        <circle cx="17"  cy="16" r="4.5" fill="#282420"/>
-        <circle cx="17"  cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+        <circle cx="-17" cy="16" r="2" fill="rgba(255,77,13,0.5)"/>
+        <circle cx="17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="17" cy="16" r="8" fill="#1C1914"/>
+        <circle cx="17" cy="16" r="4.5" fill="#282420"/>
+        <circle cx="17" cy="16" r="2" fill="rgba(255,77,13,0.5)"/>
       </g>
-      <!-- Bogie 4 -->
       <g transform="translate(514,107)">
         <rect x="-30" y="-7" width="60" height="11" rx="3" fill="#1E1A16"/>
-        <rect x="-25" y="1"  width="50" height="7"  rx="2" fill="#2A261E"/>
+        <rect x="-25" y="1" width="50" height="7" rx="2" fill="#2A261E"/>
         <rect x="-17" y="9.5" width="34" height="3" rx="1.5" fill="#252118"/>
         <circle cx="-17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
-        <circle cx="-17" cy="16" r="8"  fill="#1C1914"/>
+        <circle cx="-17" cy="16" r="8" fill="#1C1914"/>
         <circle cx="-17" cy="16" r="4.5" fill="#282420"/>
-        <circle cx="-17" cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
-        <circle cx="17"  cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
-        <circle cx="17"  cy="16" r="8"  fill="#1C1914"/>
-        <circle cx="17"  cy="16" r="4.5" fill="#282420"/>
-        <circle cx="17"  cy="16" r="2"  fill="rgba(255,77,13,0.5)"/>
+        <circle cx="-17" cy="16" r="2" fill="rgba(255,77,13,0.5)"/>
+        <circle cx="17" cy="16" r="13" fill="url(#whl)" stroke="#30291F" stroke-width="1.5"/>
+        <circle cx="17" cy="16" r="8" fill="#1C1914"/>
+        <circle cx="17" cy="16" r="4.5" fill="#282420"/>
+        <circle cx="17" cy="16" r="2" fill="rgba(255,77,13,0.5)"/>
       </g>
 
-      <!-- ═══ CAR BODIES ═══ -->
-      <!-- Car 1: x=24..240 -->
-      <rect x="24"  y="14" width="216" height="80" rx="7" fill="url(#body)"/>
-      <rect x="24"  y="14" width="216" height="20" rx="7" fill="url(#sheen)" opacity="0.65"/>
-      <rect x="24"  y="85" width="216" height="9"  rx="4" fill="rgba(0,0,0,0.06)"/>
-      <!-- Car 2: x=256..566 -->
+      <rect x="24" y="14" width="216" height="80" rx="7" fill="url(#body)"/>
+      <rect x="24" y="14" width="216" height="20" rx="7" fill="url(#sheen)" opacity="0.65"/>
+      <rect x="24" y="85" width="216" height="9" rx="4" fill="rgba(0,0,0,0.06)"/>
       <rect x="256" y="14" width="310" height="80" rx="7" fill="url(#body)"/>
       <rect x="256" y="14" width="310" height="20" rx="7" fill="url(#sheen)" opacity="0.65"/>
-      <rect x="256" y="85" width="310" height="9"  rx="4" fill="rgba(0,0,0,0.06)"/>
+      <rect x="256" y="85" width="310" height="9" rx="4" fill="rgba(0,0,0,0.06)"/>
 
-      <!-- ═══ ORANGE STRIPE ═══ -->
-      <!-- Car 1 stripe -->
-      <rect x="24"  y="14" width="216" height="11" rx="5" fill="url(#ors)"/>
-      <rect x="28"  y="21" width="212" height="4"  fill="url(#ors)"/>
-      <rect x="24"  y="24" width="216" height="1.5" fill="rgba(255,255,255,0.55)"/>
-      <!-- Car 2 stripe -->
+      <rect x="24" y="14" width="216" height="11" rx="5" fill="url(#ors)"/>
+      <rect x="28" y="21" width="212" height="4" fill="url(#ors)"/>
+      <rect x="24" y="24" width="216" height="1.5" fill="rgba(255,255,255,0.55)"/>
       <rect x="256" y="14" width="310" height="11" rx="5" fill="url(#ors)"/>
-      <rect x="260" y="21" width="306" height="4"  fill="url(#ors)"/>
+      <rect x="260" y="21" width="306" height="4" fill="url(#ors)"/>
       <rect x="256" y="24" width="310" height="1.5" fill="rgba(255,255,255,0.55)"/>
 
-      <!-- ═══ WINDOWS — Car 1 (3 panes) ═══ -->
-      <!-- W1 x=40, W2 x=104, W3 x=168, each 44×34 -->
-      <rect x="40"  y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
-      <rect x="40"  y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
-      <rect x="40"  y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+      <rect x="40" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
+      <rect x="40" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
+      <rect x="40" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
       <rect x="104" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
       <rect x="104" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
       <rect x="104" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
       <rect x="168" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
       <rect x="168" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
       <rect x="168" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
-      <!-- Door seam car 1 -->
       <line x1="155" y1="25" x2="155" y2="91" stroke="rgba(0,0,0,0.09)" stroke-width="1.5"/>
 
-      <!-- ═══ WINDOWS — Car 2 (4 panes) ═══ -->
-      <!-- W1 x=272, W2 x=336, W3 x=400, W4 x=464 -->
       <rect x="272" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
       <rect x="272" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
       <rect x="272" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
@@ -837,62 +762,45 @@
       <rect x="464" y="34" width="44" height="34" rx="3.5" fill="url(#win)" opacity="0.92"/>
       <rect x="464" y="34" width="44" height="34" rx="3.5" fill="url(#wglare)"/>
       <rect x="464" y="34" width="44" height="34" rx="3.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
-      <!-- Door seam car 2 -->
       <line x1="378" y1="25" x2="378" y2="91" stroke="rgba(0,0,0,0.09)" stroke-width="1.5"/>
 
-      <!-- ═══ INTER-CAR BELLOWS ═══ -->
       <rect x="240" y="20" width="16" height="74" rx="2" fill="rgba(0,0,0,0.32)"/>
       <line x1="243" y1="24" x2="243" y2="90" stroke="rgba(255,255,255,0.055)" stroke-width="0.8" stroke-dasharray="3 3"/>
       <line x1="248" y1="24" x2="248" y2="90" stroke="rgba(255,255,255,0.055)" stroke-width="0.8" stroke-dasharray="3 3"/>
       <line x1="253" y1="24" x2="253" y2="90" stroke="rgba(255,255,255,0.055)" stroke-width="0.8" stroke-dasharray="3 3"/>
 
-      <!-- ═══ CAB NOSE (left / front) ═══ -->
-      <!-- Cab face panel -->
       <path d="M24 14 Q9 14 5 32 L5 92 Q5 95 9 95 L24 95 Z" fill="url(#cab)"/>
-      <!-- Inner face shading -->
       <path d="M24 22 Q14 22 11 38 L11 92 L24 92 Z" fill="rgba(0,0,0,0.07)"/>
-      <!-- Orange cab stripe -->
       <path d="M24 14 Q9 14 5 30 L5 34 Q9 18 24 18 Z" fill="url(#ors)"/>
       <path d="M24 17 Q11 17 5 30 L5 27 Q10 20 24 20 Z" fill="rgba(255,255,255,0.22)"/>
-      <!-- Windshield — large raked pane -->
       <path d="M24 32 Q15 32 12 48 L12 76 L24 76 Z" fill="url(#win)" opacity="0.86"/>
       <path d="M24 34 Q17 34 15 48 L15 56 L24 56 Z" fill="rgba(255,255,255,0.09)"/>
       <path d="M24 32 Q15 32 12 48 L12 76 L24 76 Z" fill="none" stroke="rgba(0,0,0,0.14)" stroke-width="1"/>
-      <!-- Wiper line -->
       <line x1="13" y1="74" x2="23" y2="60" stroke="rgba(0,0,0,0.18)" stroke-width="0.8" stroke-linecap="round"/>
-      <!-- LED destination board -->
-      <rect x="6"  y="16" width="18" height="13" rx="2.5" fill="#111"/>
-      <rect x="7"  y="17" width="16" height="11" rx="2" fill="#160800"/>
-      <rect x="8"  y="18.5" width="11" height="2.5" rx="1.2" fill="#FF8800" opacity="0.88"/>
-      <rect x="8"  y="22"   width="8"  height="2"   rx="1"   fill="#FF8800" opacity="0.58"/>
-      <!-- Headlight housing -->
-      <rect x="5"  y="78" width="18" height="13" rx="3" fill="#D0CCC5"/>
-      <!-- Main lamp -->
+      <rect x="6" y="16" width="18" height="13" rx="2.5" fill="#111"/>
+      <rect x="7" y="17" width="16" height="11" rx="2" fill="#160800"/>
+      <rect x="8" y="18.5" width="11" height="2.5" rx="1.2" fill="#FF8800" opacity="0.88"/>
+      <rect x="8" y="22" width="8" height="2" rx="1" fill="#FF8800" opacity="0.58"/>
+      <rect x="5" y="78" width="18" height="13" rx="3" fill="#D0CCC5"/>
       <ellipse cx="14" cy="84.5" rx="6.5" ry="5.5" fill="#FFF8DC" opacity="0.96"/>
-      <ellipse cx="14" cy="84.5" rx="4"   ry="3.5" fill="white"/>
-      <!-- Glow halo -->
+      <ellipse cx="14" cy="84.5" rx="4" ry="3.5" fill="white"/>
       <ellipse cx="14" cy="84.5" rx="11" ry="9" fill="url(#hl)" opacity="0.18"/>
-      <!-- Fog/marker -->
-      <rect x="6"  y="92" width="8" height="4" rx="2" fill="#FF3300" opacity="0.78"/>
-      <!-- Horn louvres -->
-      <rect x="6"  y="63" width="7" height="13" rx="1.5" fill="#B5B1AA"/>
-      <rect x="7"  y="64.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
-      <rect x="7"  y="67"   width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
-      <rect x="7"  y="69.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
-      <rect x="7"  y="72"   width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
-      <rect x="7"  y="74.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
-      <!-- Side mirror -->
+      <rect x="6" y="92" width="8" height="4" rx="2" fill="#FF3300" opacity="0.78"/>
+      <rect x="6" y="63" width="7" height="13" rx="1.5" fill="#B5B1AA"/>
+      <rect x="7" y="64.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <rect x="7" y="67" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <rect x="7" y="69.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <rect x="7" y="72" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+      <rect x="7" y="74.5" width="5" height="1" rx="0.5" fill="rgba(0,0,0,0.2)"/>
       <rect x="2" y="33" width="6" height="9" rx="2" fill="#C4C0BA"/>
 
-      <!-- ═══ TAIL ═══ -->
       <rect x="556" y="78" width="10" height="13" rx="2" fill="#C4C0BA"/>
-      <rect x="557" y="79" width="8"  height="11" rx="1.5" fill="#BB1100" opacity="0.85"/>
-      <rect x="558" y="80" width="6"  height="9"  rx="1"   fill="#FF2200" opacity="0.65"/>
+      <rect x="557" y="79" width="8" height="11" rx="1.5" fill="#BB1100" opacity="0.85"/>
+      <rect x="558" y="80" width="6" height="9" rx="1" fill="#FF2200" opacity="0.65"/>
       <ellipse cx="561" cy="84.5" rx="5" ry="4" fill="#FF2200" opacity="0.08"/>
       <rect x="557" y="91" width="5" height="3" rx="1" fill="#880000" opacity="0.7"/>
     </svg>
 
-    <!-- Title reveal -->
     <div class="hero-title-wrap">
       <span class="service-eyebrow">실시간 지하철 커뮤니티</span>
       <span class="service-name">이칸<span class="accent">저칸</span></span>
@@ -903,7 +811,7 @@
     <p class="hero-sub">매일 타는 지하철, 이제는 다르게.<br>앉을 칸, 실시간 정보, 그리고 변화 — 같이 만들어요.</p>
     <div class="hero-btns">
       <a href="#feature-seat" class="btn-primary">서비스 알아보기</a>
-      <a href="#cta" class="btn-ghost">출시 알림 받기</a>
+      <a href="https://url.kr/j5vmti" target="_blank" rel="noopener" class="btn-ghost">출시 알림 받기</a>
     </div>
   </div>
   <div class="scroll-hint">
@@ -1063,7 +971,6 @@
       <div class="rep-header"><div class="rep-title">🗓️ 3월 지하철 이용 리포트</div><div class="rep-period">2025.03.01 — 03.31</div></div>
       <div style="margin-bottom:10px;">
         <div style="background:linear-gradient(135deg,#FF4D0D,#FF7A40);border-radius:12px;padding:14px 16px 12px;position:relative;overflow:hidden;">
-
           <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.65);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">이번달 지하철에서 보낸 시간</div>
           <div style="font-size:30px;font-weight:900;color:white;line-height:1;margin-bottom:4px;">40<span style="font-size:14px;font-weight:500;margin-left:3px;">시간</span></div>
           <div style="font-size:9px;color:rgba(255,255,255,0.6);">= 영화 20편 🎬 = 책 4권 📚</div>
@@ -1144,8 +1051,8 @@
               <div class="cta-stat-label">하루 서울 지하철 이용자</div>
             </div>
             <div>
-              <div class="cta-stat-num">2,400+</div>
-              <div class="cta-stat-label">알림 신청 완료</div>
+              <div class="cta-stat-num">많은 사람들</div>
+              <div class="cta-stat-label">출시 알림 대기 중</div>
             </div>
           </div>
         </div>
@@ -1154,14 +1061,13 @@
       <!-- Right -->
       <div class="cta-right">
         <div class="cta-form-title">출시 알림 신청</div>
-        <div class="cta-form-sub">가장 먼저 탑승할 수 있도록<br>이메일을 남겨주세요.</div>
-        <input class="email-field" type="email" id="cta-email" placeholder="your@email.com">
-        <button class="cta-btn" id="cta-btn" onclick="handleCta()">
+        <div class="cta-form-sub">가장 먼저 탑승할 수 있도록<br>사전 예약을 남겨주세요.</div>
+        <a class="cta-btn" href="https://url.kr/j5vmti" target="_blank" rel="noopener">
           알림 받기
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </button>
+        </a>
         <div class="cta-fine">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1a2.5 2.5 0 0 1 2.5 2.5V5H3.5V3.5A2.5 2.5 0 0 1 6 1Z" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.2"/></svg>
           스팸 없이, 출시 소식만 한 번 보내드려요.
@@ -1173,7 +1079,7 @@
             <div class="proof-av proof-av-c"></div>
             <div class="proof-av proof-av-d"></div>
           </div>
-          <div class="proof-copy"><span class="proof-count"><span class="proof-blink-dot"></span><strong>2,400명</strong></span>이 이미 대기 중이에요</div>
+          <div class="proof-copy"><span class="proof-count"><span class="proof-blink-dot"></span><strong>많은 사람들</strong></span>이 이미 대기 중이에요</div>
         </div>
       </div>
 
@@ -1194,17 +1100,19 @@
 </footer>
 
 <script>
-  // Scroll reveal
-  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } }), { threshold: 0.1 });
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  }), { threshold: 0.1 });
+
   document.querySelectorAll('.stat-block').forEach(el => obs.observe(el));
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // Sleepers pause during stop
   const sl = document.getElementById('sleepers');
   setTimeout(() => sl.classList.add('paused'), 1360);
   setTimeout(() => sl.classList.remove('paused'), 1836);
 
-  // ── Study nudge → scroll + switch tab ──
   function goToStudy() {
     const communityEl = document.getElementById('feature-community');
     communityEl.scrollIntoView({ behavior: 'smooth' });
@@ -1216,25 +1124,6 @@
     }, 600);
   }
 
-  // CTA
-  function handleCta() {
-    const inp = document.getElementById('cta-email');
-    const btn = document.getElementById('cta-btn');
-    if (inp.value && inp.value.includes('@')) {
-      btn.innerHTML = '✓ 등록 완료!';
-      btn.style.background = '#22C55E';
-      btn.style.boxShadow = '0 4px 24px rgba(34,197,94,0.3)';
-      inp.value = ''; inp.placeholder = '등록되었습니다 🎉'; inp.disabled = true;
-    } else {
-      inp.style.borderColor = 'rgba(255,77,13,0.55)';
-      inp.placeholder = '올바른 이메일을 입력해주세요'; inp.value = '';
-      setTimeout(() => { inp.style.borderColor = ''; }, 1600);
-    }
-  }
-
-  // ── Complaint: per-line AND per-car vote data ──
-  // Structure: voteData[car][type]
-  // car: 'line' (2호선 전체) | 'car32' (3-2칸)
   const voteData = {
     line: {
       temp:  { options:[{e:'🥶',label:'추워요',pct:70},{e:'🥵',label:'더워요',pct:30}], total:142, status:'3분 전 온도 조치 완료' },
@@ -1260,6 +1149,7 @@
     const maxPct = Math.max(...d.options.map(o => o.pct));
     area.style.opacity = '0';
     area.style.transform = 'translateY(6px)';
+
     setTimeout(() => {
       area.innerHTML = d.options.map(o => `
         <div class="vote-bar-wrap">
@@ -1270,14 +1160,17 @@
           <div class="vote-track">
             <div class="${o.pct === maxPct ? 'vote-fill' : 'vote-fill-dim'}" style="width:${o.pct}%"></div>
           </div>
-        </div>`).join('') +
-        `<div class="vote-note" style="margin-top:-4px;margin-bottom:12px;">${d.total}명이 투표했습니다</div>`;
+        </div>
+      `).join('') + `<div class="vote-note" style="margin-top:-4px;margin-bottom:12px;">${d.total}명이 투표했습니다</div>`;
+
       area.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
       area.style.opacity = '1';
       area.style.transform = 'translateY(0)';
+
       requestAnimationFrame(() => {
         area.querySelectorAll('.vote-fill, .vote-fill-dim').forEach(el => {
-          const w = el.style.width; el.style.width = '0';
+          const w = el.style.width;
+          el.style.width = '0';
           requestAnimationFrame(() => {
             el.style.transition = 'width 0.7s cubic-bezier(0.16,1,0.3,1)';
             el.style.width = w;
@@ -1285,6 +1178,7 @@
         });
       });
     }, 160);
+
     document.getElementById('status-text').textContent = '철도공사에 실시간 전달 중 · ' + d.status;
   }
 
@@ -1295,7 +1189,6 @@
     renderVotes(currentType);
   }
 
-  // Dim bar style injection
   const styleEl = document.createElement('style');
   styleEl.textContent = `
     .pct-dim { font-size:15px; font-weight:900; color:#AAA; }
@@ -1313,7 +1206,6 @@
     });
   });
 
-  // Board
   const boardData = {
     info: [
       { tag:'🚨 지연', time:'방금', title:'건대입구~성수 구간 10분 지연 중', preview:'앞 열차 문 고장으로 지연 중이에요. 대체 경로로 돌아가세요.', likes:142, comments:38 },
@@ -1341,19 +1233,41 @@
       { tag:'🙏 요청', time:'1시간 전', title:'카풀/동승자 매칭 기능도 넣어주세요', preview:'지하철 넘어서 카풀까지 연결되면 완전 꿀이지 않나요ㅎㅎ', likes:55, comments:31 },
     ]
   };
+
   function renderPosts(key) {
     const area = document.getElementById('board-posts-area');
-    area.style.opacity='0'; area.style.transform='translateY(6px)';
+    area.style.opacity = '0';
+    area.style.transform = 'translateY(6px)';
+
     setTimeout(() => {
-      area.innerHTML = boardData[key].map(p=>`<div class="post-item"><div class="post-meta"><span class="post-tag">${p.tag}</span><span class="post-time">${p.time}</span></div><div class="post-title">${p.title}</div><div class="post-preview">${p.preview}</div><div class="post-stats"><span class="pstat"><span>👍</span> ${p.likes}</span><span class="pstat"><span>💬</span> ${p.comments}</span><span class="pstat"><span>🔁</span> 공유</span></div></div>`).join('');
-      area.style.transition='opacity 0.25s ease,transform 0.25s ease';
-      area.style.opacity='1'; area.style.transform='translateY(0)';
+      area.innerHTML = boardData[key].map(p => `
+        <div class="post-item">
+          <div class="post-meta">
+            <span class="post-tag">${p.tag}</span>
+            <span class="post-time">${p.time}</span>
+          </div>
+          <div class="post-title">${p.title}</div>
+          <div class="post-preview">${p.preview}</div>
+          <div class="post-stats">
+            <span class="pstat"><span>👍</span> ${p.likes}</span>
+            <span class="pstat"><span>💬</span> ${p.comments}</span>
+            <span class="pstat"><span>🔁</span> 공유</span>
+          </div>
+        </div>
+      `).join('');
+
+      area.style.transition = 'opacity 0.25s ease,transform 0.25s ease';
+      area.style.opacity = '1';
+      area.style.transform = 'translateY(0)';
     }, 150);
   }
+
   renderPosts('info');
+
   document.querySelectorAll('.btab').forEach(t => t.addEventListener('click', function() {
-    document.querySelectorAll('.btab').forEach(x=>x.classList.remove('active'));
-    this.classList.add('active'); renderPosts(this.dataset.tab);
+    document.querySelectorAll('.btab').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+    renderPosts(this.dataset.tab);
   }));
 </script>
 </body>
