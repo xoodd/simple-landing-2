@@ -74,6 +74,104 @@ font-size:1.6rem;
 color:#888;
 }
 
+/* VOTE */
+
+.vote-section{
+padding:150px 10%;
+background:var(--black);
+color:white;
+}
+
+.vote-container{
+max-width:600px;
+margin:0 auto;
+}
+
+.vote-box{
+background:#1a1a1a;
+border-radius:24px;
+padding:40px;
+border:1px solid #333;
+}
+
+.vote-title{
+font-size:1.4rem;
+font-weight:700;
+margin-bottom:30px;
+text-align:center;
+color:white;
+}
+
+.vote-option{
+display:flex;
+align-items:center;
+padding:18px 22px;
+border:2px solid #333;
+border-radius:14px;
+margin-bottom:12px;
+cursor:pointer;
+transition:all 0.3s;
+position:relative;
+}
+
+.vote-option:hover{border-color:var(--primary);background:#1a1a1a;}
+.vote-option.selected{border-color:var(--primary);background:rgba(255,92,0,0.1);}
+.vote-option input{display:none;}
+
+.vote-radio{
+width:20px;
+height:20px;
+border:2px solid #555;
+border-radius:50%;
+margin-right:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:all 0.3s;
+}
+
+.vote-option.selected .vote-radio{
+border-color:var(--primary);
+background:var(--primary);
+}
+
+.vote-option.selected .vote-radio::after{
+content:'✓';
+color:white;
+font-size:12px;
+font-weight:700;
+}
+
+.vote-label{flex:1;font-weight:600;color:#ddd;font-size:1rem;}
+.vote-percent{font-weight:700;color:var(--primary);font-size:1rem;min-width:45px;text-align:right;}
+
+.vote-bar{
+position:absolute;
+left:0;
+bottom:0;
+height:3px;
+background:var(--primary);
+border-radius:0 0 0 14px;
+transition:width 0.5s ease;
+}
+
+.vote-btn{
+width:100%;
+background:var(--primary);
+color:white;
+border:none;
+padding:16px;
+border-radius:12px;
+font-size:1rem;
+font-weight:700;
+cursor:pointer;
+margin-top:18px;
+transition:all 0.3s;
+}
+
+.vote-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(255,92,0,0.3);}
+.vote-result{text-align:center;color:#666;margin-top:15px;font-size:0.85rem;}
+
 /* MEANING */
 
 .meaning{
@@ -352,7 +450,6 @@ grid-template-columns:1fr;
 }
 
 }
-
 </style>
 </head>
 
@@ -368,6 +465,42 @@ grid-template-columns:1fr;
 <h1>BEYOND<br>THE SUBWAY</h1>
 <p>지하철 이동을 데이터로 최적화하다</p>
 
+</section>
+
+<section class="vote-section" id="vote">
+<div class="vote-container">
+<div class="vote-box">
+<div class="vote-title">📊 가장困扰받는 지하철 상황은?</div>
+<div class="vote-options">
+<div class="vote-option" onclick="selectVote(this)">
+<div class="vote-radio"></div>
+<span class="vote-label">🚪 문고장 사고</span>
+<span class="vote-percent">32%</span>
+<div class="vote-bar" style="width: 32%;"></div>
+</div>
+<div class="vote-option selected" onclick="selectVote(this)">
+<div class="vote-radio"></div>
+<span class="vote-label">👥 과밀한 인구</span>
+<span class="vote-percent">41%</span>
+<div class="vote-bar" style="width: 41%;"></div>
+</div>
+<div class="vote-option" onclick="selectVote(this)">
+<div class="vote-radio"></div>
+<span class="vote-label">⏰ 연착 및 지연</span>
+<span class="vote-percent">18%</span>
+<div class="vote-bar" style="width: 18%;"></div>
+</div>
+<div class="vote-option" onclick="selectVote(this)">
+<div class="vote-radio"></div>
+<span class="vote-label">🔊 소음 및 잡음</span>
+<span class="vote-percent">9%</span>
+<div class="vote-bar" style="width: 9%;"></div>
+</div>
+</div>
+<button class="vote-btn" onclick="submitVote()">투표하기</button>
+<div class="vote-result">📈 1,234명 참여 · 2시간 전 업데이트</div>
+</div>
+</div>
 </section>
 
 <section class="meaning">
@@ -541,6 +674,33 @@ document.querySelectorAll(".reveal").forEach(el=>{
 observer.observe(el)
 })
 
+</script>
+
+<script>
+let hasVoted = false;
+function selectVote(element) {
+if (hasVoted) return;
+document.querySelectorAll('.vote-option').forEach(opt => opt.classList.remove('selected'));
+element.classList.add('selected');
+}
+function submitVote() {
+const selected = document.querySelector('.vote-option.selected');
+if (!selected && !hasVoted) {
+alert('옵션을 선택해주세요!');
+return;
+}
+if (!hasVoted) {
+hasVoted = true;
+alert('투표해 주셔서 감사합니다! 🎉');
+document.querySelectorAll('.vote-option').forEach(opt => {
+const percent = opt.querySelector('.vote-percent');
+const current = parseInt(percent.textContent);
+const newPercent = Math.min(100, current + Math.floor(Math.random() * 5) + 1);
+percent.textContent = newPercent + '%';
+opt.querySelector('.vote-bar').style.width = newPercent + '%';
+});
+}
+}
 </script>
 
 </body>
