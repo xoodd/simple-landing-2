@@ -549,26 +549,91 @@
   .reveal-delay-2 { transition-delay: 0.16s; }
 
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
+    nav { padding: 16px 20px; }
     .nav-links { display: none; }
-    section { padding: 80px 24px; }
-    #feature-seat, #feature-community, #feature-complaint, .report-section { grid-template-columns: 1fr; gap: 48px; }
-    #feature-community, .report-section { padding: 48px 32px; }
-    /* stats: 1열로 */
+    .nav-cta { padding: 9px 16px; font-size: 12px; }
+
+    section { padding: 64px 20px; }
+
+    /* feature grids → 1열 */
+    #feature-seat,
+    #feature-community,
+    #feature-complaint,
+    .report-section { grid-template-columns: 1fr; gap: 40px; }
+
+    #feature-community { padding: 44px 24px; border-radius: 20px; }
+    .report-section    { padding: 44px 24px; border-radius: 20px; }
+
+    /* phone mockup — 모바일에서 너무 크지 않게 */
+    .phone { width: 240px; }
+    .phone-inner { min-height: 430px; }
+
+    /* inline wrappers that use hardcoded padding */
+    div[style*="padding:0 52px"],
+    div[style*="padding: 0 52px"] {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    div[style*="padding:130px 52px"],
+    div[style*="padding: 130px 52px"] {
+      padding: 64px 20px !important;
+    }
+    div[style*="padding:80px 52px"],
+    div[style*="padding: 80px 52px"] {
+      padding: 48px 20px !important;
+    }
+    div[style*="padding:0 52px 120px"],
+    div[style*="padding: 0 52px 120px"] {
+      padding: 0 20px 80px !important;
+    }
+
+    /* stats */
     .stats-outer { padding: 48px 0; }
-    .stats-inner { grid-template-columns: 1fr; gap: 12px; padding: 0 24px; }
-    .stat-block { padding: 32px 28px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); border-radius: 16px; }
-    .stat-block:last-child { border-bottom: none; }
-    .stat-big { font-size: 64px; }
-    .stat-big .su { font-size: 36px; }
-    footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
-    .footer-logo-wrap { flex-direction: column; gap: 10px; }
+    .stats-inner {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 0 20px;
+    }
+    .stat-block {
+      padding: 28px 24px;
+      border-right: none;
+      border-radius: 16px;
+    }
+    .stat-big { font-size: 60px; }
+    .stat-big .su { font-size: 34px; }
+    .stat-body { font-size: 13px; }
+
+    /* CTA */
+    #cta { margin: 0 20px; border-radius: 20px; }
     .cta-grid { grid-template-columns: 1fr; }
-    .cta-left { padding: 52px 32px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
-    .cta-right { padding: 40px 32px; }
-    #cta { margin: 0 24px; }
+    .cta-left { padding: 44px 28px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .cta-right { padding: 36px 28px; }
+    .cta-title { font-size: 36px; letter-spacing: -1.5px; }
+    .cta-stats { gap: 24px; margin-top: 32px; padding-top: 24px; }
+    .cta-stat-num { font-size: 26px; }
+    .cta-card { width: 100%; padding: 28px; }
+
+    /* board mock */
+    .board-mock { border-radius: 16px; }
+
+    /* marquee label hidden */
     .strip-label { display: none; }
     .strip-chevron { display: none; }
+    .strip-ko { font-size: 12px; }
+    .strip-en { display: none; }
+    .strip-item { padding: 0 20px; gap: 10px; }
+
+    /* footer */
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 20px; }
+    .footer-logo-wrap { flex-direction: column; align-items: center; gap: 10px; }
+  }
+
+  /* 작은 폰 (360px 이하) 추가 대응 */
+  @media (max-width: 400px) {
+    .stat-big { font-size: 52px; }
+    .phone { width: 210px; }
+    .phone-inner { min-height: 380px; }
+    .service-name { font-size: 52px; letter-spacing: -2px; }
   }
 </style>
 </head>
