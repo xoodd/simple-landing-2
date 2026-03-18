@@ -935,8 +935,9 @@
         <div class="cm-title">오늘 우리 칸의 컨디션은?</div>
         <div class="cm-sub">노선과 칸을 선택해 투표하세요</div>
         <div class="cm-selector">
-          <div class="cm-sel active" id="sel-line" style="cursor:default;">2호선</div>
-          <div class="cm-sel" id="sel-car" onclick="selectCar('car32')">3-2칸</div>
+          <!-- ✅ 수정: 2호선은 비활성(클릭 불가), 3-2칸은 기본 선택 -->
+          <div class="cm-sel" id="sel-line" style="cursor:not-allowed;opacity:0.45;">2호선</div>
+          <div class="cm-sel active" id="sel-car" style="cursor:default;">3-2칸</div>
         </div>
         <div class="cm-type-label">민원 유형</div>
         <div class="cm-types">
@@ -1088,7 +1089,6 @@
 </footer>
 
 <script>
-  // CTA scroll function — no anchor needed
   function scrollToCta() {
     document.getElementById('cta-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -1132,7 +1132,8 @@
     }
   };
 
-  let currentCar = 'line';
+  // ✅ 수정: 초기값을 'car32'로 설정 (3-2칸이 기본 선택)
+  let currentCar = 'car32';
   let currentType = 'temp';
 
   function renderVotes(type) {
@@ -1175,6 +1176,7 @@
     document.getElementById('status-text').textContent = '철도공사에 실시간 전달 중 · ' + d.status;
   }
 
+  // ✅ selectCar 함수는 유지하되 2호선 버튼에서 호출하지 않으므로 사실상 미사용
   function selectCar(car) {
     currentCar = car;
     document.getElementById('sel-line').classList.toggle('active', car === 'line');
